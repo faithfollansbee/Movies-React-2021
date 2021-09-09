@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import Form from 'react-bootstrap/Form'
-// import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import { withRouter } from 'react-router-dom'
-import Spinner from 'react-bootstrap/Spinner'
+// import Spinner from 'react-bootstrap/Spinner'
+// import MovieForm from './MovieForm'
 
 // import Card from '@material-ui/core/Card'
 // import CardContent from '@material-ui/core/CardContent'
@@ -17,16 +18,17 @@ class SaveMovie extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
-      user: props.user,
+      user: this.props.user,
       genres: [],
       userGenres: [],
       // isLoading: true,
       filtered: false,
       movie: {
         title: props.title,
+        description: props.description,
         released: props.released,
         image: props.image,
-        type: ''
+        genre: ''
       }
     }
     // console.log(this.props.user)
@@ -52,10 +54,10 @@ class SaveMovie extends Component {
       data: {
         movie: {
           title: this.props.title,
-          released: this.props.released,
           description: this.props.description,
+          released: this.props.released,
           image: this.props.image,
-          type: this.state.type
+          genre: this.state.genre
         }
       }
     })
@@ -66,7 +68,7 @@ class SaveMovie extends Component {
   }
   handleOptionChange = changeEvent => {
     this.setState({
-      type: changeEvent.target.value
+      genre: changeEvent.target.value
     })
   }
   async componentDidMount () {
@@ -85,7 +87,7 @@ class SaveMovie extends Component {
   }
 
   render (props) {
-    // const { userGenres } = this.state
+    // const { genresJsx } = this.state
     console.log(this.state)
     // const genresJsx = userGenres.map(genre => (
     //   <div key={genre._id}>
@@ -93,50 +95,71 @@ class SaveMovie extends Component {
     //   </div>
     // ))
     const genresJsx = this.state.genres.map(genre => (
-      <div className="collection-item" key={genre._id}>
-        { genre.name }
+      <div key={genre._id}>
+        <li>
+          <label>
+            <input
+              name="genre"
+              type="radio"
+              value={genre._id}
+              ref={this.input}
+              checked={this.state.genre === genre._id}
+              onChange={this.handleOptionChange}
+            />{genre.name}</label>
+        </li>
       </div>
     ))
-    if (this.state.isLoading) {
-      return (
-        <div className="text-center">
-          <Spinner animation="border" variant="primary" />
-        </div>
-      )
-    }
+    // if (this.state.isLoading) {
+    //   return (
+    //     <div className="text-center">
+    //       <Spinner animation="border" variant="primary" />
+    //     </div>
+    //   )
+    // }
+    // {this.state.genres.length
+    //   ? genresJsx
+    //   : <ul>No genres found</ul>
+    // }
     // console.log(this.state.place)
     return (
-      <ul>
-        {this.state.genres.length
-          ? genresJsx
-          : <ul>No genres found</ul>
-        }
-      </ul>
+      <div>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="genre">
+            <ul>
+              { genresJsx }
+            </ul>
+            <Button variant="dark" type="submit">
+                Submit
+            </Button>
+          </Form.Group>
+        </Form>
+      </div>
     )
   }
 }
-
-export default withRouter(SaveMovie)
+// <MovieForm
+//   movie={this.state.movie}
+//   genres={this.state.genres}
+//   // genresJsx={this.genresJsx}
+//   handleMovieSubmit={this.handleSubmit}
+//   handleChange={this.handleChange}
+//   handleOptionChange={this.handleOptionChange}
+//   correctRoute={this.props.match.params.id}
+// />
+// <Form onSubmit={this.handleSubmit}>
+//   <Form.Group controlId="formBasicCheckbox">
+//     <ul>
+//       { genresJsx }
+//     </ul>
+//     <Button variant="dark" type="submit">
+//         Submit
+//     </Button>
+//   </Form.Group>
+// </Form>
 // <Form onSubmit={this.handleSubmit}>
 //   <div className="col">
 //     <Form.Group controlId="formBasicCheckbox">
-//       {this.state.genres.length
-//         ? genresJsx
-//         : <ul>No genres found</ul>
-//       }
-//       <ul style={listStyle}>
-//         <li>
-//           <label>
-//             <input
-//               name="type"
-//               type="radio"
-//               value="restaurant"
-//               ref={this.input}
-//               checked={this.state.type === 'restaurant'}
-//               onChange={this.handleOptionChange}
-//             /> Restaurant</label>
-//           <img src='https://img.icons8.com/color/48/000000/pizza.png'/>
-//         </li>
+//       <ul>
 //         <li>
 //           <label>
 //             <input
@@ -156,6 +179,9 @@ export default withRouter(SaveMovie)
 //     Submit
 //   </Button>
 // </Form>
+
+export default withRouter(SaveMovie)
+
 // <div className="col">
 //   <Form.Group controlId="name">
 //     <Form.Label></Form.Label>

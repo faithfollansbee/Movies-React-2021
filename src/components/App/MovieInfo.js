@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 // import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import ArrowBack from '@material-ui/icons/ArrowBack'
-// import SaveMovie from './SaveMovie'
+import SaveMovie from './SaveMovie'
 // <i className="fas fa-arrow left"></i>
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -38,6 +38,9 @@ const MovieInfo = (props) => {
           </div>
         </div>
 
+      </div>
+      <div className="row">
+        <SaveMovie user={props.user} title={props.currentMovie.title} released={props.currentMovie.release_date} description={props.currentMovie.overview} image={props.currentMovie.poster_path}/>
       </div>
     </div>
   )

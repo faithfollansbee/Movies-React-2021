@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import RecipeForm from './RecipeForm'
+import MovieForm from './RecipeForm'
 import { withRouter } from 'react-router-dom'
 
-class AddRecipe extends Component {
+class AddMovie extends Component {
   state = {
     // recipe: this.props,
     recipe: {
@@ -102,7 +102,7 @@ class AddRecipe extends Component {
       <MovieForm
         movie={this.state.movie}
         handleChange={this.handleChange}
-        handleRecipeSubmit={this.handleSubmit}
+        handleMovieSubmit={this.handleSubmit}
         correctRoute={this.props.match.params.id}
       />
     )
