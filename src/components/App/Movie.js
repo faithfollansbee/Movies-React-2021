@@ -79,6 +79,9 @@ const Movie = (props) => {
             </div>
           </CardContent>
         </CardActionArea>
+        <div>
+          <p><a href="#" onClick={() => props.viewMovie(props.movieId)}>View Details</a></p>
+        </div>
       </Card>
     </div>
   )

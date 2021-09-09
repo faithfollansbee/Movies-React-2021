@@ -86,7 +86,7 @@ class Genres extends Component {
               <MoreVertIcon />
             </IconButton>
           }
-          title={genre.title}
+          title={genre.name}
         />
         <CardContent>
           <Typography></Typography>
