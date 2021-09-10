@@ -18,7 +18,8 @@ import SearchArea from './SearchArea'
 import SearchResults from './SearchResults'
 import Trending from './trending'
 import MovieInfo from './MovieInfo'
-import SaveMovie from './SaveMovie'
+// import MovieInfo from './TestMovieInfo'
+// import SaveMovie from './SaveMovie'
 // import Landing from '../landing/landing'
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
     // console.log(currentMovieObj)
   }
   closeMovieInfo = () => {
+    event.preventDefault()
     this.setState({ currentMovie: null })
   }
 
@@ -93,7 +95,10 @@ class App extends Component {
    handleChange = (event) => {
      this.setState({ searchTerm: event.target.value })
    }
-
+   // <SaveMovie user={user}/>
+   // <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)} />
+   // <AuthenticatedRoute user={user} exact path='/more-info' render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)} />
+   // currentMovie={this.state.currentMovie}
    render () {
      const { user, alerts } = this.state
      return (
@@ -109,11 +114,13 @@ class App extends Component {
              deleteAlert={this.deleteAlert}
            />
          ))}
+
          <main className="container">
-           { this.state.currentMovie == null
+           { /* { this.state.currentMovie == null
              ? <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)} />
-             : <div> <MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/> <SaveMovie user={user}/></div>
-           }
+             : <AuthenticatedRoute user={user} path="/more-info" render={() => <MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>} />
+           } */ }
+           { /* <div> <MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/> </div> */ }
            { /* <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<SearchResults user={user} movies={this.state.movies} ViewMovie={this.ViewMovie} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>)}/>
 */ }
 
@@ -123,6 +130,9 @@ class App extends Component {
             <AuthenticatedRoute user={user} exact path='/search' component={App}
               render={() => (<SearchResults user={user} movies={this.state.movies} ViewMovie={this.ViewMovie} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>)}/>
 */}
+           <AuthenticatedRoute user={user} path="/search" component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)}/>
+           <AuthenticatedRoute user={user} path="/more-info" render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)}/>
+
            <AuthenticatedRoute user={user} exact path='/movies'
              render={() => (<Movies user={user}/>)}/>
 

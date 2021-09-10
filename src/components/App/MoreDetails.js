@@ -15,7 +15,7 @@ const MoreDetails = (props) => {
         <p>{props.currentMovie.overview}</p>
         <p>{props.currentMovie.release_date}</p>
       </div>
-      <SaveMovie />
+      <SaveMovie user={props.user}/>
     </div>
   )
 }

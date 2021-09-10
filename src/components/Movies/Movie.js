@@ -55,6 +55,7 @@ class movie extends Component {
         }
       }/>
     }
+    // <p> {movie.genre.name} </p>
 
     return (
       <div style={movieStyle}>
@@ -70,6 +71,7 @@ class movie extends Component {
                     <p> {movie.title} </p>
                     <p> {movie.description} </p>
                     <p> {movie.released} </p>
+                    <p> {movie.genre.name} </p>
                   </div>
                 </div>
               </div>

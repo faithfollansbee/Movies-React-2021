@@ -17,6 +17,7 @@ class SaveMovie extends Component {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    // this.closeMovieInfo = this.closeMovieInfo.bind(this)
     this.state = {
       user: this.props.user,
       genres: [],
@@ -33,7 +34,9 @@ class SaveMovie extends Component {
     }
     // console.log(this.props.user)
   }
-
+  closeMovieInfo = event => {
+    this.setState({ currentMovie: null })
+  }
   handleChange = event => {
     this.setState({
       movie: {
@@ -43,6 +46,10 @@ class SaveMovie extends Component {
     })
     console.log(this.state)
   }
+  // closeMovie = () => {
+  //   event.preventDefault()
+  //   this.setState({ currentMovie: null })
+  // }
   handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -101,13 +108,21 @@ class SaveMovie extends Component {
             <input
               name="genre"
               type="radio"
+              // value={genre._id}
               value={genre._id}
               ref={this.input}
+              // checked={this.state.genre._id === genre._id}
               checked={this.state.genre === genre._id}
               onChange={this.handleOptionChange}
             />{genre.name}</label>
         </li>
       </div>
+      // <Form.Select aria-label="Default select example">
+      //   <option>Open this select menu</option>
+      //   <option value="1">One</option>
+      //   <option value="2">Two</option>
+      //   <option value="3">Three</option>
+      // </Form.Select>
     ))
     // if (this.state.isLoading) {
     //   return (

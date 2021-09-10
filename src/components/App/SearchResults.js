@@ -9,7 +9,7 @@ const SearchResults = (props) => {
         {
           props.movies.map((movie, i) => {
             return (
-              <Movie key={i} user={props.user} viewMovie={props.viewMovie} released={movie.release_date} image={movie.poster_path} movieId={movie.id} title={movie.title} description={movie.overview}/>
+              <Movie key={i} user={props.user} currentMovie={props.currentMovie} viewMovie={props.viewMovie} released={movie.release_date} image={movie.poster_path} movieId={movie.id} title={movie.title} description={movie.overview}/>
             )
           })
         }

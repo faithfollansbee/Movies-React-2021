@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent'
 // import CardMedia from '@material-ui/core/CardMedia'
 // import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+// import MovieInfo from './MovieInfo'
+import { Link } from 'react-router-dom'
 
 const resultStyle = {
   // margin: '5px',
@@ -80,12 +82,18 @@ const Movie = (props) => {
           </CardContent>
         </CardActionArea>
         <div>
-          <p><a href="#" onClick={() => props.viewMovie(props.movieId)}>View Details</a></p>
+          <p><a href="#/more-info" onClick={() => props.viewMovie(props.movieId)}>View Details</a></p>
+          <p><a href="#/more-info" onClick={() => props.viewMovie(props.movieId)}>view moar</a></p>
+          <Link to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} closeMovieInfo={this.closeMovieInfo} currentMovie={props.movieId}>MOAR</Link>
         </div>
       </Card>
     </div>
   )
 }
+// <Link href="#movie-info" user={props.user} id={props.movieId} closeMovieInfo={this.closeMovieInfo} currentMovie={props.currentMovie}> View details</Link>
+
+// <MovieInfo user={props.user} currentMovie={props.currentMovie} closeMovieInfo={this.closeMovieInfo} />
+
 // <Button size="small" color="primary" onClick={() => props.ViewMovie(props.movieId)}> see more </Button>
 // <p><a href="#">This is a link</a></p>
 // <Button size="small" color="primary" onClick={handleClick} type="click"> Save movie </Button>
