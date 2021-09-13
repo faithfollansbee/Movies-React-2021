@@ -18,4 +18,6 @@ const SearchResults = (props) => {
   )
 }
 
+// <div className="results-container my-5">
+//   <div className="row">
 export default SearchResults

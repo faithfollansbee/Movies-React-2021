@@ -18,6 +18,8 @@ import SearchArea from './SearchArea'
 import SearchResults from './SearchResults'
 import Trending from './trending'
 import MovieInfo from './MovieInfo'
+import Container from '@material-ui/core/container'
+
 // import MovieInfo from './TestMovieInfo'
 // import SaveMovie from './SaveMovie'
 // import Landing from '../landing/landing'
@@ -114,8 +116,7 @@ class App extends Component {
              deleteAlert={this.deleteAlert}
            />
          ))}
-
-         <main className="container">
+         <Container>
            { /* { this.state.currentMovie == null
              ? <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)} />
              : <AuthenticatedRoute user={user} path="/more-info" render={() => <MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>} />
@@ -172,7 +173,7 @@ class App extends Component {
            <AuthenticatedRoute user={user} path='/change-password' render={() => (
              <ChangePassword alert={this.alert} user={user} />)}/>
 
-         </main>
+         </Container>
        </Fragment>
      )
    }

@@ -1,1 +1,48 @@
 @import '~bootstrap/scss/bootstrap';
+
+.card-style {
+  margin: 15px;
+  padding: 10px;
+}
+
+// .container {
+//   padding-right: 5px;
+//   padding-left: 5px;
+//   margin-right: 5px;
+//   margin-left: auto;
+// }
+.row-style {
+  justify-content: space-around;
+  display: flex;
+  padding: 30px;
+  padding-bottom: 5px;
+  padding-top: 15px;
+  margin-top: 30px;
+}
+
+.title-style {
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+}
+.search-area{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 1px;
+}
+.search {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 1px;
+}
+// .container {
+//   margin: 20px;
+//   align-items: center;
+//   width: 80%;
+// }
+.layout-style {
+  margin: 15;
+  flex-grow: 1;
+  padding: 20;
+}

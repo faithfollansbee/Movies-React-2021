@@ -63,7 +63,8 @@ class Movie2 extends React.Component {
             />
 
             <CardContent className="content">
-              <Typography>{movie.steps}</Typography>
+              <Typography>{movie.title}</Typography>
+              { /* { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '10', height: 100, padding: '1' }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '10', height: 100, padding: '1' }}/> } */ }
             </CardContent>
             <br/>
             <CardActions>

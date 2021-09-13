@@ -8,8 +8,8 @@ import CardContent from '@material-ui/core/CardContent'
 
 import FormControl from 'react-bootstrap/FormControl'
 // import ListGroup from 'react-bootstrap/ListGroup'
-import Container from '@material-ui/core/container'
-import Row from 'react-bootstrap/Row'
+// import Container from '@material-ui/core/container'
+// import Row from 'react-bootstrap/Row'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
@@ -21,17 +21,15 @@ import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 // import AddGenre from './AddGenre'
 
-const cardStyle = {
-  // width: 285,
-  margin: 1,
-  padding: 10,
-  textAlign: 'center',
-  marginBottom: 12,
-  hover: 'red',
-  overflowWrap: 'break-word',
-  wordWrap: 'break-word'
-  // alignItems: 'flex-start'
-}
+// const cardStyle = {
+// margin: 1,
+// padding: 10,
+// textAlign: 'center',
+// marginBottom: 12,
+// hover: 'red',
+// overflowWrap: 'break-word',
+// wordWrap: 'break-word'
+// }
 
 class Genres extends Component {
   constructor (props) {
@@ -79,7 +77,7 @@ class Genres extends Component {
     const { userGenres } = this.state
     console.log(this.state)
     const genresJSX = userGenres.map(genre => (
-      <Card key={genre._id} style={cardStyle} className="card-style">
+      <Card key={genre._id} className="card-style">
         <CardHeader
           action={
             <IconButton aria-label="settings">
@@ -108,9 +106,9 @@ class Genres extends Component {
     ))
 
     return (
-      <Container>
-        <div>
-          <h3 className="title-style">Your genres</h3>
+      <div className="layout-style">
+        <Fragment>
+          <h2 className="title-style">Your genres</h2>
           <div className="search">
             {
               <Fragment>
@@ -122,15 +120,11 @@ class Genres extends Component {
               </Fragment>
             }
           </div>
-        </div>
-        <div>
           <div>
-            <Row className="row-style">
-              {genresJSX}
-            </Row>
+            {genresJSX}
           </div>
-        </div>
-      </Container>
+        </Fragment>
+      </div>
     )
   }
 }

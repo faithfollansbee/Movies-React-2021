@@ -1,12 +1,15 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { withRouter, Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
 
-const movieStyle = {
-  // margin: '30px'
-  // alignItems: 'space-evenly'
-}
+// const movieStyle = {
+// margin: '30px'
+// alignItems: 'space-evenly'
+// }
 const actionsStyle = {
   // display: 'flex',
   justifyContent: 'space-evenly',
@@ -58,30 +61,34 @@ class movie extends Component {
     // <p> {movie.genre.name} </p>
 
     return (
-      <div style={movieStyle}>
+      <div>
         { movie && (
-          <Fragment>
-            <div className="movie-container">
-              <div className="row">
-                <div className="col s12 m4">
-                  { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 360 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '10', height: 360 }}/> }
-                </div>
-                <div className="col s12 m8">
-                  <div className="info-container">
-                    <p> {movie.title} </p>
-                    <p> {movie.description} </p>
-                    <p> {movie.released} </p>
-                    <p> {movie.genre.name} </p>
+          <div className="movie-container">
+            <Card>
+              <CardContent>
+                <div className="row">
+                  <div className="col s12 m3">
+                    { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 360 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '10', height: 360 }}/> }
+                  </div>
+                  <div className="col s12 m8">
+                    <div className="info-container">
+                      <p> {movie.title} </p>
+                      <p> {movie.description} </p>
+                      <p> {movie.released} </p>
+                      <p> {movie.genre.name} </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="row" style={actionsStyle}>
-                <Link to="/movies">Back to all</Link>
-                <Link to="/search">Back to search</Link>
-                <button onClick={this.deletemovie}>Delete this movie</button>
-              </div>
-            </div>
-          </Fragment>
+              </CardContent>
+              <CardActions>
+                <div className="row" style={actionsStyle}>
+                  <Link to="/movies">Back to all</Link>
+                  <Link to="/search">Back to search</Link>
+                  <button onClick={this.deletemovie}>Delete this movie</button>
+                </div>
+              </CardActions>
+            </Card>
+          </div>
         )}
       </div>
     )
