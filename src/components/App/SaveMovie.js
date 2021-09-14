@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import { withRouter, Redirect } from 'react-router-dom'
+
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { withRouter } from 'react-router-dom'
+// import { withRouter } from 'react-router-dom'
 // import Spinner from 'react-bootstrap/Spinner'
 // import MovieForm from './MovieForm'
 
@@ -22,6 +24,7 @@ class SaveMovie extends Component {
       user: this.props.user,
       genres: [],
       userGenres: [],
+      saved: false,
       // isLoading: true,
       filtered: false,
       movie: {
@@ -68,9 +71,14 @@ class SaveMovie extends Component {
         }
       }
     })
+      .then(() => this.setState({ saved: true }))
       .then(response => {
         this.props.history.push(`/movies/${response.data.movie._id}`)
       })
+      // .then(response => {
+      //   this.props.history.goBack(`/movies/${this.state.genre._id}`)
+      // })
+
       .catch(err => this.setState({ error: err.message }))
   }
   handleOptionChange = changeEvent => {
@@ -96,6 +104,15 @@ class SaveMovie extends Component {
   render (props) {
     // const { genresJsx } = this.state
     console.log(this.state)
+    const { saved } = this.state
+    if (saved) {
+      return <Redirect to={
+        {
+          // pathname: '/search'
+          pathname: '/search'
+        }
+      }/>
+    }
     // const genresJsx = userGenres.map(genre => (
     //   <div key={genre._id}>
     //     { genre.name }

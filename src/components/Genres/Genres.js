@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -97,9 +96,7 @@ class Genres extends Component {
           <IconButton aria-label="edit" href={`#genres/${genre._id}/edit`}>
             <EditIcon />
           </IconButton>
-          <Link id={genre._id} to={`/genres/${genre._id}`}> View details</Link>
-          <Button variant="outlined">
-            <Link id={genre._id} to={`/genres/${genre._id}`}> View details</Link>
+          <Button href={`#/genres/${genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
           </Button>
         </CardActions>
       </Card>

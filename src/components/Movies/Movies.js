@@ -128,8 +128,8 @@ class movies extends Component {
               </Fragment>
             }
           </div>
-          <div>
-            {this.state.movies.map(movie => (
+          <div className="row mx-1">
+            {this.state.userMovies.map(movie => (
               <Movie2
                 key={movie.name + movie._id}
                 handleRefresh={this.handleRefresh}
@@ -149,6 +149,8 @@ class movies extends Component {
     )
   }
 }
+// <div className="row mx-lg-n5">
+
 // {this.state.movies.length
 //   ? moviesJsx
 //   : <ul>No movies found</ul>

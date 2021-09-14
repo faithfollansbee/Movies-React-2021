@@ -13,6 +13,7 @@ import Row from 'react-bootstrap/Row'
 // import CardHeader from '@material-ui/core/CardHeader'
 // import Collapse from '@material-ui/core/Collapse'
 // import IconButton from '@material-ui/core/IconButton'
+// import EditIcon from '@material-ui/icons/Edit'
 import Movie2 from '../Movies/Movie2'
 // import FavoriteIcon from '@material-ui/icons/Favorite'
 // import ShareIcon from '@material-ui/icons/Share'
@@ -201,26 +202,28 @@ class Genre extends React.Component {
                 <h1 className="title-style">{genre.name}</h1>
                 <Typography><i>Last updated at {genre.updatedAt}</i></Typography>
               </div>
-              {this.state.genre.movies.map(movie => (
-                <Movie2
-                  key={movie.name + movie._id}
-                  handleRefresh={this.handleRefresh}
-                  user={this.props.user}
-                  id={movie._id}
-                  description={movie.description}
-                  released={movie.released}
-                  image={movie.image}
-                  thisstate={this.state}
-                  alert={this.props.alert}
-                  genre={this.genre}
-                />
-              ))}
+              <div className="row mx-lg-n5">
+                {this.state.genre.movies.map(movie => (
+                  <Movie2
+                    key={movie.name + movie._id}
+                    handleRefresh={this.handleRefresh}
+                    user={this.props.user}
+                    id={movie._id}
+                    description={movie.description}
+                    released={movie.released}
+                    image={movie.image}
+                    thisstate={this.state}
+                    alert={this.props.alert}
+                    genre={this.genre}
+                  />
+                ))}
+              </div>
               {moviesStatus}
               {updateMovieButton}
               <Row className="row-style">
                 <Button
                   variant="outlined"
-                  href={`#genres/${genre._id}/createmovie`}>Add a movie</Button>
+                  href={`#genres/${genre._id}/edit`}>Edit</Button>
                 <Button
                   variant="outlined"
                   href={'#genres/'}>Back to genres</Button>
