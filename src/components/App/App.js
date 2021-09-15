@@ -32,7 +32,8 @@ class App extends Component {
       movies: [],
       searchTerm: '',
       currentMovie: null,
-      alerts: []
+      alerts: [],
+      saved: false
     }
     this.apiKey = process.env.apiKey
   }
@@ -132,7 +133,7 @@ class App extends Component {
               render={() => (<SearchResults user={user} movies={this.state.movies} ViewMovie={this.ViewMovie} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>)}/>
 */}
            <AuthenticatedRoute user={user} path="/search" component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)}/>
-           <AuthenticatedRoute user={user} path="/more-info" render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)}/>
+           <AuthenticatedRoute user={user} path="/more-info" render={() => (<MovieInfo user={user} saved={this.saved} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)}/>
 
            <AuthenticatedRoute user={user} exact path='/movies'
              render={() => (<Movies user={user}/>)}/>

@@ -52,6 +52,7 @@ class UpdateGenre extends Component {
       // })
       .then(response => {
         this.props.history.goBack(`/genres/${this.state.genre._id}`)
+        console.log('editted from updategenre')
       })
   }
 

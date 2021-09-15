@@ -55,9 +55,9 @@ class Genre extends React.Component {
       this.setState({ genre: response.data.genre })
       this.setState({ movies: response.data.genre.movies })
       // this.setState({ userRecipes: response.data.cookbook.recipes })
-      console.log(this.state.genre)
-      console.log(this.state.genre.movies)
-      console.log(this.state.movies)
+      // console.log(this.state.genre)
+      // console.log(this.state.genre.movies)
+      // console.log(this.state.movies)
     } catch (error) {
     }
   }
@@ -104,7 +104,7 @@ class Genre extends React.Component {
           heading: 'Success',
           message: 'You created a movie'
         })
-        console.log(this.state.movie)
+        // console.log(this.state.movie)
       })
       // .then(response => {
       //   this.props.history.push(`/recipes/${this.state.recipe._id}`)

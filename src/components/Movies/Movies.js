@@ -47,7 +47,7 @@ class movies extends Component {
       this.setState({ userMovies: response.data.movies })
     } catch (error) {
     }
-    console.log(this.state.movies)
+    // console.log(this.state.movies)
   }
 
   handleFilter = event => {
@@ -121,7 +121,7 @@ class movies extends Component {
             {
               <Fragment>
                 <FormControl
-                  placeholder="Search"
+                  placeholder="Search your movies"
                   aria-label="Search"
                   onChange={this.handleChange}
                 />

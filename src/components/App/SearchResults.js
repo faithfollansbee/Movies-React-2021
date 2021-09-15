@@ -5,7 +5,7 @@ import Movie from './Movie'
 const SearchResults = (props) => {
   return (
     <div className="results-container my-5">
-      <div className="row">
+      <div className="row mx-1">
         {
           props.movies.map((movie, i) => {
             return (

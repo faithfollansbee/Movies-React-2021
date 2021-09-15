@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { withRouter, Redirect } from 'react-router-dom'
-
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import FormControl from '@material-ui/core/FormControl'
+// import FormLabel from '@material-ui/core/FormLabel'
 // import { withRouter } from 'react-router-dom'
 // import Spinner from 'react-bootstrap/Spinner'
 // import MovieForm from './MovieForm'
@@ -15,6 +19,8 @@ import Button from 'react-bootstrap/Button'
 //   listStyleType: 'none'
 // }
 class SaveMovie extends Component {
+  // const [isSaved, setSaved] = useState(false);
+  // isSaved = false;
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -24,7 +30,8 @@ class SaveMovie extends Component {
       user: this.props.user,
       genres: [],
       userGenres: [],
-      saved: false,
+      saved: this.props.saved,
+      // saved: false,
       // isLoading: true,
       filtered: false,
       movie: {
@@ -47,8 +54,9 @@ class SaveMovie extends Component {
         [event.target.name]: event.target.value
       }
     })
-    console.log(this.state)
+    // console.log(this.state)
   }
+
   // closeMovie = () => {
   //   event.preventDefault()
   //   this.setState({ currentMovie: null })
@@ -71,13 +79,20 @@ class SaveMovie extends Component {
         }
       }
     })
-      .then(() => this.setState({ saved: true }))
+      // .then(() => this.setState({ saved: true }))
       .then(response => {
         this.props.history.push(`/movies/${response.data.movie._id}`)
       })
       // .then(response => {
-      //   this.props.history.goBack(`/movies/${this.state.genre._id}`)
+      //   this.props.history.goBack('/search')
+      //   console.log('from savemovie')
       // })
+      .then(() => this.props.history.push('/movies'))
+      // .then(() => this.setState({ saved: true }))
+
+    // .then(response => {
+    //   this.props.history.goBack(`/movies/${this.state.genre._id}`)
+    // })
 
       .catch(err => this.setState({ error: err.message }))
   }
@@ -103,8 +118,9 @@ class SaveMovie extends Component {
 
   render (props) {
     // const { genresJsx } = this.state
-    console.log(this.state)
+    // console.log(this.state)
     const { saved } = this.state
+    console.log(this.saved)
     if (saved) {
       return <Redirect to={
         {
@@ -118,21 +134,22 @@ class SaveMovie extends Component {
     //     { genre.name }
     //   </div>
     // ))
+    // <label>
+    //   <input
+    //     name="genre"
+    //     type="radio"
+    //     value={genre._id}
+    //     ref={this.input}
+    //     checked={this.state.genre === genre._id}
+    //     onChange={this.handleOptionChange}
+    //   />{genre.name}</label>
+    // <RadioGroup aria-label="genre" name="genre" value={genre._id} >
+
     const genresJsx = this.state.genres.map(genre => (
       <div key={genre._id}>
-        <li>
-          <label>
-            <input
-              name="genre"
-              type="radio"
-              // value={genre._id}
-              value={genre._id}
-              ref={this.input}
-              // checked={this.state.genre._id === genre._id}
-              checked={this.state.genre === genre._id}
-              onChange={this.handleOptionChange}
-            />{genre.name}</label>
-        </li>
+        <RadioGroup name="genre" value={genre.id} >
+          <FormControlLabel value={genre._id} control={<Radio />} checked={this.state.genre === genre._id} label={genre.name} onChange={this.handleOptionChange}/>
+        </RadioGroup>
       </div>
       // <Form.Select aria-label="Default select example">
       //   <option>Open this select menu</option>
@@ -153,13 +170,13 @@ class SaveMovie extends Component {
     //   : <ul>No genres found</ul>
     // }
     // console.log(this.state.place)
+    // <FormLabel component="legend">Genre</FormLabel>
+
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="genre">
-            <ul>
-              { genresJsx }
-            </ul>
+            { genresJsx }
             <Button variant="dark" type="submit">
                 Submit
             </Button>

@@ -9,7 +9,7 @@ const SearchArea = (props) => {
         <Form action=" " onSubmit={props.handleSubmit}>
           <FormControl
             // onSubmit={props.handleSubmit}
-            placeholder="search movie"
+            placeholder="search"
             type="text"
             onChange={props.handleChange}
           />

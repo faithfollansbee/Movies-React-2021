@@ -1,6 +1,6 @@
 import React from 'react'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
@@ -14,7 +14,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import Collapse from '@material-ui/core/Collapse'
 import CardMedia from '@material-ui/core/CardMedia'
-
+import AddIcon from '@material-ui/icons/Add'
 import { Link } from 'react-router-dom'
 
 const contentStyle = {
@@ -22,8 +22,10 @@ const contentStyle = {
   overflow: 'scroll',
   padding: 1,
   paddingtop: 2,
+  // paddingBottom: 2,
   justifyContent: 'space-evenly'
 }
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345
@@ -53,25 +55,25 @@ const Movie = (props) => {
   const handleExpandClick = () => {
     setExpanded(!expanded)
   }
-  const handleClick = () => {
-    event.preventDefault()
-    axios({
-      method: 'POST',
-      url: `${apiUrl}/movies`,
-      headers: {
-        Authorization: `Token token=${props.user.token}`
-      },
-      data: {
-        movie: {
-          title: props.title,
-          description: props.description,
-          released: props.released,
-          image: props.image
-        }
-      }
-    })
+  // const handleClick = () => {
+  //   event.preventDefault()
+  //   axios({
+  //     method: 'POST',
+  //     url: `${apiUrl}/movies`,
+  //     headers: {
+  //       Authorization: `Token token=${props.user.token}`
+  //     },
+  //     data: {
+  //       movie: {
+  //         title: props.title,
+  //         description: props.description,
+  //         released: props.released,
+  //         image: props.image
+  //       }
+  //     }
+  //   })
   //  <Redirect to="/movies"/>
-  }
+  // }
   // const handleCardClick = () => {
   //   event.preventDefault()
   //   axios({
@@ -95,9 +97,10 @@ const Movie = (props) => {
   //   { props.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100%', height: 360 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${props.image}`} alt="card image" style={{ width: '100%', height: 360 }}/> }
   // </div>
   // let imageStatus
+  // <div className="col-10 mx-auto py-3 px-1 col-md-6 col-lg-3 my-3">
 
   return (
-    <div className="container col-10 mx-auto col-md-6 col-lg-3 my-3">
+    <div className="mx-auto py-3 px-1">
       <Card style={{ width: '18rem' }} className={classes.root}>
         <CardActionArea>
           <div className="card-image">
@@ -121,7 +124,14 @@ const Movie = (props) => {
                 />
             }
           </div>
-          <a className="btn-floating halfway-fab waves-effect waves-light red" onClick={handleClick}><i className="material-icons">add</i></a>
+          { /*
+              <Button
+                startIcon={<AddIcon />}
+                className="btn-floating halfway-fab waves-effect waves-light red"
+              >
+                <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>Add</Link>
+              </Button>
+              */ }
           <CardContent style={contentStyle}>
             <Typography variant="h6">
               <p> {props.title} </p>
@@ -129,8 +139,14 @@ const Movie = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
+          <Button
+            startIcon={<AddIcon />}
+            className="btn-floating halfway-fab waves-effect waves-light red"
+          >
+            <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>Add</Link>
+          </Button>
           <Button>
-            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
+            <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
           </Button>
           <IconButton
             className={clsx(classes.expand, {
@@ -146,7 +162,7 @@ const Movie = (props) => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Overview:</Typography>
-            <Typography paragraph>
+            <Typography variant="body2" color="textSecondary" component="p">
               {props.description}
             </Typography>
           </CardContent>
@@ -155,6 +171,8 @@ const Movie = (props) => {
     </div>
   )
 }
+// <a className="btn-floating halfway-fab waves-effect waves-light red" onClick={handleClick}><i className="material-icons">add</i></a>
+
 // <Link to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
 
 // <div style={descriptionStyle}>

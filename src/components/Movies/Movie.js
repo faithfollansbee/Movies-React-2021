@@ -8,11 +8,11 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 // import CardMedia from '@material-ui/core/CardMedia'
-// import CardHeader from '@material-ui/core/CardHeader'
-// import IconButton from '@material-ui/core/IconButton'
+import CardHeader from '@material-ui/core/CardHeader'
+import IconButton from '@material-ui/core/IconButton'
 // import FavoriteIcon from '@material-ui/icons/Favorite'
 // import EditIcon from '@material-ui/icons/Edit'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 // const movieStyle = {
 // margin: '30px'
 // alignItems: 'space-evenly'
@@ -70,66 +70,43 @@ class movie extends Component {
     return (
       <div>
         { movie && (
-          <div>
-            <div className="mx-auto py-3 px-1 border bg-light">
-              <Card key={movie._id}>
-                <CardContent>
-                  <div className="row">
-                    <div style={{ width: 151 }} className="col s12 m3">
-                      { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '10', height: 450 }}/> }
-                    </div>
-
-                    <div className="col s12 m8">
-                      <Typography component="h5" variant="h5">
-                        {movie.title}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        {movie.released}
-                      </Typography>
-                      <Typography variant="subtitle1">
-                        <p> {movie.description} </p>
-                      </Typography>
-                    </div>
-
-                  </div>
-                </CardContent>
-                <CardActions>
-                  <Button href="#/movies" style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
-                  </Button>
-                  <Button onClick={this.deletemovie}>Delete this movie</Button>
-                </CardActions>
-              </Card>
-            </div>
-            <div className="movie-container mx-3 my-3 px-3 py-3 border bg-light">
-              <Card>
+          <div style={{ backgroundColor: 'LavenderBlush' }} className="movie-container mx-auto my-3 px-3 py-3 border">
+            <Card>
+              <CardContent>
                 <div className="row">
-                  <div className="bg-dark">
+                  <div>
                     <div style={{ width: '100%' }}>
                       { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '100', height: 500 }}/> }
                     </div>
                   </div>
-                  <div className="col">
+                  <div className="col" style={{ backgroundColor: 'AliceBlue' }}>
 
                     <div style={{ flexDirection: 'column' }}>
                       <div>
-                        <Typography component="h5" variant="h5">
-                          {movie.title}
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                          {movie.released}
-                          {movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('/')}
-                          {movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('-')}
-
-                        </Typography>
+                        <CardHeader
+                          // variant="h5"
+                          // component="h3"
+                          action={
+                            <IconButton aria-label="settings">
+                              <MoreVertIcon />
+                            </IconButton>
+                          }
+                          // title={movie.name}
+                          title={movie.title}
+                          // subheader={movie.released}
+                          subheader={movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('/')}
+                        />
                       </div>
 
-                      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 1, paddingBottom: 1 }}>
+                      <CardContent>
                         <Typography variant="subtitle1">
                           <p> {movie.description} </p>
                         </Typography>
-                      </div>
-
-                      <div style={{ display: 'flex', alignSelf: 'flex-end', alignItems: 'center', paddingBottom: 1 }}>
+                        <Typography color="textSecondary" variant="subtitle1">
+                          <p> Saved to: {movie.genre.name}</p>
+                        </Typography>
+                      </CardContent>
+                      <div style={{ display: 'flex', alignContent: 'center', paddingBottom: 1 }}>
                         <CardActions>
                           <Button href="#/movies" style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
                           </Button>
@@ -137,18 +114,17 @@ class movie extends Component {
                         </CardActions>
                       </div>
                     </div>
-
-                  </div>
-                  <div className="row">
-                    <CardActions>
-                      <Button href="#/movies" style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
-                      </Button>
-                      <Button onClick={this.deletemovie}>Delete this movie</Button>
-                    </CardActions>
                   </div>
                 </div>
-              </Card>
-            </div>
+              </CardContent>
+              <div style={{ alignContent: 'center' }}>
+                <CardActions style={{ backgroundColor: 'Ivory', alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }}>
+                  <Button href="#/movies" style={{ alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
+                  </Button>
+                  <Button onClick={this.deletemovie}>Delete this movie</Button>
+                </CardActions>
+              </div>
+            </Card>
           </div>
         )}
       </div>
