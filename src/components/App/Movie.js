@@ -14,8 +14,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import Collapse from '@material-ui/core/Collapse'
 import CardMedia from '@material-ui/core/CardMedia'
-import AddIcon from '@material-ui/icons/Add'
 import { Link } from 'react-router-dom'
+import AddMovieDialog from './AddMovieDialog'
 
 const contentStyle = {
   height: 40,
@@ -139,12 +139,7 @@ const Movie = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button
-            startIcon={<AddIcon />}
-            className="btn-floating halfway-fab waves-effect waves-light red"
-          >
-            <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>Add</Link>
-          </Button>
+          <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
           <Button>
             <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
           </Button>

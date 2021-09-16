@@ -5,8 +5,10 @@ import { withRouter, Redirect } from 'react-router-dom'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Button from '@material-ui/core/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import DialogActions from '@material-ui/core/DialogActions'
+
 // import FormControl from '@material-ui/core/FormControl'
 // import FormLabel from '@material-ui/core/FormLabel'
 // import { withRouter } from 'react-router-dom'
@@ -83,6 +85,9 @@ class SaveMovie extends Component {
       .then(response => {
         this.props.history.push(`/movies/${response.data.movie._id}`)
       })
+      // .then(
+      //   this.props.onSubmit()
+      // )
       // .then(response => {
       //   this.props.history.goBack('/search')
       //   console.log('from savemovie')
@@ -95,6 +100,7 @@ class SaveMovie extends Component {
     // })
 
       .catch(err => this.setState({ error: err.message }))
+    this.props.handleSubmitClose()
   }
   handleOptionChange = changeEvent => {
     this.setState({
@@ -144,6 +150,7 @@ class SaveMovie extends Component {
     //     onChange={this.handleOptionChange}
     //   />{genre.name}</label>
     // <RadioGroup aria-label="genre" name="genre" value={genre._id} >
+
     const genresJsx = this.state.genres.map(genre => (
       <div key={genre._id}>
         <RadioGroup name="genre" value={genre.id} >
@@ -170,100 +177,23 @@ class SaveMovie extends Component {
     // }
     // console.log(this.state.place)
     // <FormLabel component="legend">Genre</FormLabel>
-
+    // onSubmit={this.handleSubmit}
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="genre">
             { genresJsx }
-            <Button variant="dark" type="submit">
-                Submit
-            </Button>
+            <DialogActions>
+              <Button onClick={this.props.handleSubmitClose} color="primary">Close</Button>
+              <Button color="primary" type="submit">
+                  Submit
+              </Button>
+            </DialogActions>
           </Form.Group>
         </Form>
       </div>
     )
   }
 }
-// <MovieForm
-//   movie={this.state.movie}
-//   genres={this.state.genres}
-//   // genresJsx={this.genresJsx}
-//   handleMovieSubmit={this.handleSubmit}
-//   handleChange={this.handleChange}
-//   handleOptionChange={this.handleOptionChange}
-//   correctRoute={this.props.match.params.id}
-// />
-// <Form onSubmit={this.handleSubmit}>
-//   <Form.Group controlId="formBasicCheckbox">
-//     <ul>
-//       { genresJsx }
-//     </ul>
-//     <Button variant="dark" type="submit">
-//         Submit
-//     </Button>
-//   </Form.Group>
-// </Form>
-// <Form onSubmit={this.handleSubmit}>
-//   <div className="col">
-//     <Form.Group controlId="formBasicCheckbox">
-//       <ul>
-//         <li>
-//           <label>
-//             <input
-//               name="type"
-//               type="radio"
-//               value="bar"
-//               ref={this.input}
-//               checked={this.state.type === 'bar'}
-//               onChange={this.handleOptionChange}
-//             /> Bar</label>
-//           <img src='https://img.icons8.com/plasticine/50/000000/wine-glass.png'/>
-//         </li>
-//       </ul>
-//     </Form.Group>
-//   </div>
-//   <Button variant="dark" type="submit">
-//     Submit
-//   </Button>
-// </Form>
 
 export default withRouter(SaveMovie)
-
-// <div className="col">
-//   <Form.Group controlId="name">
-//     <Form.Label></Form.Label>
-//     <Form.Control
-//       plaintext readOnly
-//       type="text"
-//       placeholder=""
-//       value={this.props.name}
-//       onChange={this.handleChange}
-//       name="name"
-//       required
-//     />
-//   </Form.Group>
-// </div>
-// <Form.Group controlId="latitude">
-//   <Form.Label></Form.Label>
-//   <Form.Control
-//     plaintext readOnly
-//     type="text"
-//     placeholder=""
-//     value={this.props.latitude}
-//     onChange={this.handleChange}
-//     name="latitude"
-//     required
-//   />
-// </Form.Group>
-// <Form.Group controlId="longitude">
-//   <Form.Label></Form.Label>
-//   <Form.Control
-//     plaintext readOnly
-//     placeholder=""
-//     value={this.props.longitude}
-//     onChange={this.handleChange}
-//     name="longitude"
-//     required
-//   />
-// </Form.Group>
