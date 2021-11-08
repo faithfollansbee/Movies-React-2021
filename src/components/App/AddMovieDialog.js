@@ -2,9 +2,10 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 // import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
+import Tooltip from '@material-ui/core/Tooltip'
 // import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
+// import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
 
@@ -54,22 +55,20 @@ export default function AddMovieDialog (props) {
   // "MuiDialog-paperFullWidth"
   return (
     <div>
-      <Button
-        onClick={handleClickOpen}
-        startIcon={<AddIcon />}
-      >Save
-      </Button>
+      <Tooltip title="Save">
+        <Button
+          onClick={handleClickOpen}
+          startIcon={<AddIcon />}
+        >
+        </Button>
+      </Tooltip>
       <Dialog
         fullWidth="true"
-        maxWidth="md"
+        maxWidth="sm"
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
           <DialogForm handleSubmitClose={handleClose} user={props.user} saved={props.saved} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image}/>
-
-          <DialogContentText>
-            To subscribe
-          </DialogContentText>
         </DialogContent>
       </Dialog>
     </div>

@@ -7,6 +7,9 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import Fab from '@material-ui/core/Fab'
+
+// import Tooltip from '@material-ui/core/Tooltip'
 import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import IconButton from '@material-ui/core/IconButton'
@@ -17,18 +20,30 @@ import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
 
-const contentStyle = {
-  height: 40,
-  overflow: 'scroll',
-  padding: 1,
-  paddingtop: 2,
-  // paddingBottom: 2,
-  justifyContent: 'space-evenly'
-}
+// const contentStyle = {
+//   height: 40,
+//   overflow: 'scroll',
+//   padding: 1,
+//   paddingtop: 2,
+//   justifyContent: 'space-evenly'
+// }
 
+const fabStyle = {
+  position: 'absolute',
+  bottom: 16,
+  right: 16
+}
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345
+    maxWidth: 345,
+    transition: 'transform 0.15s ease-in-out',
+    '& .hidden-button': {
+      display: 'none'
+    },
+    '&:hover .hidden-button': {
+      display: 'flex',
+      zIndex: '5'
+    }
   },
   media: {
     height: 0,
@@ -44,6 +59,9 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)'
   },
+  cardHovered: {
+    transform: 'scale3d(1.05, 1.05, 1)'
+  },
   avatar: {
     backgroundColor: red[500]
   }
@@ -51,10 +69,25 @@ const useStyles = makeStyles((theme) => ({
 const Movie = (props) => {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
-
   const handleExpandClick = () => {
     setExpanded(!expanded)
   }
+  const [state, setState] = React.useState({
+    hovered: false,
+    shadow: 1
+  })
+  // const [display, setDisplay] = useState('notdisplayed')
+  // const showButton = e => {
+  //   e.preventDefault()
+  //   setDisplay('displayed')
+  // }
+  // const hideButton = e => {
+  //   e.preventDefault()
+  //   setDisplay('notdisplayed')
+  // }
+  // const handleHover = () => {
+  //   setHover(!hovered)
+  // }
   // const handleClick = () => {
   //   event.preventDefault()
   //   axios({
@@ -101,7 +134,18 @@ const Movie = (props) => {
 
   return (
     <div className="mx-auto py-3 px-1">
-      <Card style={{ width: '18rem' }} className={classes.root}>
+      <Card style={{ width: '18rem' }} className={classes.root}
+        classes={{ root: state.hovered ? classes.cardHovered : '' } }
+        onMouseOver={() => setState({ hovered: true, shadow: 3 })}
+        onMouseOut={() => setState({ hovered: false, shadow: 1 })}
+        hovered={state.hovered} zdepth={state.shadow}
+        // className={clsx(classes.hovered, {
+        //   [classes.hoveredOpen]: hovered
+        // })}
+        // onHover={handleHover}
+        // aria-expanded={hovered}
+        aria-label="show more"
+      >
         <CardActionArea>
           <div className="card-image">
             {
@@ -123,6 +167,17 @@ const Movie = (props) => {
                   title="Contemplative Reptile"
                 />
             }
+            <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light red' color="primary" aria-label="save" >
+              <ExpandMoreIcon />
+            </Fab>
+            <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light' color="secondary" aria-label="add" >
+              <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
+            </Fab>
+            <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light red' color="primary" aria-label="add" >
+              <Button>
+                <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
+              </Button>
+            </Fab>
           </div>
           { /*
               <Button
@@ -132,18 +187,14 @@ const Movie = (props) => {
                 <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>Add</Link>
               </Button>
               */ }
-          <CardContent style={contentStyle}>
-            <Typography variant="h6">
-              <p> {props.title} </p>
-            </Typography>
-          </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions className="hidden-button">
           <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
           <Button>
             <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
           </Button>
           <IconButton
+            display='none'
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded
             })}

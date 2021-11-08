@@ -111,7 +111,7 @@ class Movie2 extends React.Component {
       )
     }
     return (
-      'no'
+      ''
     )
   }
 }

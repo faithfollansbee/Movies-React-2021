@@ -4,6 +4,7 @@ import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
+import CardActionArea from '@material-ui/core/CardActionArea'
 
 import FormControl from 'react-bootstrap/FormControl'
 // import ListGroup from 'react-bootstrap/ListGroup'
@@ -77,28 +78,30 @@ class Genres extends Component {
     console.log(this.state)
     const genresJSX = userGenres.map(genre => (
       <Card key={genre._id} className="card-style">
-        <CardHeader
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
+        <CardActionArea>
+          <CardHeader
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title={genre.name}
+          />
+          <CardContent>
+            <Typography></Typography>
+          </CardContent>
+          <br/>
+          <CardActions>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
             </IconButton>
-          }
-          title={genre.name}
-        />
-        <CardContent>
-          <Typography></Typography>
-        </CardContent>
-        <br/>
-        <CardActions>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="edit" href={`#genres/${genre._id}/edit`}>
-            <EditIcon />
-          </IconButton>
-          <Button href={`#/genres/${genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
-          </Button>
-        </CardActions>
+            <IconButton aria-label="edit" href={`#genres/${genre._id}/edit`}>
+              <EditIcon />
+            </IconButton>
+            <Button href={`#/genres/${genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
+            </Button>
+          </CardActions>
+        </CardActionArea>
       </Card>
     ))
 

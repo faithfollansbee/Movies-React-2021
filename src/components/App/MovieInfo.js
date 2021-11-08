@@ -64,14 +64,6 @@ const MovieInfo = (props) => {
                   <Typography variant="body2">
                     <p> {props.currentMovie.overview} </p>
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    {props.currentMovie.overview}
-                  </Typography>
-                  <CardActions>
-                    <Button href="#/movies" style={{ alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
-                    </Button>
-                    <Button onClick={this.deletemovie}>Delete this movie</Button>
-                  </CardActions>
                   <div className="row" style={{ backgroundColor: 'MintCream', alignContent: 'center', alignSelf: 'flex-end' }}>
                     <CardActions>
                       <Button href="#/movies" style={{ alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
