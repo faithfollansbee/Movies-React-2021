@@ -1,24 +1,25 @@
 import React from 'react'
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
-
-// import Tooltip from '@material-ui/core/Tooltip'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import Tooltip from '@material-ui/core/Tooltip'
 import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
-import IconButton from '@material-ui/core/IconButton'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import clsx from 'clsx'
-import Collapse from '@material-ui/core/Collapse'
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
+// import IconButton from '@material-ui/core/IconButton'
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+// import clsx from 'clsx'
+// import Collapse from '@material-ui/core/Collapse'
+// import CardActions from '@material-ui/core/CardActions'
+// import CardContent from '@material-ui/core/CardContent'
+// import Button from '@material-ui/core/Button'
+// import Typography from '@material-ui/core/Typography'
 
 // const contentStyle = {
 //   height: 40,
@@ -27,22 +28,60 @@ import AddMovieDialog from './AddMovieDialog'
 //   paddingtop: 2,
 //   justifyContent: 'space-evenly'
 // }
+// const allFabStyle = {
+//   position: 'relative',
+//   bottom: 70
+// }
 
-const fabStyle = {
-  position: 'absolute',
-  bottom: 16,
-  right: 16
+const fabStyle1 = {
+  // position: 'absolute',
+  // position: 'relative',
+  // display: 'flex',
+  bottom: 70,
+  // left: 30
+  left: 2
+  // right: 16
+}
+const fabStyle2 = {
+  bottom: 70,
+  // left: 60
+  left: 5
+}
+const fabStyle3 = {
+  // position: 'relative',
+  bottom: 70,
+  // left: 90
+  left: 15
+}
+const fabStyle4 = {
+  bottom: 70,
+  left: 20
+}
+// const fabStyle5 = {
+//   bottom: 70,
+//   left: 30
+// }
+// const fabStyle4 = {
+//   bottom: 70,
+//   left: 80
+// }
+const fabRowStyle = {
+  display: 'flex',
+  justifyContent: 'space-evenly',
+  position: 'absolute'
 }
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    transition: 'transform 0.15s ease-in-out',
+    // display: 'inline-block',
+    zIndex: -1,
+    transition: 'transform 0.2s ease-in-out',
     '& .hidden-button': {
       display: 'none'
     },
     '&:hover .hidden-button': {
-      display: 'flex',
-      zIndex: '5'
+      display: 'flex'
+      // zIndex: '5'
     }
   },
   media: {
@@ -60,7 +99,13 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)'
   },
   cardHovered: {
-    transform: 'scale3d(1.05, 1.05, 1)'
+    position: 'relative',
+    // transform: 'scale3d(1.05, 1.05, 1)'
+    // transform: 'scale3d(1.15, 1.15, 1)',
+    // zIndex: '10 !important',
+    transform: 'scale(1.2)',
+    zIndex: 10
+    // transform: 'scale(1.15)'
   },
   avatar: {
     backgroundColor: red[500]
@@ -68,69 +113,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 const Movie = (props) => {
   const classes = useStyles()
-  const [expanded, setExpanded] = React.useState(false)
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
+  // const [expanded, setExpanded] = React.useState(false)
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded)
+  // }
   const [state, setState] = React.useState({
     hovered: false,
     shadow: 1
   })
-  // const [display, setDisplay] = useState('notdisplayed')
-  // const showButton = e => {
-  //   e.preventDefault()
-  //   setDisplay('displayed')
-  // }
-  // const hideButton = e => {
-  //   e.preventDefault()
-  //   setDisplay('notdisplayed')
-  // }
-  // const handleHover = () => {
-  //   setHover(!hovered)
-  // }
-  // const handleClick = () => {
-  //   event.preventDefault()
-  //   axios({
-  //     method: 'POST',
-  //     url: `${apiUrl}/movies`,
-  //     headers: {
-  //       Authorization: `Token token=${props.user.token}`
-  //     },
-  //     data: {
-  //       movie: {
-  //         title: props.title,
-  //         description: props.description,
-  //         released: props.released,
-  //         image: props.image
-  //       }
-  //     }
-  //   })
-  //  <Redirect to="/movies"/>
-  // }
-  // const handleCardClick = () => {
-  //   event.preventDefault()
-  //   axios({
-  //     method: 'POST',
-  //     url: `${apiUrl}/movies/`,
-  //     headers: {
-  //       Authorization: `Token token=${props.user.token}`
-  //     },
-  //     data: {
-  //       movie: {
-  //         title: props.title,
-  //         description: props.description,
-  //         released: props.released,
-  //         image: props.image
-  //       }
-  //     }
-  //   })
-  // }
-  // <div className="col-10 mx-auto col-md-6 col-lg-4 my-3">
-  // <div className="card-image">
-  //   { props.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100%', height: 360 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${props.image}`} alt="card image" style={{ width: '100%', height: 360 }}/> }
-  // </div>
-  // let imageStatus
-  // <div className="col-10 mx-auto py-3 px-1 col-md-6 col-lg-3 my-3">
 
   return (
     <div className="mx-auto py-3 px-1">
@@ -167,19 +157,37 @@ const Movie = (props) => {
                   title="Contemplative Reptile"
                 />
             }
-            <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light red' color="primary" aria-label="save" >
-              <ExpandMoreIcon />
-            </Fab>
-            <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light' color="secondary" aria-label="add" >
-              <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
-            </Fab>
-            <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light red' color="primary" aria-label="add" >
-              <Button>
-                <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
-              </Button>
-            </Fab>
+            <div style={fabRowStyle}>
+              <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                <Tooltip title="Favorite">
+                  <FavoriteIcon />
+                </Tooltip>
+              </Fab>
+              <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+                <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
+              </Fab>
+              <Fab style={fabStyle3} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
+                <Tooltip title="More">
+                  <Link className="btn-floating fab waves-effect waves-light red" style={{ color: 'white', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
+                    <KeyboardArrowRightIcon />
+                  </Link>
+                </Tooltip>
+              </Fab>
+              <Link to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
+                <Fab style={fabStyle4} className="hidden-button floating" to="/more-info" color="primary" aria-label="more" >
+                  <Tooltip title="More">
+                    <KeyboardArrowRightIcon/>
+                  </Tooltip>
+                </Fab>
+              </Link>
+            </div>
           </div>
+          { /* href={`#/movies/${props.id}`}
+          href={`#/movies/${props.movieId}`} */ }
           { /*
+            <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="save" >
+              <KeyboardArrowRightIcon to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}/>
+            </Fab>
               <Button
                 startIcon={<AddIcon />}
                 className="btn-floating halfway-fab waves-effect waves-light red"
@@ -188,35 +196,35 @@ const Movie = (props) => {
               </Button>
               */ }
         </CardActionArea>
-        <CardActions className="hidden-button">
-          <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
-          <Button>
-            <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
-          </Button>
-          <IconButton
-            display='none'
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Overview:</Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.description}
-            </Typography>
-          </CardContent>
-        </Collapse>
       </Card>
     </div>
   )
 }
+// <CardActions className="hidden-button">
+//     <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
+//     <Button>
+//       <Link className="btn-floating halfway-fab waves-effect waves-light red" style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
+//     </Button>
+//     <IconButton
+//       display='none'
+//       className={clsx(classes.expand, {
+//         [classes.expandOpen]: expanded
+//       })}
+//       onClick={handleExpandClick}
+//       aria-expanded={expanded}
+//       aria-label="show more"
+//     >
+//       <ExpandMoreIcon />
+//     </IconButton>
+//   </CardActions>
+//   <Collapse in={expanded} timeout="auto" unmountOnExit>
+//     <CardContent>
+//       <Typography paragraph>Overview:</Typography>
+//       <Typography variant="body2" color="textSecondary" component="p">
+//         {props.description}
+//       </Typography>
+//     </CardContent>
+//   </Collapse>
 // <a className="btn-floating halfway-fab waves-effect waves-light red" onClick={handleClick}><i className="material-icons">add</i></a>
 
 // <Link to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>View Details</Link>
@@ -235,3 +243,58 @@ const Movie = (props) => {
 // <Button size="small" color="primary" onClick={handleClick} type="click"> Save movie </Button>
 
 export default Movie
+// const [display, setDisplay] = useState('notdisplayed')
+// const showButton = e => {
+//   e.preventDefault()
+//   setDisplay('displayed')
+// }
+// const hideButton = e => {
+//   e.preventDefault()
+//   setDisplay('notdisplayed')
+// }
+// const handleHover = () => {
+//   setHover(!hovered)
+// }
+// const handleClick = () => {
+//   event.preventDefault()
+//   axios({
+//     method: 'POST',
+//     url: `${apiUrl}/movies`,
+//     headers: {
+//       Authorization: `Token token=${props.user.token}`
+//     },
+//     data: {
+//       movie: {
+//         title: props.title,
+//         description: props.description,
+//         released: props.released,
+//         image: props.image
+//       }
+//     }
+//   })
+//  <Redirect to="/movies"/>
+// }
+// const handleCardClick = () => {
+//   event.preventDefault()
+//   axios({
+//     method: 'POST',
+//     url: `${apiUrl}/movies/`,
+//     headers: {
+//       Authorization: `Token token=${props.user.token}`
+//     },
+//     data: {
+//       movie: {
+//         title: props.title,
+//         description: props.description,
+//         released: props.released,
+//         image: props.image
+//       }
+//     }
+//   })
+// }
+// <div className="col-10 mx-auto col-md-6 col-lg-4 my-3">
+// <div className="card-image">
+//   { props.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100%', height: 360 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${props.image}`} alt="card image" style={{ width: '100%', height: 360 }}/> }
+// </div>
+// let imageStatus
+// <div className="col-10 mx-auto py-3 px-1 col-md-6 col-lg-3 my-3">

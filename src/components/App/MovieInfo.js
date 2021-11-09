@@ -12,7 +12,23 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
+import Fab from '@material-ui/core/Fab'
+import Tooltip from '@material-ui/core/Tooltip'
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import AddMovieDialog from './AddMovieDialog'
 
+const fabStyle1 = {
+}
+const fabStyle2 = {
+}
+const fabStyle3 = {
+}
+const fabRowStyle = {
+  display: 'flex',
+  justifyContent: 'space-around'
+  // position: 'absolute'
+}
 // <i className="fas fa-arrow left"></i>
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -86,6 +102,21 @@ const MovieInfo = (props) => {
             </div>
           </CardActions>
         </Card>
+        <div style={fabRowStyle}>
+          <Fab style={fabStyle3} to="/more-info" href={`#/movies/${props.id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
+            <Tooltip title="More">
+              <KeyboardArrowRightIcon style={{ color: 'white', textDecoration: 'none' }}/>
+            </Tooltip>
+          </Fab>
+          <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+            <Tooltip title="Favorite">
+              <FavoriteIcon />
+            </Tooltip>
+          </Fab>
+          <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+            <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
+          </Fab>
+        </div>
         <SaveMovie user={props.user} saved={props.saved} closeMovieInfo={props.closeMovieInfo} title={props.currentMovie.title} released={props.currentMovie.release_date} description={props.currentMovie.overview} image={props.currentMovie.poster_path}/>
         <div className="row" onClick={props.closeMovieInfo} style={{ cursor: 'pointer', paddingTop: 50 }}>
         </div>

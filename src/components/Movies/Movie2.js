@@ -2,18 +2,27 @@ import React from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 // import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
+// import CardActions from '@material-ui/core/CardActions'
+// import CardContent from '@material-ui/core/CardContent'
+// import Typography from '@material-ui/core/Typography'
 import CardActionArea from '@material-ui/core/CardActionArea'
 // import Row from 'react-bootstrap/Row'
 // import CardHeader from '@material-ui/core/CardHeader'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 // import EditIcon from '@material-ui/icons/Edit'
-import ShareIcon from '@material-ui/icons/Share'
+// import ShareIcon from '@material-ui/icons/Share'
+import Fab from '@material-ui/core/Fab'
+import Tooltip from '@material-ui/core/Tooltip'
+// import { makeStyles } from '@material-ui/core/styles'
+// import { red } from '@material-ui/core/colors'
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
+import CardMedia from '@material-ui/core/CardMedia'
+// import { Link } from 'react-router-dom'
+// import AddMovieDialog from './AddMovieDialog'
+
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
 // import SimpleDateTime from 'react-simple-timestamp-to-date'
 // import Rating from '@material-ui/lab/Rating'
@@ -24,19 +33,38 @@ import ShareIcon from '@material-ui/icons/Share'
 //     </Typography>
 //   }
 // />
-import CardMedia from '@material-ui/core/CardMedia'
-const contentStyle = {
-  height: 40,
-  overflow: 'scroll',
-  padding: 1,
-  paddingtop: 2,
-  // paddingBottom: 2,
-  justifyContent: 'space-evenly'
+// import CardMedia from '@material-ui/core/CardMedia'
+const fabStyle1 = {
+  bottom: 70,
+  left: 30
 }
+const fabStyle2 = {
+  bottom: 70,
+  left: 60
+}
+// const fabStyle3 = {
+//   bottom: 70,
+//   left: 90
+// }
+const fabRowStyle = {
+  display: 'flex',
+  justifyContent: 'space-evenly',
+  position: 'absolute'
+}
+
+// const contentStyle = {
+//   height: 40,
+//   overflow: 'scroll',
+//   padding: 1,
+//   paddingtop: 2,
+//   // paddingBottom: 2,
+//   justifyContent: 'space-evenly'
+// }
 class Movie2 extends React.Component {
   state = {
     movie: null,
-    isEditing: false
+    isEditing: false,
+    isHovered: false
   }
 
   async componentDidMount () {
@@ -54,10 +82,46 @@ class Movie2 extends React.Component {
     } catch (error) {
     }
   }
-
+  onMouseOver = () => {
+    console.log('moused over')
+    // this.setState({ cardHovered: true })
+    this.setState({ isHovered: 'true' })
+  }
+  onMouseOut = () => {
+    console.log('moused out')
+    this.setState({ isHovered: 'false' })
+  }
+  // cardHovered = {
+  //   position: 'relative',
+  //   transform: 'scale(1.2)',
+  //   zIndex: 10
+  // }
   render () {
     const { movie } = this.state
-
+    // const styles = {
+    //   isHovered: {
+    //     position: 'relative',
+    //     transform: 'scale(1.2)',
+    //     zIndex: 10,
+    //     '&:hover .hidden-button': {
+    //       display: 'flex'
+    //       // zIndex: '5'
+    //     }
+    //   },
+    //   notHovered: {
+    //     width: '18rem',
+    //     maxWidth: '21rem',
+    //     zIndex: -1,
+    //     transition: 'transform 0.2s ease-in-out',
+    //     '& .hidden-button': {
+    //       display: 'none'
+    //     }
+    //     // '&:hover .hidden-button': {
+    //     //   display: 'flex'
+    //     //   // zIndex: '5'
+    //     // }
+    //   }
+    // }
     // const deletebutton = (
     //   <React.Fragment>
     //     <Button className="recipeDeleteButton" onClick={this.handleRecipeDelete}>Delete<i className="fas fa-trash-alt"></i></Button>
@@ -65,9 +129,10 @@ class Movie2 extends React.Component {
     // )
     if (movie) {
       // <div className="col-12 mx-auto col-md-6 col-lg-3 py-3 px-3 border bg-light">
+      // style={this.isHovered ? styles.isHovered : styles.notHovered }
       return (
         <div className="mx-auto py-3 px-1">
-          <Card key={movie._id} style={{ width: '18rem', maxWidth: '21rem' }}>
+          <Card className="hoverCardStyle" key={movie._id} onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
             <CardActionArea>
               <div className="card-image">
                 {
@@ -90,22 +155,19 @@ class Movie2 extends React.Component {
                     />
                 }
               </div>
-              <CardContent style={contentStyle}>
-                <Typography style={contentStyle} variant="h6">
-                  <p> {movie.title} </p>
-                </Typography>
-              </CardContent>
+              <div style={fabRowStyle}>
+                <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                  <Tooltip title="Favorite">
+                    <FavoriteIcon />
+                  </Tooltip>
+                </Fab>
+                <Fab style={fabStyle2} to="/more-info" href={`#/movies/${movie._id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
+                  <Tooltip title="More">
+                    <KeyboardArrowRightIcon />
+                  </Tooltip>
+                </Fab>
+              </div>
             </CardActionArea>
-            <CardActions>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-              <Button href={`#/movies/${movie._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
-              </Button>
-            </CardActions>
           </Card>
         </div>
       )

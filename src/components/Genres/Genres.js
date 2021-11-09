@@ -5,6 +5,8 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardActionArea from '@material-ui/core/CardActionArea'
+import Fab from '@material-ui/core/Fab'
+import Tooltip from '@material-ui/core/Tooltip'
 
 import FormControl from 'react-bootstrap/FormControl'
 // import ListGroup from 'react-bootstrap/ListGroup'
@@ -12,6 +14,7 @@ import FormControl from 'react-bootstrap/FormControl'
 // import Row from 'react-bootstrap/Row'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import AddIcon from '@material-ui/icons/Add'
 
 // import Row from 'react-bootstrap/Row'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -21,6 +24,16 @@ import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 // import AddGenre from './AddGenre'
 
+const fabStyle2 = {
+  // position: 'relative',
+  // bottom: 70,
+  // left: 90
+}
+const fabStyle3 = {
+  // position: 'relative',
+  // bottom: 70,
+  // left: 90
+}
 // const cardStyle = {
 // margin: 1,
 // padding: 10,
@@ -109,6 +122,24 @@ class Genres extends Component {
       <div className="layout-style">
         <Fragment>
           <h2 className="title-style">Your genres</h2>
+          <div>
+            <Tooltip title="New Genre">
+              <AddIcon />
+            </Tooltip>
+            <Tooltip title="Edit">
+              <EditIcon />
+            </Tooltip>
+            <Fab style={fabStyle2} size="small" className='hidden-button floating waves-effect waves-light' color="grey" aria-label="add" >
+              <Tooltip title="New Genre">
+                <AddIcon />
+              </Tooltip>
+            </Fab>
+            <Fab style={fabStyle3} size="small" className='hidden-button floating waves-effect waves-light' color="grey" aria-label="edit" >
+              <Tooltip title="Edit">
+                <EditIcon />
+              </Tooltip>
+            </Fab>
+          </div>
           <div className="search">
             {
               <Fragment>

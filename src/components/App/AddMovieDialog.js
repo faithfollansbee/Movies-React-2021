@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 // import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -56,11 +56,7 @@ export default function AddMovieDialog (props) {
   return (
     <div>
       <Tooltip title="Save">
-        <Button
-          onClick={handleClickOpen}
-          startIcon={<AddIcon />}
-        >
-        </Button>
+        <AddIcon onClick={handleClickOpen}/>
       </Tooltip>
       <Dialog
         fullWidth="true"

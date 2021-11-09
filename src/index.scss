@@ -1,4 +1,58 @@
 @import '~bootstrap/scss/bootstrap';
+// .hoverCardStyle: {
+//   transition: 'transform 0.2s ease-in-out',
+//   '& .hidden-button': {
+//     display: 'none'
+//   },
+//   '&:hover .hidden-button': {
+//     display: 'flex'
+//   }
+// },
+
+
+.hoverCardStyle {
+  width: 18rem;
+  max-width: 21rem;
+  z-index: -1;
+  transition: {
+    transform: 0.2s ease-in-out;
+  }
+  // transition: transform 0.2s ease-in-out;
+  .hidden-button {
+    display: none;
+  }
+
+  // & .hidden-button: {
+  //   display: none
+  // };
+  // &:hover .hidden-button: {
+  //   display: flex
+  // };
+  // .hidden-button {
+  //   display: none;
+  // }
+  // .hidden-button:hover {
+  //   display: flex;
+  // }
+}
+.hoverCardStyle:hover {
+  transform: scale3d(1.05, 1.05, 1);
+  position: relative;
+  // transform: scale(1.2);
+  z-index: 10;
+  .hidden-button {
+    display: flex;
+  }
+}
+// .hidden-button:hover {
+//   display: flex;
+// }
+.hidden-button {
+  display: none;
+}
+// .hidden-button:hover {
+//   display: flex;
+// }
 
 .card-style {
   margin: 15px;

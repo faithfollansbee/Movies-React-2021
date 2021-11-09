@@ -15,7 +15,8 @@ import FormControl from 'react-bootstrap/FormControl'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Spinner from 'react-bootstrap/Spinner'
 // import Typography from '@material-ui/core/Typography'
-import Movie2 from './Movie2'
+// import Movie2 from './Movie2'
+import Movie3 from './Movie3'
 
 // const linkStyle = {
 //   color: 'black',
@@ -131,7 +132,7 @@ class movies extends Component {
           </div>
           <div className="row mx-1">
             {this.state.userMovies.map(movie => (
-              <Movie2
+              <Movie3
                 key={movie.name + movie._id}
                 handleRefresh={this.handleRefresh}
                 user={this.props.user}
@@ -150,6 +151,18 @@ class movies extends Component {
     )
   }
 }
+// <Movie2
+//   key={movie.name + movie._id}
+//   handleRefresh={this.handleRefresh}
+//   user={this.props.user}
+//   id={movie._id}
+//   description={movie.description}
+//   released={movie.released}
+//   image={movie.image}
+//   thisstate={this.state}
+//   alert={this.props.alert}
+//   genre={this.genre}
+// />
 // <div className="row mx-lg-n5">
 
 // {this.state.movies.length
