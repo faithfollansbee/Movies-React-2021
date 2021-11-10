@@ -17,6 +17,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddMovieDialog from './AddMovieDialog'
+// import DeleteIcon from '@material-ui/icons/Delete'
 
 const fabStyle1 = {
 }
@@ -103,19 +104,21 @@ const MovieInfo = (props) => {
           </CardActions>
         </Card>
         <div style={fabRowStyle}>
-          <Fab style={fabStyle3} to="/more-info" href={`#/movies/${props.id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
-            <Tooltip title="More">
+          <Tooltip title="More">
+            <Fab style={fabStyle3} to="/more-info" href={`#/movies/${props.id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
               <KeyboardArrowRightIcon style={{ color: 'white', textDecoration: 'none' }}/>
-            </Tooltip>
-          </Fab>
-          <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
-            <Tooltip title="Favorite">
+            </Fab>
+          </Tooltip>
+          <Tooltip title="Favorite">
+            <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
               <FavoriteIcon />
-            </Tooltip>
-          </Fab>
-          <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-            <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
-          </Fab>
+            </Fab>
+          </Tooltip>
+          <Tooltip title="Save">
+            <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+              <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
+            </Fab>
+          </Tooltip>
         </div>
         <SaveMovie user={props.user} saved={props.saved} closeMovieInfo={props.closeMovieInfo} title={props.currentMovie.title} released={props.currentMovie.release_date} description={props.currentMovie.overview} image={props.currentMovie.poster_path}/>
         <div className="row" onClick={props.closeMovieInfo} style={{ cursor: 'pointer', paddingTop: 50 }}>

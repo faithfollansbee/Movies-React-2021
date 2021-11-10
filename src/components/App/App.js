@@ -11,7 +11,9 @@ import Movie from '../Movies/Movie'
 import UpdateMovie from '../Movies/UpdateMovie'
 import Movies from '../Movies/Movies'
 import Genre from '../Genres/Genre'
-import Genres from '../Genres/Genres'
+import Genre3 from '../Genres/Genre3'
+// import Genres from '../Genres/Genres'
+import GenresLoop from '../Genres/GenresLoop'
 import AddGenre from '../Genres/AddGenre'
 import UpdateGenre from '../Genres/UpdateGenre'
 import SearchArea from './SearchArea'
@@ -19,7 +21,7 @@ import SearchResults from './SearchResults'
 import Trending from './trending'
 import MovieInfo from './MovieInfo'
 import Container from '@material-ui/core/container'
-
+// import SearchAppBar from './SearchAppBar'
 // import MovieInfo from './TestMovieInfo'
 // import SaveMovie from './SaveMovie'
 // import Landing from '../landing/landing'
@@ -132,7 +134,12 @@ class App extends Component {
             <AuthenticatedRoute user={user} exact path='/search' component={App}
               render={() => (<SearchResults user={user} movies={this.state.movies} ViewMovie={this.ViewMovie} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>)}/>
 */}
-           <AuthenticatedRoute user={user} path="/search" component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)}/>
+           <AuthenticatedRoute user={user} path="/search" component={App} render={() => (
+             <div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
+               <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
+             </div>)}
+           />
+
            <AuthenticatedRoute user={user} path="/more-info" render={() => (<MovieInfo user={user} saved={this.saved} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)}/>
 
            <AuthenticatedRoute user={user} exact path='/movies'
@@ -146,7 +153,12 @@ class App extends Component {
                <UpdateMovie user={user} alert={this.alert}/>)}/>
 
            <AuthenticatedRoute user={user} exact path='/genres/'
-             render={() => (<Genres user={user}/>)}
+             render={() => (
+               <div>
+                 <GenresLoop user={user}/>
+                 <Genre3 user={user}/>
+               </div>
+             )}
            />
            <AuthenticatedRoute user={user} exact path='/genres/:id'
              render={() => (<Genre user={user}/>)}/>

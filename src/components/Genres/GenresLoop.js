@@ -1,25 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import CardActionArea from '@material-ui/core/CardActionArea'
 // import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
-// import ListGroup from 'react-bootstrap/ListGroup'
-// import Container from '@material-ui/core/container'
-// import Row from 'react-bootstrap/Row'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
+import Spinner from 'react-bootstrap/Spinner'
+
 import AddIcon from '@material-ui/icons/Add'
-// import Row from 'react-bootstrap/Row'
-import CardHeader from '@material-ui/core/CardHeader'
-import IconButton from '@material-ui/core/IconButton'
-import FavoriteIcon from '@material-ui/icons/Favorite'
 import EditIcon from '@material-ui/icons/Edit'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import Genre3 from './Genre3'
+// import Genre3 from './Genre3'
 // import AddGenre from './AddGenre'
 // import AddGenre from './AddGenre'
 
@@ -37,7 +27,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 // wordWrap: 'break-word'
 // }
 
-class Genres extends Component {
+class GenresLoop extends Component {
   constructor (props) {
     super(props)
 
@@ -80,47 +70,22 @@ class Genres extends Component {
   }
 
   render (props) {
-    const { userGenres } = this.state
-    console.log(this.state)
-    console.log('genres detail', this.state.genres)
-    console.log('number of genres', this.state.genres.length)
-    console.log('my first genre', this.state.genres[1])
-    console.log('each genre movies count', this.state.genres.movie)
-    console.log('genre id', this.state.userGenres[1])
-    console.log('genre id', this.state.genres[1])
-
-    // console.log(Object.keys(myObject).length)
-    // console.log('object keys test', this.state.genres.keys(this.state.genres[1]))
-    // console.log(Object.keys(this.state.genre[1]).length)
-    const genresJSX = userGenres.map(genre => (
-      <Card key={genre._id} className="card-style">
-        <CardActionArea href={`#/genres/${genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} >
-          <CardHeader
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={genre.name}
-            count={genre._id.length}
-          />
-          <CardContent>
-            <Typography></Typography>
-          </CardContent>
-          <br/>
-          <CardActions>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="edit" href={`#genres/${genre._id}/edit`}>
-              <EditIcon />
-            </IconButton>
-            <Button href={`#/genres/${genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
-            </Button>
-          </CardActions>
-        </CardActionArea>
-      </Card>
-    ))
+    // const { genres } = this.state
+    console.log(this.state.genres)
+    if (this.state.isLoading) {
+      return (
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )
+    }
+    // console.log(this.state)
+    // console.log('genres detail', this.state.genres)
+    // console.log('number of genres', this.state.genres.length)
+    // console.log('my first genre', this.state.genres[1])
+    // console.log('each genre movies count', this.state.genres.movie)
+    // console.log('genre id', this.state.userGenres[1])
+    // console.log('genre id', this.state.genres[1])
 
     return (
       <div className="layout-style">
@@ -146,14 +111,28 @@ class Genres extends Component {
             }
           </div>
           <div>
-            {genresJSX}
+            {this.state.genres.map(genre => (
+              <Genre3
+                key={genre.name + genre._id}
+                user={this.props.user}
+                id={genre._id}
+                name={genre.name}
+                // handleRefresh={this.handleRefresh}
+                // description={movie.description}
+                // released={movie.released}
+                // image={movie.image}
+                // thisstate={this.state}
+                // alert={this.props.alert}
+                // genre={this.genre}
+              />
+            ))}
           </div>
         </Fragment>
       </div>
     )
   }
 }
-export default Genres
+export default GenresLoop
 // <Fab href="#creategenre" to="/creategenre" style={fabStyle2} size="small" className='hidden-button floating waves-effect waves-light' color="grey" aria-label="add" >
 //   <Tooltip title="New Genre">
 //     <AddIcon />

@@ -23,7 +23,7 @@ class Genre extends React.Component {
   state = {
     genre: '',
     deleted: false,
-    movies: null,
+    movies: [],
     // userRecipes: [],
     filtered: false,
     addingMovie: false
@@ -134,6 +134,11 @@ class Genre extends React.Component {
   }
 
   render () {
+    console.log('genre movies', this.state.genre.movies)
+    console.log('genre length', this.state.genre)
+    console.log('number of movies', this.state.movies.length)
+    console.log(Object.keys(this.state.movies))
+
     const { genre, addMovie } = this.state
     if (genre) {
       const deletebutton = (
@@ -201,6 +206,7 @@ class Genre extends React.Component {
               <div>
                 <h1 className="title-style">{genre.name}</h1>
                 <Typography><i>Last updated at {genre.updatedAt}</i></Typography>
+                <Typography><i>Movies in this genre: {this.state.movies.length}</i></Typography>
               </div>
               <div className="row mx-lg-n5">
                 {this.state.genre.movies.map(movie => (

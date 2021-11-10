@@ -141,21 +141,21 @@ const Movie = (props) => {
                 />
             }
             <div style={fabRowStyle}>
-              <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
-                <Tooltip title="Favorite">
+              <Tooltip title="Favorite">
+                <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                   <FavoriteIcon />
-                </Tooltip>
-              </Fab>
-              {/* <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-                <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
-              </Fab> */}
-              <Fab style={fabStyle3} to="/more-info" href={`#/movies/${props.id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
-                <Tooltip title="More">
+                </Fab>
+              </Tooltip>
+              <Tooltip title="More">
+                <Fab style={fabStyle3} to="/more-info" href={`#/movies/${props.id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
                   <KeyboardArrowRightIcon style={{ color: 'white', textDecoration: 'none' }}/>
-                </Tooltip>
-              </Fab>
+                </Fab>
+              </Tooltip>
             </div>
           </div>
+          {/* <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+            <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
+          </Fab> */}
           { /* onClick={() => props.viewMovie(props.movieId)} */ }
           { /*
             <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="save" >

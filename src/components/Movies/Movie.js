@@ -13,6 +13,10 @@ import IconButton from '@material-ui/core/IconButton'
 // import FavoriteIcon from '@material-ui/icons/Favorite'
 // import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import DeleteIcon from '@material-ui/icons/Delete'
+import Fab from '@material-ui/core/Fab'
+import Tooltip from '@material-ui/core/Tooltip'
+import EditIcon from '@material-ui/icons/Edit'
 // const movieStyle = {
 // margin: '30px'
 // alignItems: 'space-evenly'
@@ -23,6 +27,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 // alignItems: 'flex-end',
 // padding: '5rem'
 // }
+const fabStyle1 = {
+}
 class movie extends Component {
   state = {
     movie: null,
@@ -54,6 +60,9 @@ class movie extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
+  }
+  editMovie = () => {
+    console.log('edit eventually')
   }
 
   render () {
@@ -125,6 +134,16 @@ class movie extends Component {
                 </CardActions>
               </div>
             </Card>
+            <Tooltip title="Delete">
+              <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
+                <DeleteIcon />
+              </Fab>
+            </Tooltip>
+            <Tooltip title="Edit">
+              <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
+                <EditIcon />
+              </Fab>
+            </Tooltip>
           </div>
         )}
       </div>

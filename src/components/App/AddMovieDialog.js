@@ -2,7 +2,7 @@ import React from 'react'
 // import Button from '@material-ui/core/Button'
 // import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 // import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 // import DialogContentText from '@material-ui/core/DialogContentText'
@@ -55,9 +55,7 @@ export default function AddMovieDialog (props) {
   // "MuiDialog-paperFullWidth"
   return (
     <div>
-      <Tooltip title="Save">
-        <AddIcon onClick={handleClickOpen}/>
-      </Tooltip>
+      <AddIcon onClick={handleClickOpen}/>
       <Dialog
         fullWidth="true"
         maxWidth="sm"

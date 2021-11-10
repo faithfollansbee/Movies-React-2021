@@ -1,23 +1,35 @@
 import React, { Fragment } from 'react'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
-
+import SearchIcon from '@material-ui/icons/Search'
+// import IconButton from '@material-ui/core/IconButton'
+import InputGroup from 'react-bootstrap/InputGroup'
 const SearchArea = (props) => {
   return (
     <div className="search-area">
       <Fragment>
         <Form action=" " onSubmit={props.handleSubmit}>
-          <FormControl
-            // onSubmit={props.handleSubmit}
-            placeholder="search"
-            type="text"
-            onChange={props.handleChange}
-          />
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>
+                <SearchIcon />
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              // onSubmit={props.handleSubmit}
+              placeholder="search"
+              type="text"
+              onChange={props.handleChange}
+            />
+          </InputGroup>
         </Form>
       </Fragment>
     </div>
   )
 }
+// <IconButton size="large" aria-label="search" color="inherit">
+//   <SearchIcon />
+// </IconButton>
 // <section className="col s4">
 // what I had
 // <form action=" " onSubmit={props.handleSubmit}>

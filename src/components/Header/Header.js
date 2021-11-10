@@ -13,6 +13,7 @@ const authenticatedOptions = (
     <Nav.Link href="#genres">Genres</Nav.Link>
     <Nav.Link href="#creategenre">Add Genre</Nav.Link>
     <Nav.Link href="#search">Search</Nav.Link>
+    <Nav.Link href="#trending">Trending</Nav.Link>
     { /* <Nav.Link href="#more-info">moreinfo</Nav.Link> */}
   </Fragment>
 )
