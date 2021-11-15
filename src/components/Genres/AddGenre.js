@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import GenreForm from './GenreForm'
+// import GenreDialogForm from './GenreDialogForm'
 import { withRouter } from 'react-router-dom'
 
 class AddGenre extends Component {
@@ -9,6 +10,7 @@ class AddGenre extends Component {
     genre: {
       name: ''
     },
+    // user: this.props.user,
     submitted: false
   }
 
@@ -51,15 +53,24 @@ class AddGenre extends Component {
         }
       }
     })
+      // .then(response => {
+      //   this.props.history.push('/genres')
+      // })
+      .then(response => {
+        this.props.history.push(`/genres${response.data.genre._id}`)
+      })
       .then(response => {
         this.props.history.push('/genres')
       })
       .catch(err => this.setState({ error: err.message }))
+    this.props.handleSubmitClose()
   }
   render () {
     return (
       <GenreForm
-        genre={this.state.genre}
+        user={this.user}
+        // genre={this.state.genre}
+        handleSubmitClose={this.props.handleSubmitClose}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />

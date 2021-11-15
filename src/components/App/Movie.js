@@ -10,16 +10,6 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
-// import IconButton from '@material-ui/core/IconButton'
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-// import clsx from 'clsx'
-// import Collapse from '@material-ui/core/Collapse'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
-// import Button from '@material-ui/core/Button'
-// import Typography from '@material-ui/core/Typography'
 
 // const contentStyle = {
 //   height: 40,

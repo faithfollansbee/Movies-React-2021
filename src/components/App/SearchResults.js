@@ -1,6 +1,5 @@
 import React from 'react'
 import Movie from './Movie'
-// import SaveMovie from './SaveMovie'
 
 const SearchResults = (props) => {
   return (

@@ -7,14 +7,6 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-// import FormControl from '@material-ui/core/FormControl'
-// import FormLabel from '@material-ui/core/FormLabel'
-// import { withRouter } from 'react-router-dom'
-// import Spinner from 'react-bootstrap/Spinner'
-// import MovieForm from './MovieForm'
-
-// import Card from '@material-ui/core/Card'
-// import CardContent from '@material-ui/core/CardContent'
 // const listStyle = {
 //   listStyleType: 'none'
 // }

@@ -5,10 +5,11 @@ import apiUrl from '../../apiConfig'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
 import Spinner from 'react-bootstrap/Spinner'
-
-import AddIcon from '@material-ui/icons/Add'
+import IconButton from '@material-ui/core/IconButton'
+// import Fab from '@material-ui/core/Fab'
 import EditIcon from '@material-ui/icons/Edit'
 import Genre3 from './Genre3'
+import AddGenreDialog from './AddGenreDialog'
 // import Genre3 from './Genre3'
 // import AddGenre from './AddGenre'
 // import AddGenre from './AddGenre'
@@ -58,7 +59,7 @@ class GenresLoop extends Component {
     event.preventDefault()
     this.setState({ filtered: !this.state.filtered })
   }
-  handleChange = event => {
+  handleGenreSearchChange = event => {
     const searchString = event.target.value.toLowerCase()
     const queryLength = searchString.length
     const prevQueryLength = this.state.queryLength || 0
@@ -69,9 +70,41 @@ class GenresLoop extends Component {
     this.setState({ userGenres: searchResults, queryLength: queryLength })
   }
 
+  handleChange = event => {
+    this.setState({
+      genre: {
+        ...this.state.genre,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    axios({
+      method: 'POST',
+      url: `${apiUrl}/genres`,
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: {
+        genre: {
+          name: this.props.name
+        }
+      }
+    })
+      .then(response => {
+        this.props.history.push('/genres')
+      })
+      .then(() => this.props.history.push('/genres'))
+
+      .catch(err => this.setState({ error: err.message }))
+    // this.props.handleSubmitClose()
+  }
+
   render (props) {
     // const { genres } = this.state
-    console.log(this.state.genres)
+    console.log('this.props.user', this.props.user)
     if (this.state.isLoading) {
       return (
         <div className="text-center">
@@ -93,7 +126,9 @@ class GenresLoop extends Component {
           <h2 className="title-style">Your genres</h2>
           <div>
             <Tooltip title="New Genre">
-              <AddIcon />
+              <IconButton>
+                <AddGenreDialog user={this.props.user} />
+              </IconButton>
             </Tooltip>
             <Tooltip title="Edit">
               <EditIcon />
@@ -105,7 +140,7 @@ class GenresLoop extends Component {
                 <FormControl
                   placeholder="Search"
                   aria-label="Search"
-                  onChange={this.handleChange}
+                  onChange={this.handleGenreSearchChange}
                 />
               </Fragment>
             }

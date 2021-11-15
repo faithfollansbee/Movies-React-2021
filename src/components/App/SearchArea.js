@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import SearchIcon from '@material-ui/icons/Search'
-// import IconButton from '@material-ui/core/IconButton'
 import InputGroup from 'react-bootstrap/InputGroup'
 const SearchArea = (props) => {
   return (

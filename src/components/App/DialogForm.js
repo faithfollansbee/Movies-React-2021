@@ -9,17 +9,6 @@ import Button from '@material-ui/core/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 
-// import FormControl from '@material-ui/core/FormControl'
-// import FormLabel from '@material-ui/core/FormLabel'
-// import { withRouter } from 'react-router-dom'
-// import Spinner from 'react-bootstrap/Spinner'
-// import MovieForm from './MovieForm'
-
-// import Card from '@material-ui/core/Card'
-// import CardContent from '@material-ui/core/CardContent'
-// const listStyle = {
-//   listStyleType: 'none'
-// }
 class SaveMovie extends Component {
   // const [isSaved, setSaved] = useState(false);
   // isSaved = false;
