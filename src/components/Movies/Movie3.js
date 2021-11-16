@@ -8,6 +8,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+
 // import { Link } from 'react-router-dom'
 // import AddMovieDialog from './AddMovieDialog'
 
@@ -38,11 +41,18 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
     // display: 'inline-block',
     zIndex: -1,
-    transition: 'transform 0.2s ease-in-out',
+    transition: 'transform 0.22s ease-in-out',
     '& .hidden-button': {
       display: 'none'
     },
     '&:hover .hidden-button': {
+      display: 'flex'
+      // zIndex: '5'
+    },
+    '& .hidden-content': {
+      display: 'none'
+    },
+    '&:hover .hidden-content': {
       display: 'flex'
       // zIndex: '5'
     }
@@ -169,8 +179,16 @@ const Movie = (props) => {
               </Button>
               */ }
         </CardActionArea>
+        <CardContent className="hidden-content">
+          <Typography className="hidden-content">{props.title}</Typography>
+          <Typography className="hidden-content">{props.description}</Typography>
+        </CardContent>
       </Card>
     </div>
   )
 }
+// <CardContent>
+//   <Typography className="hovered hidden">{props.title}</Typography>
+//   <Typography className="hovered hidden">{props.description}</Typography>
+// </CardContent>
 export default Movie

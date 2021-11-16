@@ -8,8 +8,11 @@ import apiUrl from '../../apiConfig'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import EditIcon from '@material-ui/icons/Edit'
+// import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import StarIcon from '@material-ui/icons/Star'
+import Tooltip from '@material-ui/core/Tooltip'
+import EditGenreDialog from './EditGenre/EditGenreDialog'
 
 class Genre3 extends React.Component {
   state = {
@@ -39,8 +42,24 @@ class Genre3 extends React.Component {
     }
     // console.log(this.state.genre)
   }
+  // handleDelete = () => {
+  //   event.preventDefault()
+  //   axios.delete(`${apiUrl}/genres/${this.props.match.params.id}`,
+  //     {
+  //       headers: {
+  //         'Authorization': `Bearer ${this.props.user.token}`
+  //       },
+  //       data: {
+  //         genre: this.state.genre
+  //       }
+  //     })
+  //     .then(() => this.setState({ deleted: true }))
+  //     .then(() => this.props.history.push('/genres'))
+  // }
 
   render () {
+    // console.log(this.state.genre)
+    // console.log(this.state.genre._id)
     // console.log(this.state.genre)
     // console.log(this.state.movies)
     return (
@@ -54,25 +73,44 @@ class Genre3 extends React.Component {
                 <i>Movies in this genre: {this.state.movies.length}</i>
               </div>
             </CardContent>
-            <br/>
-            <CardActions>
-            </CardActions>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="edit" href={`#genres/${this.state.genre._id}/edit`}>
-              <EditIcon />
-            </IconButton>
+          </CardActionArea>
+          <CardActions>
+            <Tooltip title="New Genre">
+              <EditGenreDialog id={this.state.genre._id} genre={this.state.genre} user={this.props.user} />
+            </Tooltip>
             <Button href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
             </Button>
             <IconButton aria-label="more">
               <MoreVertIcon/>
             </IconButton>
-          </CardActionArea>
+            <StarIcon/>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+          </CardActions>
         </Card>
       </div>
     )
   }
+  // <CardActions>
+  //   <Tooltip title="New Genre">
+  //     <EditGenreDialog id={this.state.genre._id} genre={this.state.genre} user={this.props.user} />
+  //   </Tooltip>
+  //   <Button href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
+  //   </Button>
+  //   <IconButton aria-label="more">
+  //     <MoreVertIcon/>
+  //   </IconButton>
+  //   <StarIcon/>
+  //   <IconButton aria-label="add to favorites">
+  //     <FavoriteIcon />
+  //   </IconButton>
+  // </CardActions>
+  // <IconButton aria-label="edit" href={`#genres/${this.state.genre._id}/edit`}>
+  //   <EditIcon />
+  // </IconButton>
+  // <Button
+  //   variant="outlined" id={this.state.genre._id} onClick={this.handleDelete}>Delete The Genre</Button>
   // <div className="row mx-lg-n5">
   //   {this.state.movies.map(movie => (
   //     <Movie2

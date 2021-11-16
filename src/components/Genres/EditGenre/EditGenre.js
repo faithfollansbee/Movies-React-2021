@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
-import GenreForm from './GenreForm'
+import apiUrl from '../../../apiConfig'
+import EditGenreForm from './EditGenreForm'
 // import GenreDialogForm from './GenreDialogForm'
 import { withRouter } from 'react-router-dom'
 
-class AddGenre extends Component {
+class EditGenre extends Component {
   state = {
-    genre: {
-      name: ''
-    },
+    genre: null,
+    // genre: {
+    //   name: null
+    // },
     // user: this.props.user,
     submitted: false
   }
@@ -39,36 +40,63 @@ class AddGenre extends Component {
   //   }
   // }
 
+  // handleSubmit = event => {
+  //   event.preventDefault()
+  //   axios({
+  //     method: 'POST',
+  //     url: `${apiUrl}/genres`,
+  //     headers: {
+  //       'Authorization': `Token token=${this.props.user.token}`
+  //     },
+  //     data: {
+  //       genre: {
+  //         name: this.state.genre.name
+  //       }
+  //     }
+  //   })
+  //     // .then(response => {
+  //     //   this.props.history.push('/genres')
+  //     // })
+  //     .then(response => {
+  //       this.props.history.push(`/genres${response.data.genre._id}`)
+  //     })
+  //     .then(response => {
+  //       this.props.history.push('/genres')
+  //     })
+  //     .catch(err => this.setState({ error: err.message }))
+  //   this.props.handleSubmitClose()
+  // }
   handleSubmit = event => {
     event.preventDefault()
     axios({
-      method: 'POST',
-      url: `${apiUrl}/genres`,
+      method: 'PATCH',
+      url: `${apiUrl}/genres/${this.props.genre._id}`,
       headers: {
         'Authorization': `Token token=${this.props.user.token}`
       },
       data: {
-        genre: {
-          name: this.state.genre.name
-        }
+        genre: this.state.genre
       }
     })
-    // .then(response => {
-    //   this.props.history.push('/genres')
-    // })
+      // .then(response => {
+      //   this.props.history.push(`/genres/${this.state.genre._id}`)
+      // })
       .then(response => {
-        this.props.history.push(`/genres${response.data.Genre._id}`)
+        this.props.history.push(`/genres${this.props.genre._id}`)
       })
       .then(response => {
         this.props.history.push('/genres')
       })
     this.props.handleSubmitClose()
-    // .catch(err => this.setState({ error: err.message }))
   }
   render () {
+    // console.log(this.props.id)
+    // console.log(this.props.genre._id)
     return (
-      <GenreForm
+      <EditGenreForm
         user={this.user}
+        id={this.props.id}
+        genre={this.props.genre}
         // genre={this.state.genre}
         handleSubmitClose={this.props.handleSubmitClose}
         handleChange={this.handleChange}
@@ -78,4 +106,4 @@ class AddGenre extends Component {
   }
 }
 
-export default withRouter(AddGenre)
+export default withRouter(EditGenre)

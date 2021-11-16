@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import SearchIcon from '@material-ui/icons/Search'
 import InputGroup from 'react-bootstrap/InputGroup'
+
 const SearchArea = (props) => {
   return (
     <div className="search-area">

@@ -11,7 +11,7 @@ import Movie from '../Movies/Movie'
 import UpdateMovie from '../Movies/UpdateMovie'
 import Movies from '../Movies/Movies'
 import Genre from '../Genres/Genre'
-import Genre3 from '../Genres/Genre3'
+// import Genre3 from '../Genres/Genre3'
 // import Genres from '../Genres/Genres'
 import GenresLoop from '../Genres/GenresLoop'
 import AddGenre from '../Genres/AddGenre'
@@ -156,7 +156,6 @@ class App extends Component {
              render={() => (
                <div>
                  <GenresLoop user={user}/>
-                 <Genre3 user={user}/>
                </div>
              )}
            />

@@ -37,12 +37,10 @@ const fabStyle2 = {
   // left: 60
   left: 5
 }
-const fabStyle3 = {
-  // position: 'relative',
-  bottom: 70,
-  // left: 90
-  left: 15
-}
+// const fabStyle3 = {
+//   bottom: 70,
+//   left: 15
+// }
 const fabStyle4 = {
   bottom: 70,
   left: 20
@@ -156,13 +154,6 @@ const Movie = (props) => {
               <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
                 <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
               </Fab>
-              <Fab style={fabStyle3} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
-                <Tooltip title="More">
-                  <Link className="btn-floating fab waves-effect waves-light red" style={{ color: 'white', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </Tooltip>
-              </Fab>
               <Link to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
                 <Fab style={fabStyle4} className="hidden-button floating" to="/more-info" color="primary" aria-label="more" >
                   <Tooltip title="More">
@@ -174,6 +165,13 @@ const Movie = (props) => {
           </div>
           { /* href={`#/movies/${props.id}`}
           href={`#/movies/${props.movieId}`} */ }
+          { /* <Fab style={fabStyle3} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
+            <Tooltip title="More">
+              <Link className="btn-floating fab waves-effect waves-light red" style={{ color: 'white', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
+                <KeyboardArrowRightIcon />
+              </Link>
+            </Tooltip>
+          </Fab>* / }
           { /*
             <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="save" >
               <KeyboardArrowRightIcon to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}/>

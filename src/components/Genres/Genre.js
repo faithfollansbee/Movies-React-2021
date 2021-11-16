@@ -1,23 +1,22 @@
 import React, { Fragment } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
-// import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
-// import { makeStyles } from '@material-ui/core/styles'
 import apiUrl from '../../apiConfig'
-// import Card from '@material-ui/core/Card'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import Row from 'react-bootstrap/Row'
-// import CardHeader from '@material-ui/core/CardHeader'
-// import Collapse from '@material-ui/core/Collapse'
-// import IconButton from '@material-ui/core/IconButton'
-// import EditIcon from '@material-ui/icons/Edit'
+// import Row from 'react-bootstrap/Row'
 import Movie2 from '../Movies/Movie2'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
-// import ShareIcon from '@material-ui/icons/Share'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Tooltip from '@material-ui/core/Tooltip'
+import IconButton from '@material-ui/core/IconButton'
+import FavoriteIcon from '@material-ui/icons/Favorite'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
+import EditGenreDialog from './EditGenre/EditGenreDialog'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EditIcon from '@material-ui/icons/Edit'
 
 class Genre extends React.Component {
   state = {
@@ -51,7 +50,7 @@ class Genre extends React.Component {
           'Authorization': `Token token=${this.props.user.token}`
         }
       })
-      console.log('Got to one genre')
+      // console.log('Got to one genre')
       this.setState({ genre: response.data.genre })
       this.setState({ movies: response.data.genre.movies })
       // this.setState({ userRecipes: response.data.cookbook.recipes })
@@ -134,17 +133,18 @@ class Genre extends React.Component {
   }
 
   render () {
-    console.log('genre movies', this.state.genre.movies)
-    console.log('genre length', this.state.genre)
-    console.log('number of movies', this.state.movies.length)
-    console.log(Object.keys(this.state.movies))
+    // console.log('genre movies', this.state.genre.movies)
+    // console.log('genre length', this.state.genre)
+    // console.log('number of movies', this.state.movies.length)
+    // console.log(Object.keys(this.state.movies))
 
     const { genre, addMovie } = this.state
     if (genre) {
       const deletebutton = (
         <Fragment>
-          <Button
-            variant="outlined" onClick={this.handleDelete}>Delete The Genre</Button>
+          <IconButton onClick={this.handleDelete} aria-label="Delete">
+            <DeleteIcon />
+          </IconButton>
         </Fragment>
       )
       let updateMovieButton
@@ -159,86 +159,61 @@ class Genre extends React.Component {
       let moviesStatus
 
       if (!this.state.genre.movies.length) {
-        console.log('there are no movies here')
+        // console.log('there are no movies here')
         moviesStatus = (
           <div className="nomovies">No movies added yet. get started! </div>
         )
       }
-
-      // const recipesJSX = cookbook.recipes.map(recipe => (
-      //   <Card key={recipe._id} className="card-style" maxWidth="sm">
-      //     <CardHeader
-      //       action={
-      //         <IconButton aria-label="settings">
-      //           <MoreVertIcon />
-      //         </IconButton>
-      //       }
-      //       title={recipe.name}
-      //       subheader="September 14, 2016"
-      //     />
-      //     <CardContent className="content">
-      //       <Typography>{recipe.name}</Typography>
-      //     </CardContent>
-      //     <br/>
-      //     <CardActions>
-      //       <IconButton
-      //         onClick={this.handleDelete}
-      //       >
-      //       </IconButton>
-      //       <IconButton aria-label="add to favorites">
-      //         <FavoriteIcon />
-      //       </IconButton>
-      //       <IconButton aria-label="share">
-      //         <ShareIcon />
-      //       </IconButton>
-      //       <Button>
-      //         <Link id={recipe._id} className="link-style" to={`/recipes/${recipe._id}`}> View details</Link>
-      //         <a href="" className="waves-effect waves-teal btn-flat"></a>
-      //       </Button>
-      //     </CardActions>
-      //   </Card>
-      // ))
-
       return (
         <div className="layout-style">
           { genre && (
-            <Fragment>
-              <div>
-                <h1 className="title-style">{genre.name}</h1>
-                <Typography><i>Last updated at {genre.updatedAt}</i></Typography>
-                <Typography><i>Movies in this genre: {this.state.movies.length}</i></Typography>
-              </div>
-              <div className="row mx-lg-n5">
-                {this.state.genre.movies.map(movie => (
-                  <Movie2
-                    key={movie.name + movie._id}
-                    handleRefresh={this.handleRefresh}
-                    user={this.props.user}
-                    id={movie._id}
-                    description={movie.description}
-                    released={movie.released}
-                    image={movie.image}
-                    thisstate={this.state}
-                    alert={this.props.alert}
-                    genre={this.genre}
-                  />
-                ))}
-              </div>
-              {moviesStatus}
-              {updateMovieButton}
-              <Row className="row-style">
-                <Button
-                  variant="outlined"
-                  href={`#genres/${genre._id}/edit`}>Edit</Button>
-                <Button
-                  variant="outlined"
-                  href={'#genres/'}>Back to genres</Button>
+            <Card className="card-style" variant="outlined">
+              <CardContent>
+                <div>
+                  <h1 className="title-style">{genre.name}</h1>
+                  <Typography><i>Last updated at {genre.updatedAt}</i></Typography>
+                  <Typography><i>Movies in this genre: {this.state.movies.length}</i></Typography>
+                </div>
+                <div className="row mx-lg-n5">
+                  {this.state.genre.movies.map(movie => (
+                    <Movie2
+                      key={movie.name + movie._id}
+                      handleRefresh={this.handleRefresh}
+                      user={this.props.user}
+                      id={movie._id}
+                      description={movie.description}
+                      released={movie.released}
+                      image={movie.image}
+                      thisstate={this.state}
+                      alert={this.props.alert}
+                      genre={this.genre}
+                    />
+                  ))}
+                </div>
+                {moviesStatus}
+                {updateMovieButton}
+              </CardContent>
+              <CardActions>
+                <Tooltip title="Edit">
+                  <IconButton href={`#genres/${genre._id}/edit`}>
+                    <EditIcon/>
+                  </IconButton>
+                </Tooltip>
                 {(this.props.user && genre) && this.props.user._id === genre.owner
                   ? deletebutton
                   : ''
                 }
-              </Row>
-            </Fragment>
+                <IconButton href={'#genres/'} aria-label="Back">
+                  <ArrowBackIosIcon />
+                </IconButton>
+                <Tooltip title="New Genre">
+                  <EditGenreDialog id={this.state.genre._id} genre={this.state.genre} user={this.props.user} />
+                </Tooltip>
+                <IconButton aria-label="add to favorites">
+                  <FavoriteIcon />
+                </IconButton>
+              </CardActions>
+            </Card>
           )}
         </div>
       )
@@ -248,6 +223,47 @@ class Genre extends React.Component {
     )
   }
 }
+// <Paper elevation={1}/>
+// { genre && (
+//   <Fragment>
+//     <div>
+//       <h1 className="title-style">{genre.name}</h1>
+//       <Typography><i>Last updated at {genre.updatedAt}</i></Typography>
+//       <Typography><i>Movies in this genre: {this.state.movies.length}</i></Typography>
+//     </div>
+//     <div className="row mx-lg-n5">
+//       {this.state.genre.movies.map(movie => (
+//         <Movie2
+//           key={movie.name + movie._id}
+//           handleRefresh={this.handleRefresh}
+//           user={this.props.user}
+//           id={movie._id}
+//           description={movie.description}
+//           released={movie.released}
+//           image={movie.image}
+//           thisstate={this.state}
+//           alert={this.props.alert}
+//           genre={this.genre}
+//         />
+//       ))}
+//     </div>
+//     {moviesStatus}
+//     {updateMovieButton}
+//     <Row className="row-style">
+//       <Button
+//         variant="outlined"
+//         href={`#genres/${genre._id}/edit`}>Edit</Button>
+//       <Button
+//         variant="outlined"
+//         href={'#genres/'}>Back to genres</Button>
+//       {(this.props.user && genre) && this.props.user._id === genre.owner
+//         ? deletebutton
+//         : ''
+//       }
+//     </Row>
+//   </Fragment>
+// )}
+
 // {this.state.cookbook.recipes.map(recipe => (
 //   <Recipe2
 //     key={recipe.name + recipe._id}

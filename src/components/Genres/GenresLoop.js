@@ -5,9 +5,9 @@ import apiUrl from '../../apiConfig'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
 import Spinner from 'react-bootstrap/Spinner'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 // import Fab from '@material-ui/core/Fab'
-import EditIcon from '@material-ui/icons/Edit'
+// import EditIcon from '@material-ui/icons/Edit'
 import Genre3 from './Genre3'
 import AddGenreDialog from './AddGenreDialog'
 // import Genre3 from './Genre3'
@@ -26,6 +26,8 @@ import AddGenreDialog from './AddGenreDialog'
 // hover: 'red',
 // overflowWrap: 'break-word',
 // wordWrap: 'break-word'
+// }
+// const fabStyle = {
 // }
 
 class GenresLoop extends Component {
@@ -103,8 +105,9 @@ class GenresLoop extends Component {
   }
 
   render (props) {
+    // console.log('genres', this.state.genres)
     // const { genres } = this.state
-    console.log('this.props.user', this.props.user)
+    // console.log('this.props.user', this.props.user)
     if (this.state.isLoading) {
       return (
         <div className="text-center">
@@ -119,19 +122,18 @@ class GenresLoop extends Component {
     // console.log('each genre movies count', this.state.genres.movie)
     // console.log('genre id', this.state.userGenres[1])
     // console.log('genre id', this.state.genres[1])
-
+    // <Tooltip title="New Genre">
+    //   <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light' color="grey" aria-label="more" >
+    //     <AddGenreDialog user={this.props.user} style={{ color: 'white', textDecoration: 'none' }}/>
+    //   </Fab>
+    // </Tooltip>
     return (
       <div className="layout-style">
         <Fragment>
           <h2 className="title-style">Your genres</h2>
           <div>
             <Tooltip title="New Genre">
-              <IconButton>
-                <AddGenreDialog user={this.props.user} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Edit">
-              <EditIcon />
+              <AddGenreDialog user={this.props.user} />
             </Tooltip>
           </div>
           <div className="search">
@@ -148,7 +150,8 @@ class GenresLoop extends Component {
           <div>
             {this.state.genres.map(genre => (
               <Genre3
-                key={genre.name + genre._id}
+                key={genre._id}
+                // key={genre.name + genre._id}
                 user={this.props.user}
                 id={genre._id}
                 name={genre.name}
@@ -158,7 +161,7 @@ class GenresLoop extends Component {
                 // image={movie.image}
                 // thisstate={this.state}
                 // alert={this.props.alert}
-                // genre={this.genre}
+                genre={this.genre}
               />
             ))}
           </div>

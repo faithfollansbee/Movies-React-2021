@@ -21,6 +21,9 @@
   .hidden-button {
     display: none;
   }
+  .hidden-content {
+    display: none;
+  }
 
   // & .hidden-button: {
   //   display: none
@@ -43,11 +46,17 @@
   .hidden-button {
     display: flex;
   }
+  .hidden-content {
+    display: flex;
+  }
 }
 // .hidden-button:hover {
 //   display: flex;
 // }
 .hidden-button {
+  display: none;
+}
+.hidden-content {
   display: none;
 }
 // .hidden-button:hover {

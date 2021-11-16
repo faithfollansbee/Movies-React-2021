@@ -8,6 +8,11 @@ import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
+// import VisibilityIcon from '@material-ui/icons/Visibility'
+import Collapse from '@material-ui/core/Collapse'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
 // import SimpleDateTime from 'react-simple-timestamp-to-date'
@@ -28,10 +33,10 @@ const fabStyle2 = {
   bottom: 70,
   left: 60
 }
-// const fabStyle3 = {
-//   bottom: 70,
-//   left: 90
-// }
+const fabStyle3 = {
+  bottom: 70,
+  left: 90
+}
 const fabRowStyle = {
   display: 'flex',
   justifyContent: 'space-evenly',
@@ -50,9 +55,16 @@ class Movie2 extends React.Component {
   state = {
     movie: null,
     isEditing: false,
-    isHovered: false
+    isHovered: false,
+    // expand: false
+    expanded: {}
   }
-
+  handleExpandClick = () => {
+    this.setState({ expand: !this.state.expand })
+  }
+  // handleExpandClick = (id) => {
+  //   this.setState({ expanded: ...this.state.expanded, [id] : true })
+  // }
   async componentDidMount () {
     try {
       const response = await axios({
@@ -74,7 +86,7 @@ class Movie2 extends React.Component {
     this.setState({ isHovered: 'true' })
   }
   onMouseOut = () => {
-    console.log('moused out')
+    // console.log('moused out')
     this.setState({ isHovered: 'false' })
   }
   // cardHovered = {
@@ -83,7 +95,7 @@ class Movie2 extends React.Component {
   //   zIndex: 10
   // }
   render () {
-    const { movie } = this.state
+    const { movie, expanded } = this.state
     // const styles = {
     //   isHovered: {
     //     position: 'relative',
@@ -152,8 +164,29 @@ class Movie2 extends React.Component {
                     <KeyboardArrowRightIcon />
                   </Tooltip>
                 </Fab>
+                <Fab
+                  // onClick={() => this.handleExpandClick(movie.id)}
+                  aria-expanded={expanded}
+                  onClick={this.handleExpandClick}
+                  style={fabStyle3} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="View Details" >
+                  <Tooltip title="View Details">
+                    <ExpandMoreIcon />
+                  </Tooltip>
+                </Fab>
               </div>
             </CardActionArea>
+            <Collapse
+              // in={expanded[movie._id]}
+              in={this.state.expand}
+              timeout="auto"
+              unmountOnExit
+              // unmountOnExit={true}
+            >
+              <CardContent>
+                <Typography paragraph>{movie.title}</Typography>
+                <Typography paragraph>{movie.description}</Typography>
+              </CardContent>
+            </Collapse>
           </Card>
         </div>
       )

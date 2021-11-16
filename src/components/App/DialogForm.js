@@ -115,7 +115,7 @@ class SaveMovie extends Component {
     // const { genresJsx } = this.state
     // console.log(this.state)
     const { saved } = this.state
-    console.log(this.saved)
+    // console.log(this.saved)
     if (saved) {
       return <Redirect to={
         {
