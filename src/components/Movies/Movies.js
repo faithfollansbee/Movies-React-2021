@@ -17,6 +17,7 @@ import Spinner from 'react-bootstrap/Spinner'
 // import Typography from '@material-ui/core/Typography'
 // import Movie2 from './Movie2'
 import Movie3 from './Movie3'
+// import MovieSearch from './MovieSearch'
 
 // const linkStyle = {
 //   color: 'black',
@@ -137,6 +138,7 @@ class movies extends Component {
                 handleRefresh={this.handleRefresh}
                 user={this.props.user}
                 id={movie._id}
+                title={movie.title}
                 description={movie.description}
                 released={movie.released}
                 image={movie.image}

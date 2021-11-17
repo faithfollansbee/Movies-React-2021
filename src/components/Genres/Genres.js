@@ -82,12 +82,12 @@ class Genres extends Component {
   render (props) {
     const { userGenres } = this.state
     console.log(this.state)
-    console.log('genres detail', this.state.genres)
-    console.log('number of genres', this.state.genres.length)
-    console.log('my first genre', this.state.genres[1])
-    console.log('each genre movies count', this.state.genres.movie)
-    console.log('genre id', this.state.userGenres[1])
-    console.log('genre id', this.state.genres[1])
+    // console.log('genres detail', this.state.genres)
+    // console.log('number of genres', this.state.genres.length)
+    // console.log('my first genre', this.state.genres[1])
+    // console.log('each genre movies count', this.state.genres.movie)
+    // console.log('genre id', this.state.userGenres[1])
+    // console.log('genre id', this.state.genres[1])
 
     // console.log(Object.keys(myObject).length)
     // console.log('object keys test', this.state.genres.keys(this.state.genres[1]))

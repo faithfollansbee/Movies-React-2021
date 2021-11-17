@@ -10,27 +10,23 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 // import { Link } from 'react-router-dom'
 // import AddMovieDialog from './AddMovieDialog'
 
 const fabStyle1 = {
-  // position: 'absolute',
-  // position: 'relative',
-  // display: 'flex',
-  bottom: 70,
-  left: 30
-  // right: 16
+  bottom: 60,
+  left: 150
 }
-// const fabStyle2 = {
-//   bottom: 70,
-//   left: 60
+const fabStyle2 = {
+  bottom: 60,
+  left: 170
+}
+// const fabStyle3 = {
+//   bottom: 60,
+//   left: 90
 // }
-const fabStyle3 = {
-  // position: 'relative',
-  bottom: 70,
-  left: 90
-}
 const fabRowStyle = {
   display: 'flex',
   justifyContent: 'space-evenly',
@@ -40,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     // display: 'inline-block',
-    zIndex: -1,
+    zIndex: 5,
     transition: 'transform 0.22s ease-in-out',
     '& .hidden-button': {
       display: 'none'
@@ -54,9 +50,16 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover .hidden-content': {
       display: 'flex'
-      // zIndex: '5'
     }
   },
+  // detailsButton: {
+  //   '& .hidden-content': {
+  //     display: 'none'
+  //   },
+  //   '&:hover .hidden-content': {
+  //     display: 'flex'
+  //   }
+  // },
   media: {
     height: 0,
     paddingTop: '56.25%' // 16:9
@@ -72,12 +75,13 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)'
   },
   cardHovered: {
-    position: 'relative',
-    // transform: 'scale3d(1.05, 1.05, 1)'
+    // transform: 'scale3d(1.05, 1.05, 1)',
     // transform: 'scale3d(1.15, 1.15, 1)',
     // zIndex: '10 !important',
+    position: 'relative',
+    // position: 'absolute',
     transform: 'scale(1.2)',
-    zIndex: 10
+    zIndex: '15 !important'
     // transform: 'scale(1.15)'
   },
   avatar: {
@@ -152,17 +156,22 @@ const Movie = (props) => {
             }
             <div style={fabRowStyle}>
               <Tooltip title="Favorite">
-                <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                <Fab size="medium" style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                   <FavoriteIcon />
                 </Fab>
               </Tooltip>
               <Tooltip title="More">
-                <Fab style={fabStyle3} to="/more-info" href={`#/movies/${props.id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
+                <Fab size="medium" style={fabStyle2} to="/more-info" href={`#/movies/${props.id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
                   <KeyboardArrowRightIcon style={{ color: 'white', textDecoration: 'none' }}/>
                 </Fab>
               </Tooltip>
             </div>
           </div>
+          { /* <Tooltip title="Expand More">
+            <Fab style={fabStyle3} className='hidden-button detailsButton floating waves-effect waves-light' color="primary" aria-label="expand more" >
+              <ExpandMoreIcon />
+            </Fab>
+          </Tooltip> */ }
           {/* <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
             <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
           </Fab> */}
@@ -181,12 +190,13 @@ const Movie = (props) => {
         </CardActionArea>
         <CardContent className="hidden-content">
           <Typography className="hidden-content">{props.title}</Typography>
-          <Typography className="hidden-content">{props.description}</Typography>
         </CardContent>
       </Card>
     </div>
   )
 }
+// <CardContent style={{ backgroundColor: 'black', color: 'white' }} className="hidden-content">
+
 // <CardContent>
 //   <Typography className="hovered hidden">{props.title}</Typography>
 //   <Typography className="hovered hidden">{props.description}</Typography>

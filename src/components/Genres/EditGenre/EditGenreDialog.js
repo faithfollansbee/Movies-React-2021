@@ -3,10 +3,15 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import EditIcon from '@material-ui/icons/Edit'
-import IconButton from '@material-ui/core/IconButton'
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+
+// import IconButton from '@material-ui/core/IconButton'
 // import GenreForm from './GenreForm'
 // import AddGenre from './AddGenre'
 import EditGenre from './EditGenre'
+// import MenuItem from '@material-ui/core/MenuItem'
+
 // import GenreDialogForm from './GenreDialogForm'
 
 export default function EditGenreDialog (props) {
@@ -14,17 +19,25 @@ export default function EditGenreDialog (props) {
 
   const handleClickOpen = () => {
     setOpen(true)
+    console.log('EditGenreDialog handleClickOpen()')
+    // console.log(props.user)
+    // console.log(props.genre)
+    // console.log(props.id)
   }
 
   const handleClose = () => {
     setOpen(false)
+    console.log('EditGenreDialog handleClose()')
   }
   // console.log('props.user', props.user)
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <EditIcon/>
-      </IconButton>
+      <MenuItem onClick={handleClickOpen}>
+        <ListItemIcon>
+          <EditIcon />
+        </ListItemIcon>
+        Edit
+      </MenuItem>
       <Dialog
         user={props.user}
         genre={props.genre}

@@ -26,16 +26,16 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 // />
 // import CardMedia from '@material-ui/core/CardMedia'
 const fabStyle1 = {
-  bottom: 70,
-  left: 30
+  bottom: 55,
+  left: 40
 }
 const fabStyle2 = {
-  bottom: 70,
-  left: 60
+  bottom: 55,
+  left: 70
 }
 const fabStyle3 = {
-  bottom: 70,
-  left: 90
+  bottom: 55,
+  left: 100
 }
 const fabRowStyle = {
   display: 'flex',
@@ -154,17 +154,18 @@ class Movie2 extends React.Component {
                 }
               </div>
               <div style={fabRowStyle}>
-                <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                <Fab size="small" style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                   <Tooltip title="Favorite">
                     <FavoriteIcon />
                   </Tooltip>
                 </Fab>
-                <Fab style={fabStyle2} to="/more-info" href={`#/movies/${movie._id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
+                <Fab size="small" style={fabStyle2} to="/more-info" href={`#/movies/${movie._id}`} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
                   <Tooltip title="More">
                     <KeyboardArrowRightIcon />
                   </Tooltip>
                 </Fab>
                 <Fab
+                  size="small"
                   // onClick={() => this.handleExpandClick(movie.id)}
                   aria-expanded={expanded}
                   onClick={this.handleExpandClick}
@@ -175,6 +176,9 @@ class Movie2 extends React.Component {
                 </Fab>
               </div>
             </CardActionArea>
+            <CardContent className="hidden-content">
+              <Typography className="hidden-content">{movie.title}</Typography>
+            </CardContent>
             <Collapse
               // in={expanded[movie._id]}
               in={this.state.expand}
@@ -183,8 +187,7 @@ class Movie2 extends React.Component {
               // unmountOnExit={true}
             >
               <CardContent>
-                <Typography paragraph>{movie.title}</Typography>
-                <Typography paragraph>{movie.description}</Typography>
+                <Typography className="hidden-content" paragraph>{movie.description}</Typography>
               </CardContent>
             </Collapse>
           </Card>

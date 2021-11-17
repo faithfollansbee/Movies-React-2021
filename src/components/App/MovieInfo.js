@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import ArrowBack from '@material-ui/icons/ArrowBack'
-import SaveMovie from './SaveMovie'
+// import SaveMovie from './SaveMovie'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -24,12 +24,10 @@ const fabStyle1 = {
 }
 const fabStyle2 = {
 }
-
-const fabRowStyle = {
-  display: 'flex',
-  justifyContent: 'space-around'
-  // position: 'absolute'
-}
+// const fabRowStyle = {
+//   display: 'flex',
+//   justifyContent: 'space-around'
+// }
 // <i className="fas fa-arrow left"></i>
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -77,17 +75,9 @@ const MovieInfo = (props) => {
                   />
                 </div>
                 <CardContent>
-
                   <Typography variant="body2">
                     <p> {props.currentMovie.overview} </p>
                   </Typography>
-                  <div className="row" style={{ backgroundColor: 'MintCream', alignContent: 'center', alignSelf: 'flex-end' }}>
-                    <CardActions>
-                      <Button href="#/movies" style={{ alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
-                      </Button>
-                      <Button onClick={this.deletemovie}>Delete this movie</Button>
-                    </CardActions>
-                  </div>
                 </CardContent>
               </div>
             </div>
@@ -96,32 +86,25 @@ const MovieInfo = (props) => {
           <CardActions>
             <div className="row" style={{ backgroundColor: 'MintCream', alignContent: 'center', alignSelf: 'flex-end' }}>
               <CardActions>
-                <Button href="#/movies" style={{ alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
-                </Button>
-                <Button onClick={this.deletemovie}>Delete this movie</Button>
+                <Tooltip title="Back">
+                  <Fab href="#/search" aria-label="Back">
+                    <ArrowBack />
+                  </Fab>
+                </Tooltip>
+                <Tooltip title="Favorite">
+                  <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                    <FavoriteIcon />
+                  </Fab>
+                </Tooltip>
+                <Tooltip title="Save">
+                  <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+                    <AddMovieDialog id={props.currentMovie.id} title={props.currentMovie.title} released={props.currentMovie.release_date} description={props.currentMovie.overview} image={props.currentMovie.poster_path} user={props.user} />
+                  </Fab>
+                </Tooltip>
               </CardActions>
             </div>
           </CardActions>
         </Card>
-        <div style={fabRowStyle}>
-          <Tooltip title="Back">
-            <Fab href="#/search" aria-label="Back">
-              <ArrowBack />
-            </Fab>
-          </Tooltip>
-          <Tooltip title="Favorite">
-            <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
-              <FavoriteIcon />
-            </Fab>
-          </Tooltip>
-          <Tooltip title="Save">
-            <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-              <AddMovieDialog id={props.currentMovie.id} title={props.currentMovie.title} released={props.currentMovie.release_date} description={props.currentMovie.overview} image={props.currentMovie.poster_path} user={props.user} />
-            </Fab>
-          </Tooltip>
-        </div>
-        <SaveMovie user={props.user} saved={props.saved} closeMovieInfo={props.closeMovieInfo} title={props.currentMovie.title} released={props.currentMovie.release_date} description={props.currentMovie.overview} image={props.currentMovie.poster_path}/>
-        <div className="row" onClick={props.closeMovieInfo} style={{ cursor: 'pointer', paddingTop: 50 }}></div>
       </div>
     </div>
   )

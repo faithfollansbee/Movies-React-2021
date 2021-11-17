@@ -5,7 +5,8 @@ import Button from '@material-ui/core/Button'
 import apiUrl from '../../apiConfig'
 import Typography from '@material-ui/core/Typography'
 // import Row from 'react-bootstrap/Row'
-import Movie2 from '../Movies/Movie2'
+// import Movie2 from '../Movies/Movie2'
+import Movie3 from '../Movies/Movie3'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -15,8 +16,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditGenreDialog from './EditGenre/EditGenreDialog'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-import DeleteIcon from '@material-ui/icons/Delete'
-import EditIcon from '@material-ui/icons/Edit'
+// import EditIcon from '@material-ui/icons/Edit'
+import EditGenreMenu from './EditGenreMenu'
+import CardHeader from '@material-ui/core/CardHeader'
 
 class Genre extends React.Component {
   state = {
@@ -131,6 +133,9 @@ class Genre extends React.Component {
       .then(() => this.setState({ deleted: true }))
       .then(() => this.props.history.push('/genres'))
   }
+  editGenre = () => {
+    console.log('edit eventually')
+  }
 
   render () {
     // console.log('genre movies', this.state.genre.movies)
@@ -140,13 +145,13 @@ class Genre extends React.Component {
 
     const { genre, addMovie } = this.state
     if (genre) {
-      const deletebutton = (
-        <Fragment>
-          <IconButton onClick={this.handleDelete} aria-label="Delete">
-            <DeleteIcon />
-          </IconButton>
-        </Fragment>
-      )
+      // const deletebutton = (
+      //   <Fragment>
+      //     <IconButton onClick={this.handleDelete} aria-label="Delete">
+      //       <DeleteIcon />
+      //     </IconButton>
+      //   </Fragment>
+      // )
       let updateMovieButton
       if (addMovie) {
         updateMovieButton = (
@@ -167,54 +172,56 @@ class Genre extends React.Component {
       return (
         <div className="layout-style">
           { genre && (
-            <Card className="card-style" variant="outlined">
-              <CardContent>
-                <div>
-                  <h1 className="title-style">{genre.name}</h1>
-                  <Typography><i>Last updated at {genre.updatedAt}</i></Typography>
-                  <Typography><i>Movies in this genre: {this.state.movies.length}</i></Typography>
-                </div>
-                <div className="row mx-lg-n5">
-                  {this.state.genre.movies.map(movie => (
-                    <Movie2
-                      key={movie.name + movie._id}
-                      handleRefresh={this.handleRefresh}
-                      user={this.props.user}
-                      id={movie._id}
-                      description={movie.description}
-                      released={movie.released}
-                      image={movie.image}
-                      thisstate={this.state}
-                      alert={this.props.alert}
-                      genre={this.genre}
+            <div>
+              <Card className="card-style" variant="outlined">
+                <CardContent>
+                  <div>
+                    <CardHeader
+                      // variant="h5"
+                      // component="h3"
+                      action={
+                        <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete} />
+                      }
+                      title={genre.name}
+                      subheader={genre.updatedAt}
                     />
-                  ))}
-                </div>
-                {moviesStatus}
-                {updateMovieButton}
-              </CardContent>
-              <CardActions>
-                <Tooltip title="Edit">
-                  <IconButton href={`#genres/${genre._id}/edit`}>
-                    <EditIcon/>
+                  </div>
+                  <div className="row mx-lg-n3">
+                    { /* className="row mx-lg-n5" */}
+                    {this.state.genre.movies.map(movie => (
+                      <Movie3
+                        key={movie.name + movie._id}
+                        handleRefresh={this.handleRefresh}
+                        user={this.props.user}
+                        title={movie.title}
+                        id={movie._id}
+                        description={movie.description}
+                        released={movie.released}
+                        image={movie.image}
+                        thisstate={this.state}
+                        alert={this.props.alert}
+                        genre={this.genre}
+                      />
+                    ))}
+                  </div>
+                  {moviesStatus}
+                  {updateMovieButton}
+                </CardContent>
+                <CardActions>
+                  <IconButton href={'#genres/'} aria-label="Back">
+                    <ArrowBackIosIcon />
                   </IconButton>
-                </Tooltip>
-                {(this.props.user && genre) && this.props.user._id === genre.owner
-                  ? deletebutton
-                  : ''
-                }
-                <IconButton href={'#genres/'} aria-label="Back">
-                  <ArrowBackIosIcon />
-                </IconButton>
-                <Tooltip title="New Genre">
-                  <EditGenreDialog id={this.state.genre._id} genre={this.state.genre} user={this.props.user} />
-                </Tooltip>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
+                  <Tooltip title="New Genre">
+                    <EditGenreDialog id={this.state.genre._id} genre={this.state.genre} user={this.props.user} />
+                  </Tooltip>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </div>
           )}
+          <Typography><i>Displaying x out of {this.state.movies.length} movies</i></Typography>
         </div>
       )
     }
@@ -223,6 +230,10 @@ class Genre extends React.Component {
     )
   }
 }
+// {(this.props.user && genre) && this.props.user._id === genre.owner
+//   ? deletebutton
+//   : ''
+// }
 // <Paper elevation={1}/>
 // { genre && (
 //   <Fragment>

@@ -105,6 +105,7 @@ class GenresLoop extends Component {
   }
 
   render (props) {
+    // const { userGenres } = this.state
     // console.log('genres', this.state.genres)
     // const { genres } = this.state
     // console.log('this.props.user', this.props.user)
@@ -148,7 +149,7 @@ class GenresLoop extends Component {
             }
           </div>
           <div>
-            {this.state.genres.map(genre => (
+            {this.state.userGenres.map(genre => (
               <Genre3
                 key={genre._id}
                 // key={genre.name + genre._id}

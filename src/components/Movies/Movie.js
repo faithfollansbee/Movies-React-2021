@@ -5,18 +5,20 @@ import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 // import CardMedia from '@material-ui/core/CardMedia'
 import CardHeader from '@material-ui/core/CardHeader'
-import IconButton from '@material-ui/core/IconButton'
 // import FavoriteIcon from '@material-ui/icons/Favorite'
 // import EditIcon from '@material-ui/icons/Edit'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import EditIcon from '@material-ui/icons/Edit'
+import ArrowBack from '@material-ui/icons/ArrowBack'
+import EditMenu from './EditMenu'
+
 // const movieStyle = {
 // margin: '30px'
 // alignItems: 'space-evenly'
@@ -96,9 +98,7 @@ class movie extends Component {
                           // variant="h5"
                           // component="h3"
                           action={
-                            <IconButton aria-label="settings">
-                              <MoreVertIcon />
-                            </IconButton>
+                            <EditMenu deleteMovie={this.deletemovie} editMovie={this.editMovie} />
                           }
                           // title={movie.name}
                           title={movie.title}
@@ -115,35 +115,29 @@ class movie extends Component {
                           { /* <p> Saved to: {movie.genre.name}</p> */ }
                         </Typography>
                       </CardContent>
-                      <div style={{ display: 'flex', alignContent: 'center', paddingBottom: 1 }}>
-                        <CardActions>
-                          <Button href="#/movies" style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
-                          </Button>
-                          <Button onClick={this.deletemovie}>Delete this movie</Button>
-                        </CardActions>
-                      </div>
                     </div>
                   </div>
                 </div>
               </CardContent>
-              <div style={{ alignContent: 'center' }}>
-                <CardActions style={{ backgroundColor: 'Ivory', alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }}>
-                  <Button href="#/movies" style={{ alignSelf: 'flex-end', color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">back to all
-                  </Button>
-                  <Button onClick={this.deletemovie}>Delete this movie</Button>
-                </CardActions>
-              </div>
+              <CardActions>
+                <Tooltip title="Back">
+                  <Fab href="#/movies" aria-label="Back">
+                    <ArrowBack />
+                  </Fab>
+                </Tooltip>
+                <Tooltip title="Delete">
+                  <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
+                    <DeleteIcon />
+                  </Fab>
+                </Tooltip>
+                <Tooltip title="Edit">
+                  <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
+                    <EditIcon />
+                  </Fab>
+                </Tooltip>
+              </CardActions>
             </Card>
-            <Tooltip title="Delete">
-              <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
-                <DeleteIcon />
-              </Fab>
-            </Tooltip>
-            <Tooltip title="Edit">
-              <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
-                <EditIcon />
-              </Fab>
-            </Tooltip>
+            { /* this "back" button needs to use history to go back, bc this single movie component is used from Movies and Genre  */ }
           </div>
         )}
       </div>

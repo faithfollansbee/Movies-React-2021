@@ -24,35 +24,18 @@ import AddMovieDialog from './AddMovieDialog'
 // }
 
 const fabStyle1 = {
-  // position: 'absolute',
-  // position: 'relative',
-  // display: 'flex',
-  bottom: 70,
-  // left: 30
-  left: 2
-  // right: 16
+  bottom: 60,
+  left: 40
 }
 const fabStyle2 = {
-  bottom: 70,
-  // left: 60
-  left: 5
+  bottom: 60,
+  left: 70
 }
-// const fabStyle3 = {
-//   bottom: 70,
-//   left: 15
-// }
-const fabStyle4 = {
-  bottom: 70,
-  left: 20
+const fabStyle3 = {
+  bottom: 60,
+  left: 100
 }
-// const fabStyle5 = {
-//   bottom: 70,
-//   left: 30
-// }
-// const fabStyle4 = {
-//   bottom: 70,
-//   left: 80
-// }
+
 const fabRowStyle = {
   display: 'flex',
   justifyContent: 'space-evenly',
@@ -146,16 +129,16 @@ const Movie = (props) => {
                 />
             }
             <div style={fabRowStyle}>
-              <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+              <Fab size="medium" style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                 <Tooltip title="Favorite">
                   <FavoriteIcon />
                 </Tooltip>
               </Fab>
-              <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+              <Fab size="medium" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
                 <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
               </Fab>
               <Link to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
-                <Fab style={fabStyle4} className="hidden-button floating" to="/more-info" color="primary" aria-label="more" >
+                <Fab size="medium" style={fabStyle3} className="hidden-button floating" to="/more-info" color="primary" aria-label="more" >
                   <Tooltip title="More">
                     <KeyboardArrowRightIcon/>
                   </Tooltip>

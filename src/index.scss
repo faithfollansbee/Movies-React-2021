@@ -9,13 +9,16 @@
 //   }
 // },
 
+.MuiCard-root {
+  overflow: visible !important;
+}
 
 .hoverCardStyle {
   width: 18rem;
   max-width: 21rem;
   z-index: -1;
   transition: {
-    transform: 0.2s ease-in-out;
+    transform: 0.22s ease-in-out;
   }
   // transition: transform 0.2s ease-in-out;
   .hidden-button {
@@ -24,7 +27,6 @@
   .hidden-content {
     display: none;
   }
-
   // & .hidden-button: {
   //   display: none
   // };
@@ -39,33 +41,52 @@
   // }
 }
 .hoverCardStyle:hover {
-  transform: scale3d(1.05, 1.05, 1);
-  position: relative;
-  // transform: scale(1.2);
-  z-index: 10;
+  // transform: scale3d(1.05, 1.05, 1);
+  // position: relative;
+  // transform: scale3d(1.2);
+  transform: scale(1.2);
+  z-index: 5;
+  // padding: 15px;
+  // margin: 20px;
   .hidden-button {
     display: flex;
   }
   .hidden-content {
     display: flex;
   }
+  // .hidden-button:hover {
+  //   // display: flex;
+  // }
+  // .hidden-content {
+  //   display: flex;
+  // }
 }
-// .hidden-button:hover {
-//   display: flex;
+.hidden-button:hover {
+  // display: flex;
+  // .hidden-content {
+  //   display: flex;
+  // }
+}
+// .hidden-button {
+//   display: none;
 // }
-.hidden-button {
-  display: none;
-}
-.hidden-content {
-  display: none;
-}
+// .hidden-content {
+//   display: none;
+// }
+// .detailsButton:hover {
+//   .hidden-content {
+//     display: flex;
+//   }
+// }
+
 // .hidden-button:hover {
 //   display: flex;
 // }
 
 .card-style {
-  margin: 15px;
-  // padding: 10px;
+  margin: 20px;
+  // z-index: 3px;
+  // padding: 5px;
 }
 
 // .container {

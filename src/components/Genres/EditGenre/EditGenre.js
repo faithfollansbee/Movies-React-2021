@@ -84,6 +84,8 @@ class EditGenre extends Component {
       .then(response => {
         this.props.history.push(`/genres${this.props.genre._id}`)
       })
+      // if editting from specific genre, should redirect to that same genre. if editting from
+      // genre list, redirect to all genres
       .then(response => {
         this.props.history.push('/genres')
       })
