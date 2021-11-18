@@ -9,12 +9,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 // import IconButton from '@material-ui/core/IconButton'
 // import GenreForm from './GenreForm'
 // import AddGenre from './AddGenre'
-import EditGenre from './EditGenre'
+import EditMovie from './EditMovie'
 // import MenuItem from '@material-ui/core/MenuItem'
 
 // import GenreDialogForm from './GenreDialogForm'
 
-export default function EditGenreDialog (props) {
+export default function EditMovieDialog (props) {
   const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {

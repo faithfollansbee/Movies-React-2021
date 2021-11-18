@@ -9,9 +9,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-// import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
 
-export default function EditMenu ({ deleteMovie, editMovie }) {
+export default function EditMovie ({ deleteMovie, editMovie }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {

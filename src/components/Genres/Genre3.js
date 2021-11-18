@@ -1,18 +1,19 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
+// import Box from '@material-ui/core/Box'
+// import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+// import Button from '@material-ui/core/Button'
+// import IconButton from '@material-ui/core/IconButton'
 // import EditIcon from '@material-ui/icons/Edit'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import StarIcon from '@material-ui/icons/Star'
+// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Tooltip from '@material-ui/core/Tooltip'
-import EditGenreDialog from './EditGenre/EditGenreDialog'
+// import EditGenreDialog from './EditGenre/EditGenreDialog'
+import EditGenreMenu from './EditGenreMenu'
+import CardHeader from '@material-ui/core/CardHeader'
 
 class Genre3 extends React.Component {
   state = {
@@ -63,31 +64,25 @@ class Genre3 extends React.Component {
     // console.log(this.state.genre)
     // console.log(this.state.movies)
     return (
-      <div className="layout-style">
-        <Card className="card-style">
+      <div>
+        <Card style={{ display: 'flex' }} className="card-style">
           <CardActionArea href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} >
-            <CardContent>
-              <div>
-                <h3>{this.state.genre.name}</h3>
-                <i>{this.state.genre.name}</i>
-                <i>Movies in this genre: {this.state.movies.length}</i>
-              </div>
+            <CardContent style={{ flex: '1 0 auto', backgroundColor: 'AliceBlue' }}>
+
+              <CardHeader
+                // action={
+                //   <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
+                // }
+                title={this.state.genre.name}
+                subheader={`movies in this genre:${this.state.movies.length}`}
+                // subheader=`"movies in this genre:" +${this.state.movies.length}`
+                // subheader="movies"
+              />
             </CardContent>
           </CardActionArea>
-          <CardActions>
-            <Tooltip title="New Genre">
-              <EditGenreDialog id={this.state.genre._id} genre={this.state.genre} user={this.props.user} />
-            </Tooltip>
-            <Button href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="waves-effect waves-teal btn-flat">View Details
-            </Button>
-            <IconButton aria-label="more">
-              <MoreVertIcon/>
-            </IconButton>
-            <StarIcon/>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-          </CardActions>
+          <Tooltip aria-label="more">
+            <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
+          </Tooltip>
         </Card>
       </div>
     )

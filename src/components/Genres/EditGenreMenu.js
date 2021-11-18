@@ -75,7 +75,7 @@ export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
         // <EditGenreDialog id={genre._id} genre={genre} user={user} />
         // id={this.state.genre._id} genre={this.state.genre} user={this.props.user}
       >
-        <EditGenreDialog id={id} genre={genre} user={user} />
+        <EditGenreDialog onMenuClose={handleClose} id={id} genre={genre} user={user} />
         <MenuItem href={`#genres/${genre._id}/edit`} component="a">
           <ListItemIcon>
             <EditIcon />

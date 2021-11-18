@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
-import SearchIcon from '@material-ui/icons/Search'
+// import SearchIcon from '@material-ui/icons/Search'
 import InputGroup from 'react-bootstrap/InputGroup'
 
 const SearchArea = (props) => {
@@ -11,9 +11,6 @@ const SearchArea = (props) => {
         <Form action=" " onSubmit={props.handleSubmit}>
           <InputGroup>
             <InputGroup.Prepend>
-              <InputGroup.Text>
-                <SearchIcon />
-              </InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
               // onSubmit={props.handleSubmit}

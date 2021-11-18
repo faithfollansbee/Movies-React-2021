@@ -23,6 +23,10 @@ const fabStyle2 = {
   bottom: 60,
   left: 170
 }
+// const hiddenStyle = {
+//   bottom: 160,
+//   left: 10
+// }
 // const fabStyle3 = {
 //   bottom: 60,
 //   left: 90
@@ -41,16 +45,23 @@ const useStyles = makeStyles((theme) => ({
     '& .hidden-button': {
       display: 'none'
     },
-    '&:hover .hidden-button': {
-      display: 'flex'
-      // zIndex: '5'
-    },
     '& .hidden-content': {
       display: 'none'
-    },
-    '&:hover .hidden-content': {
-      display: 'flex'
     }
+    // '&:hover': {
+    // position: 'relative',
+    // transform: 'scale(1.2)',
+    // zIndex: '15 !important'
+    // '&:hover .hidden-button': {
+    //   display: 'flex'
+    // },
+    // '&:hover .hidden-content': {
+    //   display: 'flex'
+    // }
+    // },
+    // '&:hover .hidden-button': {
+    //   display: 'flex'
+    // },
   },
   // detailsButton: {
   //   '& .hidden-content': {
@@ -76,13 +87,16 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHovered: {
     // transform: 'scale3d(1.05, 1.05, 1)',
-    // transform: 'scale3d(1.15, 1.15, 1)',
-    // zIndex: '10 !important',
-    position: 'relative',
     // position: 'absolute',
+    position: 'relative',
     transform: 'scale(1.2)',
-    zIndex: '15 !important'
-    // transform: 'scale(1.15)'
+    zIndex: '15 !important',
+    '&:hover .hidden-button': {
+      display: 'flex'
+    },
+    '&:hover .hidden-content': {
+      display: 'flex'
+    }
   },
   avatar: {
     backgroundColor: red[500]
@@ -154,6 +168,8 @@ const Movie = (props) => {
                   title="Contemplative Reptile"
                 />
             }
+            { /* <div className="hidden-button row" style={{ position: 'absolute', backgroundColor: 'black', color: 'white', bottom: 10, left: '50%', transform: 'translateX(-50%)' }}>{props.title}</div> */ }
+            { /* // <Typography style={hiddenStyle} className="hidden-button floating waves-effect waves-light">{props.title}</Typography> */}
             <div style={fabRowStyle}>
               <Tooltip title="Favorite">
                 <Fab size="medium" style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
@@ -187,14 +203,17 @@ const Movie = (props) => {
                 <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>Add</Link>
               </Button>
               */ }
+          <CardContent className="hidden-content">
+            <Typography className="hidden-content">{props.title}</Typography>
+          </CardContent>
         </CardActionArea>
-        <CardContent className="hidden-content">
-          <Typography className="hidden-content">{props.title}</Typography>
-        </CardContent>
       </Card>
     </div>
   )
 }
+// <CardContent className="hidden-content">
+//   <Typography className="hidden-content">{props.title}</Typography>
+// </CardContent>
 // <CardContent style={{ backgroundColor: 'black', color: 'white' }} className="hidden-content">
 
 // <CardContent>

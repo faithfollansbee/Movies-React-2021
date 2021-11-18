@@ -50,6 +50,11 @@ const useStyles = makeStyles((theme) => ({
     '& .hidden-button': {
       display: 'none'
     },
+    '&:hover': {
+      position: 'relative',
+      transform: 'scale(1.2)',
+      zIndex: 10
+    },
     '&:hover .hidden-button': {
       display: 'flex'
       // zIndex: '5'
@@ -70,13 +75,12 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)'
   },
   cardHovered: {
-    position: 'relative',
     // transform: 'scale3d(1.05, 1.05, 1)'
     // transform: 'scale3d(1.15, 1.15, 1)',
     // zIndex: '10 !important',
-    transform: 'scale(1.2)',
-    zIndex: 10
-    // transform: 'scale(1.15)'
+    // position: 'relative',
+    // transform: 'scale(1.2)',
+    // zIndex: 10
   },
   avatar: {
     backgroundColor: red[500]

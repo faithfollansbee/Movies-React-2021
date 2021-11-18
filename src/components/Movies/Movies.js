@@ -16,7 +16,9 @@ import FormControl from 'react-bootstrap/FormControl'
 import Spinner from 'react-bootstrap/Spinner'
 // import Typography from '@material-ui/core/Typography'
 // import Movie2 from './Movie2'
-import Movie3 from './Movie3'
+// import Movie3 from './Movie3'
+// import MaterializeMovie from './MaterializeMovie'
+import MaterializeMovieClass from './MaterializeMovieClass'
 // import MovieSearch from './MovieSearch'
 
 // const linkStyle = {
@@ -69,6 +71,8 @@ class movies extends Component {
     this.setState({ userMovies: searchResults, queryLength: queryLength })
   }
   // const moviesJsx = this.state.movies.map(movie => (
+
+  // functions to pass into edit movie dialog as props
 
   render () {
     // const { userMovies } = this.state
@@ -131,9 +135,9 @@ class movies extends Component {
               </Fragment>
             }
           </div>
-          <div className="row mx-1">
+          <div className="row">
             {this.state.userMovies.map(movie => (
-              <Movie3
+              <MaterializeMovieClass
                 key={movie.name + movie._id}
                 handleRefresh={this.handleRefresh}
                 user={this.props.user}

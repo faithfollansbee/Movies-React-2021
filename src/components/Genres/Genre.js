@@ -10,11 +10,10 @@ import Movie3 from '../Movies/Movie3'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
-import FavoriteIcon from '@material-ui/icons/Favorite'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
-import EditGenreDialog from './EditGenre/EditGenreDialog'
+// import EditGenreDialog from './EditGenre/EditGenreDialog'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 // import EditIcon from '@material-ui/icons/Edit'
 import EditGenreMenu from './EditGenreMenu'
@@ -145,6 +144,9 @@ class Genre extends React.Component {
 
     const { genre, addMovie } = this.state
     if (genre) {
+      // console.log(genre.movies[0].released.substring(5).split('-').concat(genre.movies[0].released.substring(0, 4)).join('/'))
+      // console.log(genre.updatedAt.split('T', 1)[0])
+      // console.log(genre.updatedAt.substring(0, genre.updatedAt.indexOf('T')))
       // const deletebutton = (
       //   <Fragment>
       //     <IconButton onClick={this.handleDelete} aria-label="Delete">
@@ -179,14 +181,18 @@ class Genre extends React.Component {
                     <CardHeader
                       // variant="h5"
                       // component="h3"
+                      // subheader={movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('/')}
+                      // subheader={genre.updatedAt.substring(5).split('-').concat(genre.updatedAt.substring(0, 4)).join('/')}
                       action={
                         <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete} />
                       }
                       title={genre.name}
-                      subheader={genre.updatedAt}
+                      subheader={`last updated: ${genre.updatedAt.split('T').shift()}`}
                     />
+                    { /* {genre.updatedAt.split('T')[0]}
+                    {genre.updatedAt.split('T', 1)[0]} */ }
                   </div>
-                  <div className="row mx-lg-n3">
+                  <div className="row">
                     { /* className="row mx-lg-n5" */}
                     {this.state.genre.movies.map(movie => (
                       <Movie3
@@ -210,12 +216,6 @@ class Genre extends React.Component {
                 <CardActions>
                   <IconButton href={'#genres/'} aria-label="Back">
                     <ArrowBackIosIcon />
-                  </IconButton>
-                  <Tooltip title="New Genre">
-                    <EditGenreDialog id={this.state.genre._id} genre={this.state.genre} user={this.props.user} />
-                  </Tooltip>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
                   </IconButton>
                 </CardActions>
               </Card>
