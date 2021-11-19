@@ -109,6 +109,7 @@ class SaveMovie extends Component {
       this.setState({ userGenres: response.data.genres })
     } catch (error) {
     }
+    console.log(this.state.genres)
   }
 
   render (props) {

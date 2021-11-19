@@ -26,27 +26,3 @@ const GenreForm = ({ genre, handleChange, handleSubmit, handleSubmitClose }) => 
 )
 
 export default GenreForm
-
-// <Form.Group controlId="ingredients">
-//   <Form.Label>Ingredients</Form.Label>
-//   <Form.Control
-//     type="text"
-//     placeholder="Enter the ingredients"
-//     value={recipe.ingredients}
-//     onChange={handleChange}
-//     name="ingredients"
-//     required
-//   />
-// </Form.Group>
-//
-// <Form.Group controlId="time">
-//   <Form.Label>Cooking Time</Form.Label>
-//   <Form.Control
-//     type="text"
-//     placeholder="Enter the cooking_time"
-//     value={recipe.time}
-//     onChange={handleChange}
-//     name="time"
-//     required
-//   />
-// </Form.Group>

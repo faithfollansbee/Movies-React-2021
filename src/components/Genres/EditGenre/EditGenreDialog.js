@@ -43,7 +43,7 @@ export default function EditGenreDialog (props) {
         user={props.user}
         genre={props.genre}
         id={props.id}
-        fullWidth="true"
+        fullWidth={true}
         maxWidth="sm"
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Edit &quot;{props.genre.name}&quot;</DialogTitle>

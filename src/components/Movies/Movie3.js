@@ -205,6 +205,7 @@ const Movie = (props) => {
               */ }
           <CardContent className="hidden-content">
             <Typography className="hidden-content">{props.title}</Typography>
+            <Typography className="hidden-content">{props.genre}</Typography>
           </CardContent>
         </CardActionArea>
       </Card>

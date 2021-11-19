@@ -84,7 +84,7 @@
 // }
 
 .card-style {
-  margin: 20px;
+  // margin: 20px; // commented out 11/19
   // z-index: 3px;
   // padding: 5px;
 }
@@ -126,7 +126,8 @@
 //   width: 80%;
 // }
 .layout-style {
+  margin-top: 10px;
   // margin: 15;
   flex-grow: 1;
-  padding: 20;
+  // padding: 20; // commented out 11/19
 }

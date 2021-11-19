@@ -26,9 +26,9 @@ export default function AddGenreDialog (props) {
       </IconButton>
       <Dialog
         user={props.user}
-        fullWidth="true"
+        fullWidth={true}
         maxWidth="sm"
-        open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        open={open} onClose={handleClose}>
         <DialogTitle id="form-dialog-title">Title</DialogTitle>
         <DialogContent user={props.user}>
           <AddGenre handleSubmitClose={handleClose} user={props.user}/>

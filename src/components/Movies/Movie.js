@@ -112,7 +112,7 @@ class movie extends Component {
                           <p> {movie.description} </p>
                         </Typography>
                         <Typography color="textSecondary" variant="subtitle1">
-                          { /* <p> Saved to: {movie.genre.name}</p> */ }
+                          <p> Saved to: {movie.genre.name}</p>
                         </Typography>
                       </CardContent>
                     </div>

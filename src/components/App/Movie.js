@@ -133,16 +133,16 @@ const Movie = (props) => {
                 />
             }
             <div style={fabRowStyle}>
-              <Fab size="medium" style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+              <Fab size="small" style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                 <Tooltip title="Favorite">
                   <FavoriteIcon />
                 </Tooltip>
               </Fab>
-              <Fab size="medium" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+              <Fab size="small" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
                 <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
               </Fab>
               <Link to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
-                <Fab size="medium" style={fabStyle3} className="hidden-button floating" to="/more-info" color="primary" aria-label="more" >
+                <Fab size="small" style={fabStyle3} className="hidden-button floating" to="/more-info" color="primary" aria-label="more" >
                   <Tooltip title="More">
                     <KeyboardArrowRightIcon/>
                   </Tooltip>

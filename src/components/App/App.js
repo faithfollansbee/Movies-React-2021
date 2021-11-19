@@ -159,6 +159,7 @@ class App extends Component {
                </div>
              )}
            />
+
            <AuthenticatedRoute user={user} exact path='/genres/:id'
              render={() => (<Genre user={user}/>)}/>
 

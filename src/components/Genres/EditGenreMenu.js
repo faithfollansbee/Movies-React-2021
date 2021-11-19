@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
-import EditIcon from '@material-ui/icons/Edit'
+// import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditGenreDialog from './EditGenre/EditGenreDialog'
 
@@ -25,7 +25,7 @@ export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="Options">
+        <Tooltip title="options">
           <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
             {/*  {user && <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>} */}
             {/* {user && <Avatar sx={{ width: 32, height: 32 }}>{user.email.charAt(0).toUpperCase()}</Avatar>} */}
@@ -75,13 +75,9 @@ export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
         // <EditGenreDialog id={genre._id} genre={genre} user={user} />
         // id={this.state.genre._id} genre={this.state.genre} user={this.props.user}
       >
-        <EditGenreDialog onMenuClose={handleClose} id={id} genre={genre} user={user} />
-        <MenuItem href={`#genres/${genre._id}/edit`} component="a">
-          <ListItemIcon>
-            <EditIcon />
-          </ListItemIcon>
-          Edit Link
-        </MenuItem>
+        <span>
+          <EditGenreDialog onMenuClose={handleClose} id={id} genre={genre} user={user} />
+        </span>
         <MenuItem onClick={deleteGenre} component="a">
           <ListItemIcon >
             <DeleteIcon />

@@ -7,11 +7,11 @@ import IconButton from '@material-ui/core/IconButton'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
-import EditIcon from '@material-ui/icons/Edit'
+// import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-// import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
+import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
 
-export default function EditMenu ({ deleteMovie, editMovie }) {
+export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, image, description, released }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -41,7 +41,7 @@ export default function EditMenu ({ deleteMovie, editMovie }) {
         // className={props.classes.menu}
         anchorEl={anchorEl}
         onClose={handleClose}
-        onClick={handleClose}
+        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -71,12 +71,9 @@ export default function EditMenu ({ deleteMovie, editMovie }) {
         // transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         // anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={editMovie} component="a">
-          <ListItemIcon>
-            <EditIcon />
-          </ListItemIcon>
-          Edit
-        </MenuItem>
+        <span>
+          <EditMovieDialog onMenuClose={handleClose} id={id} user={user} movie={movie} title={title} genre={genre} image={image} released={released} description={description}/>
+        </span>
         <MenuItem onClick={deleteMovie} component="a">
           <ListItemIcon >
             <DeleteIcon />

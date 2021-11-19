@@ -6,7 +6,8 @@ import apiUrl from '../../apiConfig'
 import Typography from '@material-ui/core/Typography'
 // import Row from 'react-bootstrap/Row'
 // import Movie2 from '../Movies/Movie2'
-import Movie3 from '../Movies/Movie3'
+// import Movie3 from '../Movies/Movie3'
+import MaterializeMovieClass from '../Movies/MaterializeMovieClass'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -172,7 +173,7 @@ class Genre extends React.Component {
         )
       }
       return (
-        <div className="layout-style">
+        <div className="layout-style my-5">
           { genre && (
             <div>
               <Card className="card-style" variant="outlined">
@@ -195,7 +196,7 @@ class Genre extends React.Component {
                   <div className="row">
                     { /* className="row mx-lg-n5" */}
                     {this.state.genre.movies.map(movie => (
-                      <Movie3
+                      <MaterializeMovieClass
                         key={movie.name + movie._id}
                         handleRefresh={this.handleRefresh}
                         user={this.props.user}

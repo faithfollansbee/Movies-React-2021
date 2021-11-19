@@ -3,6 +3,8 @@ import Card from '@material-ui/core/Card'
 // import Box from '@material-ui/core/Box'
 // import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
+import { Redirect, withRouter } from 'react-router-dom'
+
 import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -10,7 +12,7 @@ import apiUrl from '../../apiConfig'
 // import IconButton from '@material-ui/core/IconButton'
 // import EditIcon from '@material-ui/icons/Edit'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 // import EditGenreDialog from './EditGenre/EditGenreDialog'
 import EditGenreMenu from './EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -20,7 +22,8 @@ class Genre3 extends React.Component {
     genre: '',
     movies: [],
     isEditing: false,
-    isHovered: false
+    isHovered: false,
+    deleted: false
   }
 
   async componentDidMount () {
@@ -43,22 +46,41 @@ class Genre3 extends React.Component {
     }
     // console.log(this.state.genre)
   }
-  // handleDelete = () => {
-  //   event.preventDefault()
-  //   axios.delete(`${apiUrl}/genres/${this.props.match.params.id}`,
-  //     {
-  //       headers: {
-  //         'Authorization': `Bearer ${this.props.user.token}`
-  //       },
-  //       data: {
-  //         genre: this.state.genre
-  //       }
-  //     })
-  //     .then(() => this.setState({ deleted: true }))
-  //     .then(() => this.props.history.push('/genres'))
-  // }
+  handleDelete = () => {
+    // event.preventDefault()
+    axios.delete(`${apiUrl}/genres/${this.state.genre._id}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${this.props.user.token}`
+        },
+        data: {
+          genre: this.state.genre
+        }
+      })
+      .then(() => this.setState({ deleted: true }))
+      // .then(response => {
+      //   this.props.history.push('/genres')
+      // })
+      // .then(() => this.props.history.replace('/genres'))
+    // this.props.history.replace('/genres')
+    console.log('deleted genre')
+    // this.forceUpdate()
+    // this.props.deleted.push('true')
+    // .then(() => router.push('/some/route'))
+    // router.push('/genres')
+    // this.props.history.push('/genres')
+    // .then(() => this.props.history.push('/genres'))
+  }
 
   render () {
+    const { deleted } = this.state
+    if (deleted) {
+      return <Redirect to={
+        {
+          pathname: '/genres/'
+        }
+      }/>
+    }
     // console.log(this.state.genre)
     // console.log(this.state.genre._id)
     // console.log(this.state.genre)
@@ -80,9 +102,9 @@ class Genre3 extends React.Component {
               />
             </CardContent>
           </CardActionArea>
-          <Tooltip aria-label="more">
+          <span>
             <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
-          </Tooltip>
+          </span>
         </Card>
       </div>
     )
@@ -138,4 +160,4 @@ class Genre3 extends React.Component {
 //     </Card>
 //   </div>
 // )
-export default Genre3
+export default withRouter(Genre3)

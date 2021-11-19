@@ -4,6 +4,7 @@ import apiUrl from '../../../apiConfig'
 import EditGenreForm from './EditGenreForm'
 // import GenreDialogForm from './GenreDialogForm'
 import { withRouter } from 'react-router-dom'
+// import { withRouter, Redirect } from 'react-router-dom'
 
 class EditGenre extends Component {
   state = {
@@ -84,6 +85,7 @@ class EditGenre extends Component {
       .then(response => {
         this.props.history.push(`/genres${this.props.genre._id}`)
       })
+      .then(() => this.setState({ submitted: true }))
       // if editting from specific genre, should redirect to that same genre. if editting from
       // genre list, redirect to all genres
       .then(response => {
@@ -92,6 +94,15 @@ class EditGenre extends Component {
     this.props.handleSubmitClose()
   }
   render () {
+    // const { submitted } = this.state
+    // if (submitted) {
+    //   return <Redirect to={
+    //     {
+    //       pathname: '/genres'
+    //     }
+    //   }/>
+    // }
+    // return ( <Redirect to={{pathname: redirectTo}} push={true}/> )
     // console.log(this.props.id)
     // console.log(this.props.genre._id)
     return (

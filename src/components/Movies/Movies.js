@@ -14,7 +14,6 @@ import FormControl from 'react-bootstrap/FormControl'
 // import EditIcon from '@material-ui/icons/Edit'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Spinner from 'react-bootstrap/Spinner'
-// import Typography from '@material-ui/core/Typography'
 // import Movie2 from './Movie2'
 // import Movie3 from './Movie3'
 // import MaterializeMovie from './MaterializeMovie'
@@ -135,7 +134,7 @@ class movies extends Component {
               </Fragment>
             }
           </div>
-          <div className="row">
+          <div className="row mx-1">
             {this.state.userMovies.map(movie => (
               <MaterializeMovieClass
                 key={movie.name + movie._id}
@@ -148,7 +147,8 @@ class movies extends Component {
                 image={movie.image}
                 thisstate={this.state}
                 alert={this.props.alert}
-                genre={this.genre}
+                genre={movie.genre}
+                genreName={movie.genre.name}
               />
             ))}
           </div>

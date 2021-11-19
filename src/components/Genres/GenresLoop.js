@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+// import { Redirect } from 'react-router-dom'
 // import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
@@ -38,7 +39,8 @@ class GenresLoop extends Component {
       genres: [],
       userGenres: [],
       isLoading: true,
-      filtered: false
+      filtered: false,
+      deleted: false
     }
   }
 
@@ -103,6 +105,29 @@ class GenresLoop extends Component {
       .catch(err => this.setState({ error: err.message }))
     // this.props.handleSubmitClose()
   }
+  // originally from Genre3 component, need GenresLoop to rerender after delete
+  // handleDelete = () => {
+  //   axios.delete(`${apiUrl}/genres/${this.props.id}`,
+  //     {
+  //       headers: {
+  //         'Authorization': `Bearer ${this.props.user.token}`
+  //       },
+  //       data: {
+  //         genre: this.state.genre
+  //       }
+  //     })
+  //     .then(() => this.setState({ deleted: true }))
+  //     // .then(response => {
+  //     //   this.props.history.push('/genres')
+  //     // })
+  //     // .then(() => this.props.history.replace('/genres'))
+  //   // this.props.history.replace('/genres')
+  //   console.log('deleted genre')
+  //   // .then(() => router.push('/some/route'))
+  //   // router.push('/genres')
+  //   // this.props.history.push('/genres')
+  //   // .then(() => this.props.history.push('/genres'))
+  // }
 
   render (props) {
     // const { userGenres } = this.state
@@ -134,7 +159,9 @@ class GenresLoop extends Component {
           <h2 className="title-style">Your genres</h2>
           <div>
             <Tooltip title="New Genre">
-              <AddGenreDialog user={this.props.user} />
+              <span>
+                <AddGenreDialog user={this.props.user} />
+              </span>
             </Tooltip>
           </div>
           <div className="search">
@@ -156,6 +183,7 @@ class GenresLoop extends Component {
                 user={this.props.user}
                 id={genre._id}
                 name={genre.name}
+                // handleDelete={this.handleDelete}
                 // handleRefresh={this.handleRefresh}
                 // description={movie.description}
                 // released={movie.released}
