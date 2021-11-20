@@ -52,7 +52,7 @@ export default function AddMovieDialog (props) {
     <div>
       <AddIcon onClick={handleClickOpen}/>
       <Dialog
-        fullWidth="true"
+        fullWidth={true}
         maxWidth="sm"
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>

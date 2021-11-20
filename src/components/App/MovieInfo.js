@@ -78,7 +78,7 @@ const MovieInfo = (props) => {
                 </div>
                 <CardContent>
                   <Typography variant="body2">
-                    <p> {props.currentMovie.overview} </p>
+                    {props.currentMovie.overview}
                   </Typography>
                 </CardContent>
               </div>

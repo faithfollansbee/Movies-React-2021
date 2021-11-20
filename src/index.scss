@@ -8,9 +8,20 @@
 //     display: 'flex'
 //   }
 // },
-
+.MuiCardMedia-media {
+  width: auto !important;
+  // width: 278px !important;
+  // height: 185px !important;
+  // 278 x 185
+}
+// .MuiCardMedia-root
+// .MuiCardMedia-media
+// .MuiCardMedia-img
 .MuiCard-root {
   overflow: visible !important;
+}
+.styledTooltip {
+  font-size: 1.5em !important;
 }
 
 .hoverCardStyle {

@@ -4,7 +4,10 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import Tooltip from '@material-ui/core/Tooltip'
-// import Fade from '@material-ui/core/Fade'
+// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
+// import IconButton from '@material-ui/core/IconButton'
+// import Fab from '@material-ui/core/Fab'
+import Fade from '@material-ui/core/Fade'
 import { withStyles } from '@material-ui/core/styles'
 import EditMenu from './EditMenu'
 // const tooltipStyle = {
@@ -39,8 +42,8 @@ class MaterializeMovieClass extends Component {
       })
     } catch (error) {
     }
-    console.log('this.props', this.props)
-    console.log('this.state', this.state)
+    // console.log('this.props', this.props)
+    // console.log('this.state', this.state)
   }
 
   deleteMovie = () => {
@@ -52,14 +55,14 @@ class MaterializeMovieClass extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
-    console.log('deleted')
+    // console.log('deleted')
   }
   editMovie = () => {
-    console.log('edit eventually')
+    // console.log('edit eventually')
   }
 
   render () {
-    console.log(this.state)
+    // console.log(this.state)
     const { movie, deleted } = this.state
     if (deleted) {
       return <Redirect to={
@@ -78,7 +81,7 @@ class MaterializeMovieClass extends Component {
             <Tooltip style={tooltipStyle} title={this.props.title} placement="top" TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
             <StyledTooltip title={this.props.title} placement="top">
             */ }
-            <StyledTooltip title={this.props.title} placement="top">
+            <StyledTooltip title={this.props.title} placement="top" TransitionComponent={Fade} TransitionProps={{ timeout: 500 }}>
               <div className="card-image waves-effect waves-block waves-light">
                 {
                   this.props.image == null
@@ -87,26 +90,30 @@ class MaterializeMovieClass extends Component {
                       component="img"
                       alt="no poster found"
                       src={'https://i.imgur.com/R7mqXKL.png'}
-                      title="card-image"
+                      // title="card-image"
                     />
                     : <img
                       className="activator" // materialboxed ?
                       component="img"
                       alt="movie-poster"
                       src={`https://image.tmdb.org/t/p/w185/${this.props.image}`}
-                      title="card-image"
+                      // title={this.props.title}
                     />
                 }
               </div>
             </StyledTooltip>
             <div className="card-content grey lighten-4" style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-              <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>
+              <Tooltip title="More" style={{ size: '1.5em', fontSize: '1.5em' }}>
+                <a className="right" style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/movies/${this.state.movie._id}`}><i className="material-icons small right navigate_next">navigate_next</i></a>
+              </Tooltip>
               <span style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }} className="card-title activator grey-text text-darken-4">{this.props.title}
               </span>
             </div>
             <div className="card-reveal">
               <span className="card-title grey-text text-darken-4">{this.props.title}<i className="material-icons right">close</i></span>
               <p className="italic">Saved to: {this.state.movie.genre.name}</p>
+              <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>
+
               <Tooltip title="More">
                 <a className="btn-floating mb-3" href={`#/movies/${this.state.movie._id}`}><i className="material-icons navigate_next">navigate_next</i></a>
               </Tooltip>
@@ -118,6 +125,8 @@ class MaterializeMovieClass extends Component {
     )
   }
 }
+// <a style={{ textDecoration: 'none' }} className="right" href={`#/movies/${this.state.movie._id}`}><i className="material-icons right navigate_next">navigate_next</i></a>
+
 // <p>{this.state.movie.genre.name}</p>
 // <EditMenu className="material-icons right" id={this.props.id} movie={this.props.movie} title={this.props.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.props.description} image={this.props.image} style={{ textDecoration: 'none' }} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>
 // <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>

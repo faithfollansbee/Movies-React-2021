@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card'
 // import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import { Redirect, withRouter } from 'react-router-dom'
-
+import CardMedia from '@material-ui/core/CardMedia'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -17,6 +17,11 @@ import apiUrl from '../../apiConfig'
 import EditGenreMenu from './EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
 
+// const vertMenuStyle = {
+// flex: '0 0 auto',
+// marginTop: '8px',
+// marginRight: '-8'
+// }
 class Genre3 extends React.Component {
   state = {
     genre: '',
@@ -87,10 +92,9 @@ class Genre3 extends React.Component {
     // console.log(this.state.movies)
     return (
       <div>
-        <Card style={{ display: 'flex' }} className="card-style">
-          <CardActionArea href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} >
-            <CardContent style={{ flex: '1 0 auto', backgroundColor: 'AliceBlue' }}>
-
+        <Card className="card-style my-3 mx-3">
+          <CardContent style={{ display: 'flex', backgroundColor: 'AliceBlue' }}>
+            <CardActionArea href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} >
               <CardHeader
                 // action={
                 //   <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
@@ -100,11 +104,32 @@ class Genre3 extends React.Component {
                 // subheader=`"movies in this genre:" +${this.state.movies.length}`
                 // subheader="movies"
               />
-            </CardContent>
-          </CardActionArea>
-          <span>
-            <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
-          </span>
+            </CardActionArea>
+            <div style={{ float: 'right', marginTop: '20px' }}>
+              <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
+            </div>
+          </CardContent>
+          <div style={{ display: 'flex', overflow: 'scroll', margin: '0px 10px 15px', padding: '5px' }}>
+            {this.state.movies.map(movie => (
+              movie.image == null
+                ? <CardMedia
+                  component="img"
+                  alt="Contemplative Reptile"
+                  // height="300"
+                  // width="100%"
+                  image={'https://i.imgur.com/R7mqXKL.png'}
+                  // title="card-image"
+                />
+                : <CardMedia
+                  component="img"
+                  alt="Contemplative Reptile"
+                  // height="300"
+                  // width="100%"
+                  image={`https://image.tmdb.org/t/p/w185/${movie.image}`}
+                  // title="Contemplative Reptile"
+                />
+            ))}
+          </div>
         </Card>
       </div>
     )
