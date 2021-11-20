@@ -31,7 +31,8 @@ const fabStyle2 = {
 // <i className="fas fa-arrow left"></i>
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(3)
+    // marginTop: 3
   }
 }))
 const MovieInfo = (props) => {
@@ -70,7 +71,7 @@ const MovieInfo = (props) => {
                     }
                     // title={movie.name}
                     title={props.currentMovie.title}
-                    genre={props.currentMovie.genre.name}
+                    // genre={props.currentMovie.genre.name}
                     // subheader={movie.released}
                     subheader={props.currentMovie.release_date.substring(5).split('-').concat(props.currentMovie.release_date.substring(0, 4)).join('/')}
                   />

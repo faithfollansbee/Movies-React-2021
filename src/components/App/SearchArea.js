@@ -6,7 +6,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 
 const SearchArea = (props) => {
   return (
-    <div className="search-area">
+    <div className="search-area my-5">
       <Fragment>
         <Form action=" " onSubmit={props.handleSubmit}>
           <InputGroup>
