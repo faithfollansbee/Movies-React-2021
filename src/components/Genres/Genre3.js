@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+// import Typography from '@material-ui/core/Typography'
 // import Button from '@material-ui/core/Button'
 // import IconButton from '@material-ui/core/IconButton'
 // import EditIcon from '@material-ui/icons/Edit'
@@ -100,7 +101,7 @@ class Genre3 extends React.Component {
                 //   <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
                 // }
                 title={this.state.genre.name}
-                subheader={`movies in this genre:${this.state.movies.length}`}
+                subheader={`${this.state.movies.length} movies`}
                 // subheader=`"movies in this genre:" +${this.state.movies.length}`
                 // subheader="movies"
               />

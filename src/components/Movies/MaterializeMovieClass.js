@@ -71,6 +71,7 @@ class MaterializeMovieClass extends Component {
         }
       }/>
     }
+    console.log(this.state)
     return (
       <div className="mx-auto py-3 px-1">
         { movie && (
@@ -111,7 +112,7 @@ class MaterializeMovieClass extends Component {
             </div>
             <div className="card-reveal">
               <span className="card-title grey-text text-darken-4">{this.props.title}<i className="material-icons right">close</i></span>
-              <p className="italic">Saved to: {this.state.movie.genre.name}</p>
+              <p>Saved to: <a style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/genres/${this.state.movie.genre._id}`}>{this.state.movie.genre.name}</a></p>
               <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>
 
               <Tooltip title="More">
