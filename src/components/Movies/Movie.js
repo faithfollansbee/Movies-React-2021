@@ -81,7 +81,7 @@ class movie extends Component {
     return (
       <div>
         { movie && (
-          <div style={{ backgroundColor: 'LavenderBlush' }} className="movie-container mx-auto my-3 px-3 py-3 border">
+          <div style={{ backgroundColor: 'grey' }} className="movie-container mx-auto my-3 px-3 py-3 border">
             <Card>
               <CardContent>
                 <div className="row">

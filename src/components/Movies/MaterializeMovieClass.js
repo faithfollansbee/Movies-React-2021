@@ -104,7 +104,7 @@ class MaterializeMovieClass extends Component {
               </div>
             </StyledTooltip>
             <div className="card-content grey lighten-4" style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-              <Tooltip title="More" style={{ size: '1.5em', fontSize: '1.5em' }}>
+              <Tooltip title="Go to movie" style={{ size: '1.5em', fontSize: '1.5em' }}>
                 <a className="right" style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/movies/${this.state.movie._id}`}><i className="material-icons small right navigate_next">navigate_next</i></a>
               </Tooltip>
               <span style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }} className="card-title activator grey-text text-darken-4">{this.props.title}
