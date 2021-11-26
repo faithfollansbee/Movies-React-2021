@@ -9,7 +9,6 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
-// import { withStyles } from '@material-ui/core/styles'
 
 // const contentStyle = {
 //   height: 40,
@@ -75,12 +74,6 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)'
   },
   cardHovered: {
-    // transform: 'scale3d(1.05, 1.05, 1)'
-    // transform: 'scale3d(1.15, 1.15, 1)',
-    // zIndex: '10 !important',
-    // position: 'relative',
-    // transform: 'scale(1.2)',
-    // zIndex: 10
   },
   avatar: {
     backgroundColor: red[500]
@@ -91,56 +84,32 @@ const useStyles = makeStyles((theme) => ({
 }))
 const Movie = (props) => {
   const classes = useStyles()
-  // const [expanded, setExpanded] = React.useState(false)
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded)
-  // }
-  // const [state, setState] = React.useState({
-  //   hovered: false,
-  //   shadow: 1
-  // })
-
   return (
     <div className="mx-auto py-3 px-1">
       <Card style={{ width: '18rem' }}
         className={classes.root}
-        // classes={{ root: state.hovered ? classes.cardHovered : '' } }
-        // onMouseOver={() => setState({ hovered: true, shadow: 3 })}
-        // onMouseOut={() => setState({ hovered: false, shadow: 1 })}
-        // hovered={state.hovered} zdepth={state.shadow}
-        // className={clsx(classes.hovered, {
-        //   [classes.hoveredOpen]: hovered
-        // })}
-        // onHover={handleHover}
-        // aria-expanded={hovered}
         aria-label="show more"
       >
-        <Tooltip className='styledTooltip' title={props.title} placement="top">
+        <Tooltip className='styledTooltip' style={{ color: 'red' }} title={props.title} placement="top">
           <div className="card-image">
             {
               props.image == null
                 ? <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
-                  // height="300"
-                  // width="100%"
                   image={'https://i.imgur.com/R7mqXKL.png'}
-                  // title="card-image"
                 />
                 : <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
-                  // height="300"
-                  // width="100%"
                   image={`https://image.tmdb.org/t/p/w185/${props.image}`}
-                  // title="Contemplative Reptile"
                 />
             }
           </div>
         </Tooltip>
         <div style={fabRowStyle}>
           <Fab size="small" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-            <AddMovieDialog id={props.movieId} title={props.title} released={props.released} description={props.description} image={props.image} user={props.user} />
+            <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} released={props.released} description={props.description} image={props.image} user={props.user} />
           </Fab>
           <Link to="/more-info" href={'/more-info'} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
             <Tooltip title="More">
@@ -150,6 +119,14 @@ const Movie = (props) => {
             </Tooltip>
           </Link>
         </div>
+        { /*   <Link to="/trending-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} title={props.title} currentMovie={props.currentMovie}>
+            <Tooltip title={props.movieId}>
+              <Fab size="small" style={fabStyle3} className="hidden-button floating" color="secondary" aria-label="more" >
+                <KeyboardArrowRightIcon />
+              </Fab>
+            </Tooltip>
+          </Link>  */ }
+        { /* onClick={() => props.viewMovie(props.movieId)} */ }
         { /* href={`#/movies/${props.id}`}
         href={`#/movies/${props.movieId}`} */ }
         { /* <Fab style={fabStyle3} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >

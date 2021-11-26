@@ -18,6 +18,11 @@ import apiUrl from '../../apiConfig'
 import EditGenreMenu from './EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
 
+// const PosterPreviewStyle = {
+//   MuiCardMediaMedia: {
+//     width: 'auto !important'
+//   }
+// }
 // const vertMenuStyle = {
 // flex: '0 0 auto',
 // marginTop: '8px',
@@ -116,17 +121,26 @@ class Genre3 extends React.Component {
                 ? <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
+                  className="genrePosterPreview"
                   // height="300"
                   // width="100%"
                   image={'https://i.imgur.com/R7mqXKL.png'}
+                  // style={PosterPreviewStyle}
+                  // width="278px !important"
+                  // style={{ width: '278px !important' }}
+                  // style={{ MuiCardMediaMedia: { width: 'auto !important' } }}
                   // title="card-image"
                 />
                 : <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
+                  className="genrePosterPreview"
                   // height="300"
                   // width="100%"
                   image={`https://image.tmdb.org/t/p/w185/${movie.image}`}
+                  // width="auto !important"
+                  // style={PosterPreviewStyle}
+                  // style={{ MuiCardMediaMedia: { width: 'auto !important' } }}
                   // title="Contemplative Reptile"
                 />
             ))}

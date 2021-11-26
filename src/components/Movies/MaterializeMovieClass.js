@@ -4,17 +4,10 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import Tooltip from '@material-ui/core/Tooltip'
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
-// import IconButton from '@material-ui/core/IconButton'
-// import Fab from '@material-ui/core/Fab'
 import Fade from '@material-ui/core/Fade'
 import { withStyles } from '@material-ui/core/styles'
 import EditMenu from './EditMenu'
-// const tooltipStyle = {
-//   color: 'lightblue',
-//   backgroundColor: 'green',
-//   fontSize: '2em'
-// }
+
 const StyledTooltip = withStyles({
   tooltip: {
     fontSize: '1.5em'
@@ -42,8 +35,6 @@ class MaterializeMovieClass extends Component {
       })
     } catch (error) {
     }
-    // console.log('this.props', this.props)
-    // console.log('this.state', this.state)
   }
 
   deleteMovie = () => {
@@ -55,14 +46,11 @@ class MaterializeMovieClass extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
-    // console.log('deleted')
   }
   editMovie = () => {
-    // console.log('edit eventually')
   }
 
   render () {
-    // console.log(this.state)
     const { movie, deleted } = this.state
     if (deleted) {
       return <Redirect to={
@@ -71,7 +59,6 @@ class MaterializeMovieClass extends Component {
         }
       }/>
     }
-    console.log(this.state)
     return (
       <div className="mx-auto py-3 px-1">
         { movie && (

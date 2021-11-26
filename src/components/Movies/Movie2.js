@@ -186,7 +186,7 @@ class Movie2 extends React.Component {
               unmountOnExit
               // unmountOnExit={true}
             >
-              <CardContent>
+              <CardContent className="hidden-content">
                 <Typography className="hidden-content" paragraph>{movie.description}</Typography>
               </CardContent>
             </Collapse>

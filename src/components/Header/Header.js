@@ -14,6 +14,7 @@ const authenticatedOptions = (
     <Nav.Link href="#search">Search</Nav.Link>
     <Nav.Link href="#watchlist">My List</Nav.Link>
     <Nav.Link href="#favorites">Favorites</Nav.Link>
+    <Nav.Link href="#trending">Trending</Nav.Link>
     { /* <Nav.Link href="#creategenre">Add Genre</Nav.Link> */}
     { /* <Nav.Link href="#trending">Trending</Nav.Link> */}
     { /* <Nav.Link href="#more-info">moreinfo</Nav.Link> */}

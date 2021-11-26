@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .hidden-content': {
       display: 'none'
+      // visibility: 'hidden'
     }
     // '&:hover': {
     // position: 'relative',
@@ -96,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover .hidden-content': {
       display: 'flex'
+      // visibility: 'visible'
     }
   },
   avatar: {

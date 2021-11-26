@@ -157,6 +157,20 @@ class movies extends Component {
     )
   }
 }
+// <MaterializeMovieClass
+//   key={movie.name + movie._id}
+//   handleRefresh={this.handleRefresh}
+//   user={this.props.user}
+//   id={movie._id}
+//   title={movie.title}
+//   description={movie.description}
+//   released={movie.released}
+//   image={movie.image}
+//   thisstate={this.state}
+//   alert={this.props.alert}
+//   genre={movie.genre}
+//   genreName={movie.genre.name}
+// />
 // <Movie2
 //   key={movie.name + movie._id}
 //   handleRefresh={this.handleRefresh}

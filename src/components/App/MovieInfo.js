@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import ArrowBack from '@material-ui/icons/ArrowBack'
-// import SaveMovie from './SaveMovie'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -12,31 +11,19 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddMovieDialog from './AddMovieDialog'
-// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-// import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
-// import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
-// import ArrowBackIosNewIcon from '@material-ui/icons/ArrowBackIosNew'
 
-const fabStyle1 = {
-}
-const fabStyle2 = {
-}
-// const fabRowStyle = {
-//   display: 'flex',
-//   justifyContent: 'space-around'
-// }
-// <i className="fas fa-arrow left"></i>
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(3)
-    // marginTop: 3
   }
 }))
+
 const MovieInfo = (props) => {
   const classes = useStyles()
+  console.log(props)
+  console.log(props.currentMovie)
 
   return (
     <div>
@@ -65,9 +52,11 @@ const MovieInfo = (props) => {
                     // variant="h5"
                     // component="h3"
                     action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
+                      <Tooltip title="more" tooltipStyle={{ rippleBackgroundColor: 'green' }}>
+                        <IconButton tooltip="settings" tooltipStyle={{ rippleBackgroundColor: 'green' }}>
+                          <MoreVertIcon />
+                        </IconButton>
+                      </Tooltip>
                     }
                     // title={movie.name}
                     title={props.currentMovie.title}
@@ -75,7 +64,14 @@ const MovieInfo = (props) => {
                     // subheader={movie.released}
                     subheader={props.currentMovie.release_date.substring(5).split('-').concat(props.currentMovie.release_date.substring(0, 4)).join('/')}
                   />
+                  <div>
+                    { props.currentMovie.genre_ids.map((genre, i) => {
+                      return (<Typography key={i}>{genre}</Typography>)
+                    }) }
+                  </div>
+                  {props.currentMovie.id}
                 </div>
+                <Button onClick={props.getMovie}>get movie</Button>
                 <CardContent>
                   <Typography variant="body2">
                     {props.currentMovie.overview}
@@ -94,12 +90,12 @@ const MovieInfo = (props) => {
                   </Fab>
                 </Tooltip>
                 <Tooltip title="Favorite">
-                  <Fab style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                  <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                     <FavoriteIcon />
                   </Fab>
                 </Tooltip>
                 <Tooltip title="Save">
-                  <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+                  <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
                     <AddMovieDialog id={props.currentMovie.id} title={props.currentMovie.title} released={props.currentMovie.release_date} description={props.currentMovie.overview} image={props.currentMovie.poster_path} user={props.user} />
                   </Fab>
                 </Tooltip>

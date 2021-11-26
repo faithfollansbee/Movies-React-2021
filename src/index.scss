@@ -8,12 +8,18 @@
 //     display: 'flex'
 //   }
 // },
-.MuiCardMedia-media {
+.genrePosterPreview.MuiCardMedia-media {
   width: auto !important;
-  // width: 278px !important;
-  // height: 185px !important;
-  // 278 x 185
 }
+.MuiCardMedia-media {
+  // width: auto !important;
+}
+// .MuiPaper-root {
+//   width: auto !important;
+// }
+// .MuiCard-root {
+//   width: auto !important;
+// }
 // .MuiCardMedia-root
 // .MuiCardMedia-media
 // .MuiCardMedia-img
@@ -25,10 +31,12 @@
 }
 
 .hoverCardStyle {
+  // transform: scale(1.2);
   width: 18rem;
   max-width: 21rem;
   z-index: -1;
   transition: {
+    // transition: transform 0.22s ease-in-out;
     transform: 0.22s ease-in-out;
   }
   // transition: transform 0.2s ease-in-out;
@@ -37,6 +45,7 @@
   }
   .hidden-content {
     display: none;
+    // visibility: hidden;
   }
   // & .hidden-button: {
   //   display: none
@@ -53,7 +62,7 @@
 }
 .hoverCardStyle:hover {
   // transform: scale3d(1.05, 1.05, 1);
-  // position: relative;
+  position: relative;
   // transform: scale3d(1.2);
   transform: scale(1.2);
   z-index: 5;
@@ -64,6 +73,7 @@
   }
   .hidden-content {
     display: flex;
+    // visibility: visible;
   }
   // .hidden-button:hover {
   //   // display: flex;

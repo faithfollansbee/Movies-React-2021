@@ -18,14 +18,13 @@ const MovieInfo = (props) => {
     <div className="container">
       <div className="row">
         <div className="col s12 m3">
-          { props.currentMovie.poster_path == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card-image" style={{ width: '100%', height: '360' }}/> : <img src={`https://image.tmdb.org/t/p/w185/${props.currentMovie.poster_path}`} alt="card-image" style={{ width: '100%', height: '360' }} /> }
+          { props.poster_path == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card-image" style={{ width: '100%', height: '360' }}/> : <img src={`https://image.tmdb.org/t/p/w185/${props.currentMovie.poster_path}`} alt="card-image" style={{ width: '100%', height: '360' }} /> }
         </div>
 
         <div className="col s12 m9">
           <div className="info-container">
-            <p>{props.currentMovie.title}</p>
-            <p>{props.currentMovie.release_date.substring(5).split('-').concat(props.currentMovie.release_date.substring(0, 4)).join('/')}</p>
-            <p>{props.currentMovie.overview}</p>
+            <p>{props.title}</p>
+            <p>{props.overview}</p>
           </div>
         </div>
 
