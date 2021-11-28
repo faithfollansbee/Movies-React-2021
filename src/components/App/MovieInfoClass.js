@@ -65,7 +65,7 @@ class MovieInfoClass extends Component {
       })
   }
   render () {
-    // console.log(this.state)
+    console.log(this.state)
     // console.log(this.props)
     return (
       <div className="layout-style">
@@ -139,7 +139,7 @@ class MovieInfoClass extends Component {
                   </Tooltip>
                   <Tooltip title="Save">
                     <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-                      <AddMovieDialog id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} />
+                      <AddMovieDialog id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.props.currentMovie.tagline} runtime={this.props.currentMovie.runtime} />
                     </Fab>
                   </Tooltip>
                 </CardActions>

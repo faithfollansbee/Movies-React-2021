@@ -8,7 +8,7 @@ const SearchResults = (props) => {
         {
           props.movies.map((movie, i) => {
             return (
-              <Movie key={i} user={props.user} currentMovie={props.currentMovie} viewMovie={props.viewMovie} released={movie.release_date} genreIds={movie.genre_ids} image={movie.poster_path} movieId={movie.id} title={movie.title} description={movie.overview}/>
+              <Movie key={i} user={props.user} currentMovie={props.currentMovie} viewMovie={props.viewMovie} released={movie.release_date} genreIds={movie.genre_ids} tagline={movie.tagline} runtime={movie.runtime} image={movie.poster_path} movieId={movie.id} title={movie.title} description={movie.overview}/>
             )
           })
         }

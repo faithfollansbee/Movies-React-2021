@@ -30,7 +30,10 @@ class SaveMovie extends Component {
         description: props.description,
         released: props.released,
         image: props.image,
-        genre: ''
+        genre: '',
+        categories: props.categories,
+        runtime: props.runtime,
+        tagline: props.tagline
       }
     }
     // console.log(this.props.user)
@@ -66,7 +69,10 @@ class SaveMovie extends Component {
           description: this.props.description,
           released: this.props.released,
           image: this.props.image,
-          genre: this.state.genre
+          genre: this.state.genre,
+          categories: this.props.categories,
+          runtime: this.props.runtime,
+          tagline: this.props.tagline
         }
       }
     })

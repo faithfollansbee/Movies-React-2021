@@ -68,6 +68,7 @@ class movie extends Component {
   }
 
   render () {
+    console.log(this.state.movie)
     const { movie, deleted } = this.state
     if (deleted) {
       return <Redirect to={
@@ -81,7 +82,7 @@ class movie extends Component {
     return (
       <div>
         { movie && (
-          <div style={{ backgroundColor: 'grey' }} className="movie-container mx-auto my-3 px-3 py-3 border">
+          <div className="movie-container mx-auto my-3 px-3 py-3 border">
             <Card>
               <CardContent>
                 <div className="row">
@@ -90,7 +91,7 @@ class movie extends Component {
                       { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '100', height: 500 }}/> }
                     </div>
                   </div>
-                  <div className="col" style={{ backgroundColor: 'AliceBlue' }}>
+                  <div className="col">
 
                     <div style={{ flexDirection: 'column' }}>
                       <div>

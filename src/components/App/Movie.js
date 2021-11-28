@@ -109,7 +109,7 @@ const Movie = (props) => {
         </Tooltip>
         <div style={fabRowStyle}>
           <Fab size="small" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-            <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} released={props.released} description={props.description} image={props.image} user={props.user} />
+            <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
           </Fab>
           <Link to="/more-info" href={'/more-info'} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
             <Tooltip title="More">
