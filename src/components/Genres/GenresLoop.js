@@ -1,35 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import { Redirect } from 'react-router-dom'
-// import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
 import Spinner from 'react-bootstrap/Spinner'
-// import IconButton from '@material-ui/core/IconButton'
-// import Fab from '@material-ui/core/Fab'
-// import EditIcon from '@material-ui/icons/Edit'
 import Genre3 from './Genre3'
 import AddGenreDialog from './AddGenreDialog'
-// import Genre3 from './Genre3'
-// import AddGenre from './AddGenre'
-// import AddGenre from './AddGenre'
-
-// const fabStyle2 = {
-// }
-// const fabStyle3 = {
-// }
-// const cardStyle = {
-// margin: 1,
-// padding: 10,
-// textAlign: 'center',
-// marginBottom: 12,
-// hover: 'red',
-// overflowWrap: 'break-word',
-// wordWrap: 'break-word'
-// }
-// const fabStyle = {
-// }
 
 class GenresLoop extends Component {
   constructor (props) {
@@ -57,6 +33,7 @@ class GenresLoop extends Component {
       this.setState({ userGenres: response.data.genres })
     } catch (error) {
     }
+    console.log('rendered from GenresLoop')
   }
 
   handleFilter = event => {

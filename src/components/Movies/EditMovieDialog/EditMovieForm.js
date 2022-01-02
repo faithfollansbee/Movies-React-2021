@@ -27,7 +27,6 @@ class EditMovieForm extends Component {
         genre: props.genre
       }
     }
-    // console.log(this.state)
   }
   closeMovieInfo = event => {
     this.setState({ currentMovie: null })
@@ -88,7 +87,6 @@ class EditMovieForm extends Component {
       this.setState({ userGenres: response.data.genres })
     } catch (error) {
     }
-    // console.log(this.state.genres)
   }
 
   render (props) {

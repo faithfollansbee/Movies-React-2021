@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import Tooltip from '@material-ui/core/Tooltip'
 import Fade from '@material-ui/core/Fade'
@@ -68,10 +66,11 @@ class MaterializeTrendingMovie extends Component {
 
   render () {
     // const { movie } = this.state
-    console.log(this.state)
-    console.log(this.props.movieId)
-    console.log(this.props.currentMovie)
-    console.log(this.state.currentMovie)
+    console.log('Rendered from trendingMovie')
+    // console.log(this.state)
+    // console.log(this.props.movieId)
+    // console.log(this.props.currentMovie)
+    // console.log(this.state.currentMovie)
     return (
       <div className="mx-auto py-3 px-1">
         <Card className="card sticky-action"

@@ -1,33 +1,14 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
-// import Box from '@material-ui/core/Box'
-// import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import { Redirect, withRouter } from 'react-router-dom'
 import CardMedia from '@material-ui/core/CardMedia'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import Typography from '@material-ui/core/Typography'
-// import Button from '@material-ui/core/Button'
-// import IconButton from '@material-ui/core/IconButton'
-// import EditIcon from '@material-ui/icons/Edit'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
-// import Tooltip from '@material-ui/core/Tooltip'
-// import EditGenreDialog from './EditGenre/EditGenreDialog'
 import EditGenreMenu from './EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
 
-// const PosterPreviewStyle = {
-//   MuiCardMediaMedia: {
-//     width: 'auto !important'
-//   }
-// }
-// const vertMenuStyle = {
-// flex: '0 0 auto',
-// marginTop: '8px',
-// marginRight: '-8'
-// }
 class Genre3 extends React.Component {
   state = {
     genre: '',
@@ -55,7 +36,7 @@ class Genre3 extends React.Component {
       // console.log(this.state.movies)
     } catch (error) {
     }
-    // console.log(this.state.genre)
+    console.log('rendered from Genre3')
   }
   handleDelete = () => {
     // event.preventDefault()
@@ -119,6 +100,7 @@ class Genre3 extends React.Component {
             {this.state.movies.map(movie => (
               movie.image == null
                 ? <CardMedia
+                  key={movie._id}
                   component="img"
                   alt="Contemplative Reptile"
                   className="genrePosterPreview"
@@ -132,6 +114,7 @@ class Genre3 extends React.Component {
                   // title="card-image"
                 />
                 : <CardMedia
+                  key={movie._id}
                   component="img"
                   alt="Contemplative Reptile"
                   className="genrePosterPreview"

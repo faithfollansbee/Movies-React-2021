@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
 import { withRouter, Redirect } from 'react-router-dom'
-// import Radio from '@material-ui/core/Radio'
-// import RadioGroup from '@material-ui/core/RadioGroup'
 import Button from '@material-ui/core/Button'
-// import FormControlLabel from '@material-ui/core/FormControlLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 import Form from 'react-bootstrap/Form'
 

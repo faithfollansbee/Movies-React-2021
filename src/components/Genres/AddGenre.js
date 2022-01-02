@@ -10,7 +10,6 @@ class AddGenre extends Component {
     genre: {
       name: ''
     },
-    // user: this.props.user,
     submitted: false
   }
 
@@ -21,7 +20,6 @@ class AddGenre extends Component {
         [event.target.name]: event.target.value
       }
     })
-    // console.log(this.state.genre)
   }
   //
   // async componentDidMount () {

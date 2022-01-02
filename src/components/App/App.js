@@ -11,17 +11,12 @@ import Movie from '../Movies/Movie'
 import UpdateMovie from '../Movies/UpdateMovie'
 import Movies from '../Movies/Movies'
 import Genre from '../Genres/Genre'
-// import Genre3 from '../Genres/Genre3'
-// import Genres from '../Genres/Genres'
 import GenresLoop from '../Genres/GenresLoop'
 import AddGenre from '../Genres/AddGenre'
 import UpdateGenre from '../Genres/UpdateGenre'
 import SearchArea from './SearchArea'
 import SearchResults from './SearchResults'
 import Trending from './trending'
-// import TrendingFunction from './trendingFunction'
-// import MovieInfo from './MovieInfo'
-// import TestMovieInfo from './TestMovieInfo'
 import MovieInfoClass from './MovieInfoClass'
 import Container from '@material-ui/core/container'
 import Pagination from './Pagination'
@@ -29,7 +24,11 @@ import Pagination from './Pagination'
 // import MovieInfo from './TestMovieInfo'
 // import SaveMovie from './SaveMovie'
 // import Landing from '../landing/landing'
-
+// import TrendingFunction from './trendingFunction'
+// import MovieInfo from './MovieInfo'
+// import TestMovieInfo from './TestMovieInfo'
+// import Genre3 from '../Genres/Genre3'
+// import Genres from '../Genres/Genres'
 class App extends Component {
   constructor () {
     super()
@@ -206,7 +205,7 @@ class App extends Component {
              <MovieInfoClass user={user} saved={this.saved} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>
            )}/>
            <AuthenticatedRoute user={user} exact path='/movies'
-             render={() => (<Movies user={user}/>)}/>
+             render={() => (<Movies user={user} viewMovie={this.viewMovie} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie}/>)}/>
 
            <AuthenticatedRoute user={user} exact path='/movies/:id'
              render={() => (<Movie user={user}/>)}/>

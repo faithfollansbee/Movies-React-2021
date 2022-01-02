@@ -6,8 +6,6 @@ import EditIcon from '@material-ui/icons/Edit'
 import MenuItem from '@material-ui/core/MenuItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import EditMovieForm from './EditMovieForm'
-// import IconButton from '@material-ui/core/IconButton'
-// import EditMovie from './EditMovie'
 
 export default function EditMovieDialog (props) {
   const [open, setOpen] = React.useState(false)

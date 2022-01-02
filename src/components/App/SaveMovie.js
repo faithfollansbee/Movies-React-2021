@@ -7,9 +7,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-// const listStyle = {
-//   listStyleType: 'none'
-// }
+
 class SaveMovie extends Component {
   // const [isSaved, setSaved] = useState(false);
   // isSaved = false;

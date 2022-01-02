@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import Movie from './Movie'
-// import MaterializeTrendingMovie from './trendingMovie'
-// import MaterializeMovieClass from '../Movies/MaterializeMovieClass'
 
 class Trending extends Component {
   state = {
@@ -21,7 +19,9 @@ class Trending extends Component {
       .catch(error => {
         console.error(error)
       })
+    console.log('Rendered from trending')
   }
+
   render (props) {
     return (
       <div className="results-container my-5">
@@ -30,7 +30,8 @@ class Trending extends Component {
           {
             this.state.movies.map((movie, i) => {
               return (
-                <Movie key={i} user={this.props.user}
+                <Movie
+                  key={i} user={this.props.user}
                   currentMovie={this.props.currentMovie}
                   viewMovie={this.props.viewMovie}
                   released={movie.release_date}

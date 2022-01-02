@@ -5,7 +5,6 @@ import ArrowBack from '@material-ui/icons/ArrowBack'
 import SaveMovie from './SaveMovie'
 import { Link } from 'react-router-dom'
 
-// <i className="fas fa-arrow left"></i>
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1)
@@ -13,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 const MovieInfo = (props) => {
   const classes = useStyles()
-
+  console.log('Rendered from TestMovieInfo')
   return (
     <div className="container">
       <div className="row">

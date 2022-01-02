@@ -35,6 +35,7 @@ class MaterializeMovieClass extends Component {
       })
     } catch (error) {
     }
+    console.log('rendered from MaterializeMovieClass')
   }
 
   deleteMovie = () => {

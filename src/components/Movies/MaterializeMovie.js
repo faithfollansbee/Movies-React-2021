@@ -1,29 +1,8 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
-// import CardActionArea from '@material-ui/core/CardActionArea'
-// import Tooltip from '@material-ui/core/Tooltip'
 import { makeStyles } from '@material-ui/core/styles'
-// import { red } from '@material-ui/core/colors'
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
-// import CardContent from '@material-ui/core/CardContent'
-// import Typography from '@material-ui/core/Typography'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditMovie from './EditMovieDialog/EditMovie'
 
-// import CardMedia from '@material-ui/core/CardMedia'
-// const fabStyle1 = {
-//   bottom: 60,
-//   left: 150
-// }
-// const fabStyle2 = {
-//   bottom: 60,
-//   left: 170
-// }
-// const fabRowStyle = {
-//   display: 'flex',
-//   justifyContent: 'space-evenly',
-//   position: 'absolute'
-// }
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,

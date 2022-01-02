@@ -5,13 +5,8 @@ import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-// import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-// import CardMedia from '@material-ui/core/CardMedia'
 import CardHeader from '@material-ui/core/CardHeader'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
-// import EditIcon from '@material-ui/icons/Edit'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -19,16 +14,6 @@ import EditIcon from '@material-ui/icons/Edit'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditMenu from './EditMenu'
 
-// const movieStyle = {
-// margin: '30px'
-// alignItems: 'space-evenly'
-// }
-// const actionsStyle = {
-// display: 'flex',
-// justifyContent: 'space-evenly',
-// alignItems: 'flex-end',
-// padding: '5rem'
-// }
 const fabStyle1 = {
 }
 class movie extends Component {
@@ -51,6 +36,7 @@ class movie extends Component {
       })
     } catch (error) {
     }
+    console.log('rendered from Movie')
   }
 
   deletemovie = () => {

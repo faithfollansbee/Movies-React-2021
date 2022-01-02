@@ -1,11 +1,6 @@
 import React, { Component, Fragment } from 'react'
-// import { Link } from 'react-router-dom'
-// import Container from '@material-ui/core/Container'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import Card from '@material-ui/core/Card'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
 import FormControl from 'react-bootstrap/FormControl'
 // import Button from '@material-ui/core/Button'
 // import CardHeader from '@material-ui/core/CardHeader'
@@ -15,9 +10,10 @@ import FormControl from 'react-bootstrap/FormControl'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Spinner from 'react-bootstrap/Spinner'
 // import Movie2 from './Movie2'
-// import Movie3 from './Movie3'
+import Movie3 from './Movie3'
+// import Movie from '../App/Movie.js'
 // import MaterializeMovie from './MaterializeMovie'
-import MaterializeMovieClass from './MaterializeMovieClass'
+// import MaterializeMovieClass from './MaterializeMovieClass'
 // import MovieSearch from './MovieSearch'
 
 // const linkStyle = {
@@ -51,7 +47,7 @@ class movies extends Component {
       this.setState({ userMovies: response.data.movies })
     } catch (error) {
     }
-    // console.log(this.state.movies)
+    console.log(this.state.movies)
   }
 
   handleFilter = event => {
@@ -135,28 +131,45 @@ class movies extends Component {
             }
           </div>
           <div className="row mx-1">
-            {this.state.userMovies.map(movie => (
-              <MaterializeMovieClass
-                key={movie.name + movie._id}
-                handleRefresh={this.handleRefresh}
-                user={this.props.user}
-                id={movie._id}
-                title={movie.title}
-                description={movie.description}
-                released={movie.released}
-                image={movie.image}
-                thisstate={this.state}
-                alert={this.props.alert}
-                genre={movie.genre}
-                genreName={movie.genre.name}
-              />
-            ))}
+            {
+              this.state.userMovies.map((movie, i) => {
+                return (
+                  <Movie3
+                    key={movie.name + movie._id}
+                    handleRefresh={this.handleRefresh}
+                    user={this.props.user}
+                    id={movie._id}
+                    description={movie.description}
+                    released={movie.released}
+                    image={movie.image}
+                    thisstate={this.state}
+                    alert={this.props.alert}
+                    genre={this.genre}
+                  />
+                )
+              })
+            }
           </div>
         </Fragment>
       </div>
     )
   }
 }
+// <MaterializeMovieClass
+//   key={movie.name + movie._id}
+//   // key={movie._id}
+//   handleRefresh={this.handleRefresh}
+//   user={this.props.user}
+//   id={movie._id}
+//   title={movie.title}
+//   description={movie.description}
+//   released={movie.released}
+//   image={movie.image}
+//   thisstate={this.state}
+//   alert={this.props.alert}
+//   genre={movie.genre}
+//   genreName={movie.genre.name}
+// />
 // <MaterializeMovieClass
 //   key={movie.name + movie._id}
 //   handleRefresh={this.handleRefresh}

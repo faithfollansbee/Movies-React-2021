@@ -61,6 +61,7 @@ class Genre extends React.Component {
       // console.log(this.state.movies)
     } catch (error) {
     }
+    console.log('rendered from Genre')
   }
 
   handleFilter = event => {
@@ -138,11 +139,6 @@ class Genre extends React.Component {
   }
 
   render () {
-    // console.log('genre movies', this.state.genre.movies)
-    // console.log('genre length', this.state.genre)
-    // console.log('number of movies', this.state.movies.length)
-    // console.log(Object.keys(this.state.movies))
-
     const { genre, addMovie } = this.state
     if (genre) {
       // console.log(genre.movies[0].released.substring(5).split('-').concat(genre.movies[0].released.substring(0, 4)).join('/'))

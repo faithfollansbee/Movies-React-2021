@@ -10,10 +10,6 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-
-// import { Link } from 'react-router-dom'
-// import AddMovieDialog from './AddMovieDialog'
 
 const fabStyle1 = {
   bottom: 60,
@@ -23,14 +19,7 @@ const fabStyle2 = {
   bottom: 60,
   left: 170
 }
-// const hiddenStyle = {
-//   bottom: 160,
-//   left: 10
-// }
-// const fabStyle3 = {
-//   bottom: 60,
-//   left: 90
-// }
+
 const fabRowStyle = {
   display: 'flex',
   justifyContent: 'space-evenly',
@@ -114,27 +103,6 @@ const Movie = (props) => {
     hovered: false,
     shadow: 1
   })
-  // props passed into Movie from SearchResults
-  // user={props.user}
-  // currentMovie={props.currentMovie}
-  // viewMovie={props.viewMovie}
-  // released={movie.release_date}
-  // image={movie.poster_path}
-  // movieId={movie.id}
-  // title={movie.title}
-  // description={movie.overview}
-
-  // props passed into Movie2 / Movie3 from Movies
-  // key={movie.name + movie._id}
-  // handleRefresh={this.handleRefresh}
-  // user={this.props.user}
-  // id={movie._id}
-  // description={movie.description}
-  // released={movie.released}
-  // image={movie.image}
-  // thisstate={this.state}
-  // alert={this.props.alert}
-  // genre={this.genre}
   return (
     <div className="mx-auto py-3 px-1">
       <Card style={{ width: '18rem' }} className={classes.root}
@@ -142,11 +110,6 @@ const Movie = (props) => {
         onMouseOver={() => setState({ hovered: true, shadow: 3 })}
         onMouseOut={() => setState({ hovered: false, shadow: 1 })}
         hovered={state.hovered} zdepth={state.shadow}
-        // className={clsx(classes.hovered, {
-        //   [classes.hoveredOpen]: hovered
-        // })}
-        // onHover={handleHover}
-        // aria-expanded={hovered}
         aria-label="show more"
       >
         <CardActionArea>
@@ -155,19 +118,15 @@ const Movie = (props) => {
               props.image == null
                 ? <CardMedia
                   component="img"
-                  alt="Contemplative Reptile"
-                  // height="300"
-                  // width="100%"
+                  alt="card-default-image"
                   image={'https://i.imgur.com/R7mqXKL.png'}
-                  title="card-image"
+                  title="Card Default Image"
                 />
                 : <CardMedia
                   component="img"
-                  alt="Contemplative Reptile"
-                  // height="300"
-                  // width="100%"
+                  alt="card-image"
                   image={`https://image.tmdb.org/t/p/w185/${props.image}`}
-                  title="Contemplative Reptile"
+                  title="Card Image"
                 />
             }
             { /* <div className="hidden-button row" style={{ position: 'absolute', backgroundColor: 'black', color: 'white', bottom: 10, left: '50%', transform: 'translateX(-50%)' }}>{props.title}</div> */ }

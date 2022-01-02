@@ -4,7 +4,6 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
-// import GenreForm from './GenreForm'
 import AddGenre from './AddGenre'
 // import GenreDialogForm from './GenreDialogForm'
 
@@ -18,7 +17,6 @@ export default function AddGenreDialog (props) {
   const handleClose = () => {
     setOpen(false)
   }
-  // console.log('props.user', props.user)
   return (
     <div>
       <IconButton onClick={handleClickOpen}>

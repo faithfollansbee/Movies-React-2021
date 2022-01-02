@@ -8,23 +8,11 @@ import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
-// import VisibilityIcon from '@material-ui/icons/Visibility'
 import Collapse from '@material-ui/core/Collapse'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
-// import SimpleDateTime from 'react-simple-timestamp-to-date'
-// import Rating from '@material-ui/lab/Rating'
-// <CardHeader
-//   title={
-//     <Typography variant="h6">
-//       {movie.title}
-//     </Typography>
-//   }
-// />
-// import CardMedia from '@material-ui/core/CardMedia'
 const fabStyle1 = {
   bottom: 55,
   left: 40

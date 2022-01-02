@@ -116,6 +116,7 @@ class SaveMovie extends Component {
     } catch (error) {
     }
     console.log(this.state.genres)
+    console.log('from DialogForm')
   }
 
   render (props) {

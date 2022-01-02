@@ -1,6 +1,5 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
-// import CardActionArea from '@material-ui/core/CardActionArea'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import { makeStyles } from '@material-ui/core/styles'
@@ -10,22 +9,6 @@ import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
 
-// const contentStyle = {
-//   height: 40,
-//   overflow: 'scroll',
-//   padding: 1,
-//   paddingtop: 2,
-//   justifyContent: 'space-evenly'
-// }
-// const allFabStyle = {
-//   position: 'relative',
-//   bottom: 70
-// }
-
-// const fabStyle1 = {
-//   bottom: 60,
-//   left: 40
-// }
 const fabStyle2 = {
   bottom: 60,
   left: 70

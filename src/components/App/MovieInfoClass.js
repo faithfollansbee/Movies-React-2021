@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
-// import axios from 'axios'
 import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 import ArrowBack from '@material-ui/icons/ArrowBack'
-// import SaveMovie from './SaveMovie'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
@@ -13,12 +11,8 @@ import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddMovieDialog from './AddMovieDialog'
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
-// import IconButton from '@material-ui/core/IconButton'
-// import Fab from '@material-ui/core/Fab'
 
 class MovieInfoClass extends Component {
   state = {
@@ -31,8 +25,8 @@ class MovieInfoClass extends Component {
   }
 
   componentDidMount (props) {
-    console.log('getting movie')
-    console.log(this.props)
+    // console.log('getting movie')
+    // console.log(this.props)
     // fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
     fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${this.props.currentMovie.id}`)
       .then(data => data.json())
@@ -45,14 +39,15 @@ class MovieInfoClass extends Component {
       .catch(error => {
         console.error(error)
       })
+    console.log('Rendered from MovieInfoClass')
   }
   // https://api.themoviedb.org/3/movie/385128?api_key=4a0223110b505876ba0985949c17e865&language=en-US&movie_id=385128
   // https://api.themoviedb.org/3/movie/${this.state.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US
   getMovie = (event) => {
-    console.log('got movie')
-    console.log(this.state.currentMovie.id)
-    console.log(this.props.currentMovie.id)
-    console.log(this.props.id)
+    // console.log('got movie')
+    // console.log(this.state.currentMovie.id)
+    // console.log(this.props.currentMovie.id)
+    // console.log(this.props.id)
     fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${this.props.currentMovie.id}`)
       .then(data => data.json())
       .then(data => {
