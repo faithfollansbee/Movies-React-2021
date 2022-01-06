@@ -79,12 +79,12 @@ const Movie = (props) => {
               props.image == null
                 ? <CardMedia
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt="no poster found"
                   image={'https://i.imgur.com/R7mqXKL.png'}
                 />
                 : <CardMedia
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt="movie-poster"
                   image={`https://image.tmdb.org/t/p/w185/${props.image}`}
                 />
             }

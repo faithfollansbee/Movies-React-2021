@@ -16,7 +16,7 @@ import EditMenu from './EditMenu'
 
 const fabStyle1 = {
 }
-class movie extends Component {
+class MovieClass extends Component {
   state = {
     movie: null,
     deleted: false
@@ -164,4 +164,4 @@ class movie extends Component {
 // <div style={{ width: 151 }}>
 //   { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '10', height: 450 }}/> }
 // </div>
-export default withRouter(movie)
+export default withRouter(MovieClass)

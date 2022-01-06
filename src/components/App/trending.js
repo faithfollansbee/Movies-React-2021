@@ -14,6 +14,8 @@ class Trending extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results] })
+        // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+
         // console.log(this.state, 'got trending')
       })
       .catch(error => {
@@ -23,9 +25,10 @@ class Trending extends Component {
   }
 
   render (props) {
+    console.log(this.state.movies)
     return (
       <div className="results-container my-5">
-        <h1>Trending now</h1>
+        <h1><strong>Trending now</strong></h1>
         <div className="row">
           {
             this.state.movies.map((movie, i) => {
@@ -33,7 +36,8 @@ class Trending extends Component {
                 <Movie
                   key={i} user={this.props.user}
                   currentMovie={this.props.currentMovie}
-                  viewMovie={this.props.viewMovie}
+                  // viewTrendingMovie={this.props.viewTrendingMovie}
+                  viewMovie={this.props.viewTrendingMovie}
                   released={movie.release_date}
                   backdrop={movie.backdrop_path}
                   genresIds={movie.genre_ids}

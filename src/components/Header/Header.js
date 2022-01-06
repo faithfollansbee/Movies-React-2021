@@ -42,11 +42,12 @@ const NavBarStyle = {
   // margin: '0px',
   // padding: '0px',
   // position: 'relative',
-  // backgroundColor: 'black'
+  // backgroundColor: '#5F1717'
+  backgroundColor: '#212529'
 }
 
 const Header = ({ user }) => (
-  <Navbar variant="dark" bg="dark" expand="lg" style={NavBarStyle}>
+  <Navbar variant="dark" expand="lg" style={NavBarStyle}>
     <Navbar.Brand href="#">Movie Collector</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

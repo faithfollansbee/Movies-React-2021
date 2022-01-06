@@ -7,7 +7,7 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
-import Movie from '../Movies/Movie'
+import MovieClass from '../Movies/MovieClass'
 import UpdateMovie from '../Movies/UpdateMovie'
 import Movies from '../Movies/Movies'
 import Genre from '../Genres/Genre'
@@ -35,6 +35,8 @@ class App extends Component {
     this.state = {
       user: null,
       movies: [],
+      searchedMovies: [],
+      trendingMovies: [],
       searchTerm: '',
       currentMovie: null,
       alerts: [],
@@ -59,25 +61,29 @@ class App extends Component {
   }
   viewMovie = (id) => {
     event.preventDefault()
-    const selectedMovie = this.state.movies.filter(movie => movie.id === id)
+    // const selectedMovie = this.state.movies.filter(movie => movie.id === id)
+    // const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
+    // trial
+    const selectedMovie = this.state.searchedMovies.filter(movie => movie.id === id)
     const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
     // const currentMovieObj = selectedMovie[0]
     // this.setState({ currentMovie: currentMovieObj })
     this.setState({ currentMovie: newCurrentMovie })
-    // console.log('view movie')
-    // console.log(id)
-    // console.log(currentMovieObj)
   }
-  // viewTrendingMovie = (id) => {
-  //   event.preventDefault()
-  //   const selectedMovie = this.state.movies.filter(movie => movie.id === id)
-  //   const newTrendingMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
-  //   // const currentMovieObj = selectedMovie[0]
-  //   // this.setState({ currentMovie: currentMovieObj })
-  //   this.setState({ trendingMovie: newTrendingMovie })
-  //   console.log('view movie')
-  //   console.log(id)
-  // }
+  viewTrendingMovie = (id) => {
+    event.preventDefault()
+    const selectedMovie = this.state.movies.filter(movie => movie.id === id)
+    const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
+
+    // const newTrendingMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
+    // const currentMovieObj = selectedMovie[0]
+    // this.setState({ currentMovie: currentMovieObj })
+    // this.setState({ trendingMovie: newTrendingMovie })
+    this.setState({ currentMovie: newCurrentMovie })
+
+    console.log('view movie')
+    console.log(id)
+  }
 
   closeMovieInfo = () => {
     event.preventDefault()
@@ -94,7 +100,8 @@ class App extends Component {
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&language=en-US&query=${this.state.searchTerm}`)
       .then(data => data.json())
       .then(data => {
-        this.setState({ movies: [...data.results], totalResults: data.total_results })
+        // this.setState({ movies: [...data.results], totalResults: data.total_results })
+        this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
         // console.log(data)
       })
       .catch(error => {
@@ -107,6 +114,7 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results], currentPage: pageNumber })
+        this.setState({ searchedMovies: [...data.results], currentPage: pageNumber })
         // console.log(data)
       })
       .catch(error => {
@@ -122,6 +130,8 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results] })
+        // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+
         // console.log(this.state.movies, 'got trending')
       })
       .catch(error => {
@@ -196,7 +206,7 @@ class App extends Component {
            { /*            <AuthenticatedRoute user={user} path="/trending-info" render={() => (<MovieInfoClass user={user} saved={this.saved} currentMovie={this.state.currentMovie} getMovie={this.getMovie} movie={this.state.movie} closeMovieInfo={this.closeMovieInfo}/>)}/> */ }
            <AuthenticatedRoute user={user} path="/search" component={App} render={() => (
              <div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
-               <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
+               <SearchResults user={user} viewMovie={this.viewMovie} searchedMovies={this.state.searchedMovies} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
                { this.state.totalResults > 20 ? <Pagination user={user} pages={numberPages} nextPage={this.nextPage} currentPage={this.state.currentPage}/> : '' }
              </div>)}
            />
@@ -208,7 +218,7 @@ class App extends Component {
              render={() => (<Movies user={user} viewMovie={this.viewMovie} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie}/>)}/>
 
            <AuthenticatedRoute user={user} exact path='/movies/:id'
-             render={() => (<Movie user={user}/>)}/>
+             render={() => (<MovieClass user={user}/>)}/>
 
            <AuthenticatedRoute user={user} exact path="/movies/:id/edit"
              render={() => (
@@ -235,7 +245,7 @@ class App extends Component {
            <AuthenticatedRoute user={user} path='/trending'
              render={() => (
                <div>
-                 <Trending user={user} getTrending={this.getTrending} movies={this.state.movies} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie} viewMovie={this.viewMovie} setUser={this.setUser} getGenres={this.getGenres}/>
+                 <Trending user={user} getTrending={this.getTrending} movies={this.state.movies} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie} viewTrendingMovie={this.viewTrendingMovie} viewMovie={this.viewMovie} setUser={this.setUser} getGenres={this.getGenres}/>
                </div>
              )}/>
 

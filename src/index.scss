@@ -8,6 +8,12 @@
 //     display: 'flex'
 //   }
 // },
+.layout-style {
+  margin-top: 10px;
+  // margin: 15;
+  flex-grow: 1;
+  // padding: 20; // commented out 11/19
+}
 body {
   // background-color: #33343f;
   // color: #d5ded7; // tasman
@@ -150,9 +156,3 @@ body {
 //   align-items: center;
 //   width: 80%;
 // }
-.layout-style {
-  margin-top: 10px;
-  // margin: 15;
-  flex-grow: 1;
-  // padding: 20; // commented out 11/19
-}

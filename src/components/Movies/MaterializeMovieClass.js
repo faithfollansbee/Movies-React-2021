@@ -79,6 +79,7 @@ class MaterializeMovieClass extends Component {
                       component="img"
                       alt="no poster found"
                       src={'https://i.imgur.com/R7mqXKL.png'}
+                      image={'https://i.imgur.com/R7mqXKL.png'}
                       // title="card-image"
                     />
                     : <img
@@ -91,13 +92,6 @@ class MaterializeMovieClass extends Component {
                 }
               </div>
             </StyledTooltip>
-            <div className="card-content grey lighten-4" style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-              <Tooltip title="Go to movie" style={{ size: '1.5em', fontSize: '1.5em' }}>
-                <a className="right" style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/movies/${this.state.movie._id}`}><i className="material-icons small right navigate_next">navigate_next</i></a>
-              </Tooltip>
-              <span style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }} className="card-title activator grey-text text-darken-4">{this.props.title}
-              </span>
-            </div>
             <div className="card-reveal">
               <span className="card-title grey-text text-darken-4">{this.props.title}<i className="material-icons right">close</i></span>
               <p>Saved to: <a style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/genres/${this.state.movie.genre._id}`}>{this.state.movie.genre.name}</a></p>
@@ -114,6 +108,13 @@ class MaterializeMovieClass extends Component {
     )
   }
 }
+// <div className="card-content grey lighten-4" style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+//   <Tooltip title="Go to movie" style={{ size: '1.5em', fontSize: '1.5em' }}>
+//     <a className="right" style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/movies/${this.state.movie._id}`}><i className="material-icons small right navigate_next">navigate_next</i></a>
+//   </Tooltip>
+//   <span style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }} className="card-title activator grey-text text-darken-4">{this.props.title}
+//   </span>
+// </div>
 // <a style={{ textDecoration: 'none' }} className="right" href={`#/movies/${this.state.movie._id}`}><i className="material-icons right navigate_next">navigate_next</i></a>
 
 // <p>{this.state.movie.genre.name}</p>

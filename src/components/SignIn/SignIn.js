@@ -7,6 +7,9 @@ import messages from '../AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+const buttonStyle = {
+  // backgroundColor: '#DC312F'
+}
 class SignIn extends Component {
   constructor (props) {
     super(props)
@@ -75,7 +78,9 @@ class SignIn extends Component {
               />
             </Form.Group>
             <Button
+              style={buttonStyle}
               variant="primary"
+              // background-color="#881B1B"
               type="submit"
             >
               Submit
