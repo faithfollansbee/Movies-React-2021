@@ -7,7 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import EditGenreDialog from './EditGenre/EditGenreDialog'
+import EditGenreDialog from './EditGenreDialog'
 
 export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
   const [anchorEl, setAnchorEl] = React.useState(null)

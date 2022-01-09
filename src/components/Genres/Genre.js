@@ -17,7 +17,7 @@ import IconButton from '@material-ui/core/IconButton'
 // import EditGenreDialog from './EditGenre/EditGenreDialog'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 // import EditIcon from '@material-ui/icons/Edit'
-import EditGenreMenu from './EditGenreMenu'
+import EditGenreMenu from './EditGenre/EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
 
 class Genre extends React.Component {

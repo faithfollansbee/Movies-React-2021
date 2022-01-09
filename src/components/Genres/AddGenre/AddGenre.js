@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
+import apiUrl from '../../../apiConfig'
 import GenreForm from './GenreForm'
 // import GenreDialogForm from './GenreDialogForm'
 import { withRouter } from 'react-router-dom'

@@ -8,12 +8,12 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import MovieClass from '../Movies/MovieClass'
-import UpdateMovie from '../Movies/UpdateMovie'
+// import UpdateMovie from '../Movies/UpdateMovie'
 import Movies from '../Movies/Movies'
 import Genre from '../Genres/Genre'
 import GenresLoop from '../Genres/GenresLoop'
-import AddGenre from '../Genres/AddGenre'
-import UpdateGenre from '../Genres/UpdateGenre'
+import AddGenre from '../Genres/AddGenre/AddGenre'
+// import UpdateGenre from '../Genres/UpdateGenre'
 import SearchArea from './SearchArea'
 import SearchResults from './SearchResults'
 import Trending from './trending'
@@ -63,7 +63,6 @@ class App extends Component {
     event.preventDefault()
     // const selectedMovie = this.state.movies.filter(movie => movie.id === id)
     // const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
-    // trial
     const selectedMovie = this.state.searchedMovies.filter(movie => movie.id === id)
     const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
     // const currentMovieObj = selectedMovie[0]
@@ -220,10 +219,6 @@ class App extends Component {
            <AuthenticatedRoute user={user} exact path='/movies/:id'
              render={() => (<MovieClass user={user}/>)}/>
 
-           <AuthenticatedRoute user={user} exact path="/movies/:id/edit"
-             render={() => (
-               <UpdateMovie user={user} alert={this.alert}/>)}/>
-
            <AuthenticatedRoute user={user} exact path='/genres/'
              render={() => (
                <div>
@@ -237,10 +232,6 @@ class App extends Component {
 
            <AuthenticatedRoute user={user} path="/creategenre"
              render={() => (<AddGenre user={user}/>)}/>
-
-           <AuthenticatedRoute user={user} exact path="/genres/:id/edit"
-             render={() => (
-               <UpdateGenre user={user} />)}/>
 
            <AuthenticatedRoute user={user} path='/trending'
              render={() => (
@@ -266,6 +257,8 @@ class App extends Component {
      )
    }
 }
+// <AuthenticatedRoute user={user} exact path="/movies/:id/edit" render={() => ( <UpdateMovie user={user} alert={this.alert}/>)}/>
+// <AuthenticatedRoute user={user} exact path="/genres/:id/edit" render={() => (<UpdateGenre user={user} />)}/>
 // <AuthenticatedRoute user={user} path="/trending-info" render={() => (<MovieInfoClass user={user} currentMovie={this.state.currentMovie} saved={this.saved} closeMovieInfo={this.closeMovieInfo}/>)}/>
 
 export default App

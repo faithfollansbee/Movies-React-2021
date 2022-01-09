@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import EditGenreMenu from './EditGenreMenu'
+import EditGenreMenu from './EditGenre/EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
 
 class Genre3 extends React.Component {

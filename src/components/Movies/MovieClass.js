@@ -13,6 +13,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import EditIcon from '@material-ui/icons/Edit'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditMenu from './EditMenu'
+import Button from '@material-ui/core/Button'
 
 const fabStyle1 = {
 }
@@ -66,9 +67,18 @@ class MovieClass extends Component {
     // <p> {movie.genre.name} </p>
 
     return (
-      <div>
+      <div className="layout-style">
+        <Button
+          // if on trending page, should go back to that page, not search.
+          href="#/movies"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+          startIcon={<ArrowBack />}
+        >
+         Back
+        </Button>
         { movie && (
           <div className="movie-container mx-auto my-3 px-3 py-3 border">
+            <h4>{movie.title}</h4>
             <Card>
               <CardContent>
                 <div className="row">
@@ -85,7 +95,9 @@ class MovieClass extends Component {
                           // variant="h5"
                           // component="h3"
                           action={
-                            <EditMenu deleteMovie={this.deletemovie} editMovie={this.editMovie} />
+                            // <EditMenu deleteMovie={this.deletemovie} editMovie={this.editMovie} />
+                            <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deletemovie} editMovie={this.editMovie}/>
+
                           }
                           // title={movie.name}
                           title={movie.title}
@@ -107,21 +119,25 @@ class MovieClass extends Component {
                 </div>
               </CardContent>
               <CardActions>
-                <Tooltip title="Back">
-                  <Fab href="#/movies" aria-label="Back">
-                    <ArrowBack />
-                  </Fab>
-                </Tooltip>
-                <Tooltip title="Delete">
-                  <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
-                    <DeleteIcon />
-                  </Fab>
-                </Tooltip>
-                <Tooltip title="Edit">
-                  <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
-                    <EditIcon />
-                  </Fab>
-                </Tooltip>
+                <div className="row" style={{ backgroundColor: 'LavenderBlush', alignContent: 'center', alignSelf: 'flex-end' }}>
+                  <CardActions>
+                    <Tooltip title="Back">
+                      <Fab href="#/movies" aria-label="Back">
+                        <ArrowBack />
+                      </Fab>
+                    </Tooltip>
+                    <Tooltip title="Delete">
+                      <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
+                        <DeleteIcon />
+                      </Fab>
+                    </Tooltip>
+                    <Tooltip title="Edit">
+                      <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
+                        <EditIcon />
+                      </Fab>
+                    </Tooltip>
+                  </CardActions>
+                </div>
               </CardActions>
             </Card>
             { /* this "back" button needs to use history to go back, bc this single movie component is used from Movies and Genre  */ }

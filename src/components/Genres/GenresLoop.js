@@ -5,7 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
 import Spinner from 'react-bootstrap/Spinner'
 import Genre3 from './Genre3'
-import AddGenreDialog from './AddGenreDialog'
+import AddGenreDialog from './AddGenre/AddGenreDialog'
 
 class GenresLoop extends Component {
   constructor (props) {
