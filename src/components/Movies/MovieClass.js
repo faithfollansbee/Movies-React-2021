@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
@@ -14,6 +14,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditMenu from './EditMenu'
 import Button from '@material-ui/core/Button'
+import PropTypes from 'prop-types'
 
 const fabStyle1 = {
 }
@@ -22,6 +23,11 @@ class MovieClass extends Component {
     movie: null,
     deleted: false
   }
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
 
   async componentDidMount (props) {
     try {
@@ -49,28 +55,44 @@ class MovieClass extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
+      // .then(() => history.goBack())
   }
   editMovie = () => {
     console.log('edit eventually')
   }
+  backFunction = () => {
+    // this.history.goBack()
+    // this.setState({ deleted: true })
+    console.log(this.props)
+    this.props.history.goBack()
+  }
 
   render () {
+    const { location, history } = this.props
     console.log(this.state.movie)
+    console.log(history)
     const { movie, deleted } = this.state
     if (deleted) {
-      return <Redirect to={
-        {
-          pathname: '/movies'
-        }
-      }/>
+      history.goBack()
+      // return <Redirect to={
+      //   {
+      //     pathname: '/movies'
+      //   }
+      // }/>
     }
     // <p> {movie.genre.name} </p>
 
     return (
       <div className="layout-style">
+        <div>You are now at {location.pathname}</div>
+        <div>You are now at {location.history}</div>
         <Button
+          onClick={this.backFunction}
+          // <div>You are now at (location.history) {history}</div>
+          // <div>You are now at {location.pathname}</div>
+          // <div>You are now at (Match) {match}</div>
           // if on trending page, should go back to that page, not search.
-          href="#/movies"
+          // href="#/movies"
           style={{ color: 'inherit', textDecoration: 'none' }}
           startIcon={<ArrowBack />}
         >
@@ -110,9 +132,9 @@ class MovieClass extends Component {
                         <Typography variant="subtitle1">
                           <p> {movie.description} </p>
                         </Typography>
-                        <Typography color="textSecondary" variant="subtitle1">
+                        {/* <Typography color="textSecondary" variant="subtitle1">
                           <p> Saved to: {movie.genre.name}</p>
-                        </Typography>
+                        </Typography> */}
                       </CardContent>
                     </div>
                   </div>
@@ -122,7 +144,7 @@ class MovieClass extends Component {
                 <div className="row" style={{ backgroundColor: 'LavenderBlush', alignContent: 'center', alignSelf: 'flex-end' }}>
                   <CardActions>
                     <Tooltip title="Back">
-                      <Fab href="#/movies" aria-label="Back">
+                      <Fab onClick={this.backFunction} aria-label="Back">
                         <ArrowBack />
                       </Fab>
                     </Tooltip>

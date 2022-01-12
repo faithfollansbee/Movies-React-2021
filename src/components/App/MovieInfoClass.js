@@ -59,13 +59,19 @@ class MovieInfoClass extends Component {
         console.error(error)
       })
   }
+  backFunction = () => {
+    // this.history.goBack()
+    // this.setState({ deleted: true })
+    console.log(this.props)
+    this.props.history.goBack()
+  }
   render () {
     console.log(this.state)
     // console.log(this.props)
     return (
       <div className="layout-style">
         <Button
-          href="#/search" // if on trending page, should go back to that page, not search.
+          onClick={this.backFunction}
           style={{ color: 'inherit', textDecoration: 'none' }}
           startIcon={<ArrowBack />}
         >
@@ -123,7 +129,7 @@ class MovieInfoClass extends Component {
               <div className="row" style={{ backgroundColor: 'MintCream', alignContent: 'center', alignSelf: 'flex-end' }}>
                 <CardActions>
                   <Tooltip title="Back">
-                    <Fab href="#/search" aria-label="Back">
+                    <Fab onClick={this.backFunction} aria-label="Back">
                       <ArrowBack />
                     </Fab>
                   </Tooltip>

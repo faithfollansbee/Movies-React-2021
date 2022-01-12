@@ -19,6 +19,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 // import EditIcon from '@material-ui/icons/Edit'
 import EditGenreMenu from './EditGenre/EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
+import PropTypes from 'prop-types'
 
 class Genre extends React.Component {
   state = {
@@ -29,6 +30,11 @@ class Genre extends React.Component {
     filtered: false,
     addingMovie: false
   }
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
 
   handleRefresh = async () => {
     const response = await axios(`${apiUrl}/genres/${this.props.match.params.id}`)
@@ -132,7 +138,10 @@ class Genre extends React.Component {
         }
       })
       .then(() => this.setState({ deleted: true }))
-      .then(() => this.props.history.push('/genres'))
+      // .then(() => this.props.history.push('/genres'))
+      .then(response => {
+        this.props.history.goBack()
+      })
   }
   editGenre = () => {
     console.log('edit eventually')

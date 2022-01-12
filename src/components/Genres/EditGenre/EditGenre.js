@@ -5,6 +5,7 @@ import EditGenreForm from './EditGenreForm'
 // import GenreDialogForm from './GenreDialogForm'
 import { withRouter } from 'react-router-dom'
 // import { withRouter, Redirect } from 'react-router-dom'
+// import PropTypes from 'prop-types'
 
 class EditGenre extends Component {
   state = {
@@ -15,6 +16,11 @@ class EditGenre extends Component {
     // user: this.props.user,
     submitted: false
   }
+  // static propTypes = {
+  //   match: PropTypes.object.isRequired,
+  //   location: PropTypes.object.isRequired,
+  //   history: PropTypes.object.isRequired
+  // };
 
   handleChange = event => {
     this.setState({
@@ -89,7 +95,7 @@ class EditGenre extends Component {
       // if editting from specific genre, should redirect to that same genre. if editting from
       // genre list, redirect to all genres
       .then(response => {
-        this.props.history.push('/genres')
+        this.props.history.goBack()
       })
     this.props.handleSubmitClose()
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
@@ -7,6 +7,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Fade from '@material-ui/core/Fade'
 import { withStyles } from '@material-ui/core/styles'
 import EditMenu from './EditMenu'
+import PropTypes from 'prop-types'
 
 const StyledTooltip = withStyles({
   tooltip: {
@@ -19,6 +20,11 @@ class MaterializeMovieClass extends Component {
     movie: '',
     deleted: false
   }
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
 
   async componentDidMount (props) {
     try {
@@ -47,19 +53,23 @@ class MaterializeMovieClass extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
+    // history.goBack()
+      // .then(response => {
+      //   this.props.history.goBack()
+      // })
   }
   editMovie = () => {
   }
 
   render () {
-    const { movie, deleted } = this.state
-    if (deleted) {
-      return <Redirect to={
-        {
-          pathname: '/movies'
-        }
-      }/>
-    }
+    const { movie } = this.state
+    // if (deleted) {
+    //   return <Redirect to={
+    //     {
+    //       pathname: '/movies'
+    //     }
+    //   }/>
+    // }
     return (
       <div className="mx-auto py-3 px-1">
         { movie && (

@@ -16,6 +16,7 @@ export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
     setAnchorEl(event.currentTarget)
     console.log('EditGenreMenu handleClick()')
   }
+
   const handleClose = () => {
     setAnchorEl(null)
     console.log('EditGenreMenu handleClose()')
