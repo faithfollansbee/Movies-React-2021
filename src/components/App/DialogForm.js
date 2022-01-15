@@ -87,15 +87,15 @@ class SaveMovie extends Component {
       //   this.props.history.goBack('/search')
       //   console.log('from savemovie')
       // })
-      .then(() => this.props.history.push('/movies'))
-      // .then(() => this.setState({ saved: true }))
-
     // .then(response => {
     //   this.props.history.goBack(`/movies/${this.state.genre._id}`)
     // })
+      .then(() => this.props.history.push('/movies'))
+      // .then(() => this.setState({ saved: true }))
 
       .catch(err => this.setState({ error: err.message }))
     this.props.handleSubmitClose()
+    console.log('saved movie from Dialog Form, from a trending movie')
   }
   handleOptionChange = changeEvent => {
     this.setState({

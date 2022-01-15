@@ -68,12 +68,12 @@ class MovieClass extends Component {
   }
 
   render () {
-    const { location, history } = this.props
-    console.log(this.state.movie)
-    console.log(history)
+    // const { history } = this.props
+    // console.log(this.state.movie)
+    // console.log(history)
     const { movie, deleted } = this.state
     if (deleted) {
-      history.goBack()
+      this.props.history.goBack()
       // return <Redirect to={
       //   {
       //     pathname: '/movies'
@@ -84,15 +84,8 @@ class MovieClass extends Component {
 
     return (
       <div className="layout-style">
-        <div>You are now at {location.pathname}</div>
-        <div>You are now at {location.history}</div>
         <Button
           onClick={this.backFunction}
-          // <div>You are now at (location.history) {history}</div>
-          // <div>You are now at {location.pathname}</div>
-          // <div>You are now at (Match) {match}</div>
-          // if on trending page, should go back to that page, not search.
-          // href="#/movies"
           style={{ color: 'inherit', textDecoration: 'none' }}
           startIcon={<ArrowBack />}
         >
@@ -100,7 +93,6 @@ class MovieClass extends Component {
         </Button>
         { movie && (
           <div className="movie-container mx-auto my-3 px-3 py-3 border">
-            <h4>{movie.title}</h4>
             <Card>
               <CardContent>
                 <div className="row">
@@ -109,11 +101,12 @@ class MovieClass extends Component {
                       { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '100', height: 500 }}/> }
                     </div>
                   </div>
-                  <div className="col">
+                  <div className="col" style={{ display: 'flex' }}>
 
-                    <div style={{ flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                       <div>
                         <CardHeader
+                          padding="5px"
                           // variant="h5"
                           // component="h3"
                           action={
@@ -122,7 +115,12 @@ class MovieClass extends Component {
 
                           }
                           // title={movie.name}
-                          title={movie.title}
+                          // title={
+                          //   <h4 style={{ alignSelf: 'flex-start' }}>{movie.title}</h4>
+                          // }
+                          title={
+                            <Typography component="h4" variant="h4">{movie.title}</Typography>
+                          }
                           // subheader={movie.released}
                           subheader={movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('/')}
                         />
@@ -136,31 +134,27 @@ class MovieClass extends Component {
                           <p> Saved to: {movie.genre.name}</p>
                         </Typography> */}
                       </CardContent>
+                      <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
+                        <Tooltip title="Back">
+                          <Fab onClick={this.backFunction} aria-label="Back">
+                            <ArrowBack />
+                          </Fab>
+                        </Tooltip>
+                        <Tooltip title="Delete">
+                          <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
+                            <DeleteIcon />
+                          </Fab>
+                        </Tooltip>
+                        <Tooltip title="Edit">
+                          <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
+                            <EditIcon />
+                          </Fab>
+                        </Tooltip>
+                      </CardActions>
                     </div>
                   </div>
                 </div>
               </CardContent>
-              <CardActions>
-                <div className="row" style={{ backgroundColor: 'LavenderBlush', alignContent: 'center', alignSelf: 'flex-end' }}>
-                  <CardActions>
-                    <Tooltip title="Back">
-                      <Fab onClick={this.backFunction} aria-label="Back">
-                        <ArrowBack />
-                      </Fab>
-                    </Tooltip>
-                    <Tooltip title="Delete">
-                      <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
-                        <DeleteIcon />
-                      </Fab>
-                    </Tooltip>
-                    <Tooltip title="Edit">
-                      <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
-                        <EditIcon />
-                      </Fab>
-                    </Tooltip>
-                  </CardActions>
-                </div>
-              </CardActions>
             </Card>
             { /* this "back" button needs to use history to go back, bc this single movie component is used from Movies and Genre  */ }
           </div>

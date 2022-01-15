@@ -50,17 +50,26 @@ class Genre3 extends React.Component {
         }
       })
       .then(() => this.setState({ deleted: true }))
-      // .then(response => {
-      //   this.props.history.push('/genres')
-      // })
-      // .then(() => this.props.history.replace('/genres'))
+    console.log('location', this.props.location)
+    console.log('history', this.props.history)
+    console.log(this.props)
+    console.log(this.props.match.url)
+    // this.props.location.pathname
+    // this.props.history.go(this.props.location.pathname)
+    // this.props.history.go()
+    // .then(response => {
+    //   this.props.history.push('/genres')
+    // })
+    // .then(() => this.props.history.replace('/genres'))
     // this.props.history.replace('/genres')
-    console.log('deleted genre')
-    // this.forceUpdate()
+    // console.log('deleted genre')
+    // .then(() => this.forceUpdate())
+    // .then(response => {
+    //   this.props.history.goBack()
+    // })
     // this.props.deleted.push('true')
     // .then(() => router.push('/some/route'))
-    // router.push('/genres')
-    // this.props.history.push('/genres')
+    // router.push(this.props.location.pathname)
     // .then(() => this.props.history.push('/genres'))
   }
 
@@ -69,7 +78,8 @@ class Genre3 extends React.Component {
     if (deleted) {
       return <Redirect to={
         {
-          pathname: '/genres/'
+          // pathname: '/genres/'
+          pathname: this.props.location.pathname
         }
       }/>
     }

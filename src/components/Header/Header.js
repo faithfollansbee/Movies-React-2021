@@ -7,17 +7,12 @@ import AccountMenu from './UserMenu'
 
 const authenticatedOptions = (
   <Fragment>
-    { /*  <Nav.Link href="#change-password">Change Password</Nav.Link> */}
-    { /* <Nav.Link href="#sign-out">Sign Out</Nav.Link> */}
     <Nav.Link href="#movies">Movies</Nav.Link>
     <Nav.Link href="#genres">Genres</Nav.Link>
     <Nav.Link href="#search">Search</Nav.Link>
-    <Nav.Link href="#watchlist">My List</Nav.Link>
+    <Nav.Link href="#lists">My Lists</Nav.Link>
     <Nav.Link href="#favorites">Favorites</Nav.Link>
     <Nav.Link href="#trending">Trending</Nav.Link>
-    { /* <Nav.Link href="#creategenre">Add Genre</Nav.Link> */}
-    { /* <Nav.Link href="#trending">Trending</Nav.Link> */}
-    { /* <Nav.Link href="#more-info">moreinfo</Nav.Link> */}
   </Fragment>
 )
 

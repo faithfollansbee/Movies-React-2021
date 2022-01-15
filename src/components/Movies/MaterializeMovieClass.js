@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
@@ -7,7 +7,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Fade from '@material-ui/core/Fade'
 import { withStyles } from '@material-ui/core/styles'
 import EditMenu from './EditMenu'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 const StyledTooltip = withStyles({
   tooltip: {
@@ -18,13 +18,14 @@ const StyledTooltip = withStyles({
 class MaterializeMovieClass extends Component {
   state = {
     movie: '',
-    deleted: false
+    deleted: false,
+    edited: false
   }
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
+  // static propTypes = {
+  //   match: PropTypes.object.isRequired,
+  //   location: PropTypes.object.isRequired,
+  //   history: PropTypes.object.isRequired
+  // };
 
   async componentDidMount (props) {
     try {
@@ -53,23 +54,25 @@ class MaterializeMovieClass extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
+    console.log('deleted, with function from MaterializeMovieClass')
     // history.goBack()
-      // .then(response => {
-      //   this.props.history.goBack()
-      // })
+    // .then(response => {
+    //   this.props.history.goBack()
+    // })
   }
   editMovie = () => {
+    console.log('edit function from MaterializeMovieClass')
   }
 
   render () {
-    const { movie } = this.state
-    // if (deleted) {
-    //   return <Redirect to={
-    //     {
-    //       pathname: '/movies'
-    //     }
-    //   }/>
-    // }
+    const { movie, deleted } = this.state
+    if (deleted) {
+      return <Redirect to={
+        {
+          pathname: this.props.location.pathname
+        }
+      }/>
+    }
     return (
       <div className="mx-auto py-3 px-1">
         { movie && (

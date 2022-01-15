@@ -8,6 +8,16 @@
 //     display: 'flex'
 //   }
 // },
+.MuiCardHeader-root {
+  padding: 5px !important;
+}
+.MuiCardHeader-content {
+  margin-top: -8px;
+  padding: 5px;
+}
+.MuiCardHeader-action {
+  margin-top: 0px !important;
+}
 .layout-style {
   margin-top: 10px;
   // margin: 15;

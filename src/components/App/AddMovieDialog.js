@@ -7,6 +7,7 @@ import AddIcon from '@material-ui/icons/Add'
 import DialogForm from './DialogForm'
 import Tooltip from '@material-ui/core/Tooltip'
 import Fab from '@material-ui/core/Fab'
+
 export default function AddMovieDialog (props) {
   const [open, setOpen] = React.useState(false)
 

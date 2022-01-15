@@ -107,6 +107,7 @@ class GenresLoop extends Component {
   // }
 
   render (props) {
+    console.log('genres', this.state.genres)
     // const { userGenres } = this.state
     // console.log('genres', this.state.genres)
     // const { genres } = this.state
@@ -118,6 +119,19 @@ class GenresLoop extends Component {
         </div>
       )
     }
+    // else if (this.state.genres.length === 0) {
+    //   return (
+    //     <div>no genres to see here</div>
+    //   )
+    // }
+    let genreStatus
+
+    if (!this.state.genres.length) {
+      genreStatus = (
+        <div className="noGenres">No genres added yet. get started! </div>
+      )
+    }
+    // { this.state.genres ? return() <div></div> : }
     // console.log(this.state)
     // console.log('genres detail', this.state.genres)
     // console.log('number of genres', this.state.genres.length)
@@ -170,6 +184,7 @@ class GenresLoop extends Component {
                 genre={this.genre}
               />
             ))}
+            {genreStatus}
           </div>
         </Fragment>
       </div>

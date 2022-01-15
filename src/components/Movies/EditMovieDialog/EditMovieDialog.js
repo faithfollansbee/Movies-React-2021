@@ -13,7 +13,7 @@ export default function EditMovieDialog (props) {
   const handleClickOpen = () => {
     setOpen(true)
     console.log('EditGenreDialog handleClickOpen()')
-    console.log(props.movie)
+    // console.log(props.movie)
   }
 
   const handleClose = () => {

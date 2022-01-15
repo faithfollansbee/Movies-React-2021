@@ -8,27 +8,17 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import MovieClass from '../Movies/MovieClass'
-// import UpdateMovie from '../Movies/UpdateMovie'
 import Movies from '../Movies/Movies'
 import Genre from '../Genres/Genre'
 import GenresLoop from '../Genres/GenresLoop'
 import AddGenre from '../Genres/AddGenre/AddGenre'
-// import UpdateGenre from '../Genres/UpdateGenre'
 import SearchArea from './SearchArea'
 import SearchResults from './SearchResults'
 import Trending from './trending'
 import MovieInfoClass from './MovieInfoClass'
 import Container from '@material-ui/core/container'
 import Pagination from './Pagination'
-// import SearchAppBar from './SearchAppBar'
-// import MovieInfo from './TestMovieInfo'
-// import SaveMovie from './SaveMovie'
-// import Landing from '../landing/landing'
-// import TrendingFunction from './trendingFunction'
-// import MovieInfo from './MovieInfo'
-// import TestMovieInfo from './TestMovieInfo'
-// import Genre3 from '../Genres/Genre3'
-// import Genres from '../Genres/Genres'
+
 class App extends Component {
   constructor () {
     super()
@@ -96,7 +86,7 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     //  this.apiKey = process.env.API_KEY
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&language=en-US&query=${this.state.searchTerm}`)
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&query=${this.state.searchTerm}`)
       .then(data => data.json())
       .then(data => {
         // this.setState({ movies: [...data.results], totalResults: data.total_results })
@@ -109,7 +99,7 @@ class App extends Component {
   }
   nextPage = (pageNumber) => {
     event.preventDefault()
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&language=en-US&query=${this.state.searchTerm}&page=${pageNumber}`)
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&query=${this.state.searchTerm}&page=${pageNumber}`)
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results], currentPage: pageNumber })
@@ -125,7 +115,7 @@ class App extends Component {
     // console.log('got trending')
     // event.preventDefault()
     //  this.apiKey = process.env.API_KEY
-    fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=4a0223110b505876ba0985949c17e865&language=en-US')
+    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results] })

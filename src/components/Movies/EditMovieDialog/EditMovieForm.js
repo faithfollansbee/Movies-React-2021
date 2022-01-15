@@ -61,10 +61,14 @@ class EditMovieForm extends Component {
       .then(response => {
         this.props.history.push(`/movies${this.props.id}`)
       })
-      // if editting from specific genre, should redirect to that same genre. if editting from
-      // genre list, redirect to all genres
+      // .then(() => this.props.history.push(`/movies/${this.props.id}`))
+      .catch(err => this.setState({ error: err.message }))
+
+    // if editting from specific genre, should redirect to that same genre. if editting from
+    // genre list, redirect to all genres
       .then(response => {
-        this.props.history.push('/movies')
+        // this.props.history.push('/movies')
+        this.props.history.goBack()
       })
     this.props.handleSubmitClose()
   }

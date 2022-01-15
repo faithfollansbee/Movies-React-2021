@@ -2,13 +2,18 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import FormControl from 'react-bootstrap/FormControl'
+// import Row from 'react-bootstrap/Row'
+// import Skeleton from '@material-ui/core/Skeleton'
+// import Skeleton from '@mui/material/Skeleton'
+
+// import Placeholder from 'react-bootstrap/Placeholder'
 // import Button from '@material-ui/core/Button'
 // import CardHeader from '@material-ui/core/CardHeader'
 // import IconButton from '@material-ui/core/IconButton'
 // import FavoriteIcon from '@material-ui/icons/Favorite'
 // import EditIcon from '@material-ui/icons/Edit'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
-import Spinner from 'react-bootstrap/Spinner'
+// import Spinner from 'react-bootstrap/Spinner'
 // import Movie2 from './Movie2'
 // import Movie3 from './Movie3'
 // import Movie from '../App/Movie.js'
@@ -22,6 +27,15 @@ import MovieAlt from './MovieAlt'
 //   paddingLeft: '15px',
 //   right: '5px'
 // }
+// const layoutStyle = {
+//   marginTop: 10,
+//   flexGrow: 1
+// }
+const rowStyle = {
+  // display: flex
+  // marginLeft: 1,
+  // marginRight: 1
+}
 
 class movies extends Component {
   constructor () {
@@ -112,12 +126,21 @@ class movies extends Component {
     if (this.state.isLoading) {
       return (
         <div className="text-center">
-          <Spinner animation="border" variant="primary" />
+          {/* <Spinner animation="border" variant="primary" /> */}
+        </div>
+      )
+    }
+    let moviesStatus
+
+    if (!this.state.movies.length) {
+      moviesStatus = (
+        <div>
+          <div className="noMovies">No movies added yet. get started! </div>
         </div>
       )
     }
     return (
-      <div className="layout-style">
+      <div className="results-container my-5">
         <Fragment>
           <h1 className="title-style"><strong>Your movies</strong></h1>
           <div className="search">
@@ -131,7 +154,7 @@ class movies extends Component {
               </Fragment>
             }
           </div>
-          <div className="row mx-1">
+          <div className="row" style={rowStyle}>
             {
               this.state.userMovies.map((movie) => {
                 return (
@@ -153,6 +176,7 @@ class movies extends Component {
                 )
               })
             }
+            {moviesStatus}
           </div>
         </Fragment>
       </div>

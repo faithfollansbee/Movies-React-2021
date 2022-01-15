@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import CardHeader from '@material-ui/core/CardHeader'
+// import CardFooter from '@material-ui/core/CardFooter'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
@@ -77,7 +78,6 @@ class MovieInfoClass extends Component {
         >
          Back
         </Button>
-        <h4>{this.state.currentMovie.title}</h4>
         <div style={{ backgroundColor: 'LavenderBlush' }} className="movie-container mx-auto my-3 px-3 py-3 border">
           <Card>
             <div className="row">
@@ -86,9 +86,8 @@ class MovieInfoClass extends Component {
                   { this.state.currentMovie.poster_path == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${this.state.currentMovie.poster_path}`} alt="card image" style={{ width: '100', height: 500 }}/> }
                 </div>
               </div>
-              <div className="col" style={{ backgroundColor: 'AliceBlue' }}>
-
-                <div style={{ flexDirection: 'column' }}>
+              <div className="col" style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                   <CardHeader
                     // variant="h5"
                     // component="h3"
@@ -99,7 +98,10 @@ class MovieInfoClass extends Component {
                         </IconButton>
                       </Tooltip>
                     }
-                    title={this.state.currentMovie.title}
+                    // title={this.state.currentMovie.title}
+                    title={
+                      <Typography component="h4" variant="h4">{this.state.currentMovie.title}</Typography>
+                    }
                     subheader={this.state.currentMovie.release_date.substring(5).split('-').concat(this.state.currentMovie.release_date.substring(0, 4)).join('/')}
                   />
                   <CardContent>
@@ -121,27 +123,22 @@ class MovieInfoClass extends Component {
                       {this.props.currentMovie.overview}
                     </Typography>
                   </CardContent>
+                  <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
+                    <Tooltip title="Back">
+                      <Fab onClick={this.backFunction} aria-label="Back">
+                        <ArrowBack />
+                      </Fab>
+                    </Tooltip>
+                    <Tooltip title="Favorite">
+                      <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                        <FavoriteIcon />
+                      </Fab>
+                    </Tooltip>
+                    <AddMovieDialog id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.props.currentMovie.tagline} runtime={this.props.currentMovie.runtime} />
+                  </CardActions>
                 </div>
               </div>
             </div>
-
-            <CardActions>
-              <div className="row" style={{ backgroundColor: 'MintCream', alignContent: 'center', alignSelf: 'flex-end' }}>
-                <CardActions>
-                  <Tooltip title="Back">
-                    <Fab onClick={this.backFunction} aria-label="Back">
-                      <ArrowBack />
-                    </Fab>
-                  </Tooltip>
-                  <Tooltip title="Favorite">
-                    <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
-                      <FavoriteIcon />
-                    </Fab>
-                  </Tooltip>
-                  <AddMovieDialog id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.props.currentMovie.tagline} runtime={this.props.currentMovie.runtime} />
-                </CardActions>
-              </div>
-            </CardActions>
           </Card>
         </div>
       </div>
