@@ -14,7 +14,9 @@ import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddMovieDialog from './AddMovieDialog'
-
+const addDialogStyle = {
+  position: 'relative'
+}
 class MovieInfoClass extends Component {
   state = {
     movies: [],
@@ -60,85 +62,88 @@ class MovieInfoClass extends Component {
         console.error(error)
       })
   }
-  backFunction = () => {
-    // this.history.goBack()
-    // this.setState({ deleted: true })
-    console.log(this.props)
-    this.props.history.goBack()
-  }
+  // backFunction = () => {
+  //   console.log(this.props)
+  //   this.props.history.goBack()
+  // }
   render () {
     console.log(this.state)
     // console.log(this.props)
     return (
       <div className="layout-style">
-        <Button
-          onClick={this.backFunction}
-          style={{ color: 'inherit', textDecoration: 'none' }}
-          startIcon={<ArrowBack />}
-        >
-         Back
-        </Button>
+        <Tooltip title="back">
+          <Button
+            onClick={this.props.history.goBack}
+            style={{ color: 'inherit', textDecoration: 'none' }}
+            startIcon={<ArrowBack />}
+          >
+           Back
+          </Button>
+        </Tooltip>
         <div style={{ backgroundColor: 'LavenderBlush' }} className="movie-container mx-auto my-3 px-3 py-3 border">
           <Card>
-            <div className="row">
-              <div>
-                <div style={{ width: '100%' }}>
-                  { this.state.currentMovie.poster_path == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${this.state.currentMovie.poster_path}`} alt="card image" style={{ width: '100', height: 500 }}/> }
-                </div>
-              </div>
-              <div className="col" style={{ display: 'flex' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                  <CardHeader
-                    // variant="h5"
-                    // component="h3"
-                    action={
-                      <Tooltip title="more">
-                        <IconButton tooltip="settings">
-                          <MoreVertIcon />
-                        </IconButton>
-                      </Tooltip>
-                    }
-                    // title={this.state.currentMovie.title}
-                    title={
-                      <Typography component="h4" variant="h4">{this.state.currentMovie.title}</Typography>
-                    }
-                    subheader={this.state.currentMovie.release_date.substring(5).split('-').concat(this.state.currentMovie.release_date.substring(0, 4)).join('/')}
-                  />
-                  <CardContent>
+            <CardContent>
+              <div className="row">
 
-                    <div style={{ display: 'flex' }}>
-                      { this.state.genres.map((genre, i) => {
-                        return (
-                          <Typography key={i}>{genre.name}&nbsp;</Typography>
-                        )
-                      })}
+                <div>
+                  <div style={{ width: '100%' }}>
+                    { this.state.currentMovie.poster_path == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${this.state.currentMovie.poster_path}`} alt="card image" style={{ width: '100', height: 500 }}/> }
+                  </div>
+                </div>
+
+                <div className="col">
+                  <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <div>
+                      <CardHeader
+                        // variant="h5"
+                        // component="h3"
+                        action={
+                          // <OptionMenu />
+                          <Tooltip title="more">
+                            <IconButton className="material-icons right" tooltip="settings">
+                              <MoreVertIcon />
+                            </IconButton>
+                          </Tooltip>
+                        }
+                        // title={this.state.currentMovie.title}
+                        title={
+                          <Typography component="h4" variant="h4">{this.state.currentMovie.title}</Typography>
+                        }
+                        subheader={this.state.currentMovie.release_date.substring(5).split('-').concat(this.state.currentMovie.release_date.substring(0, 4)).join('/')}
+                      />
                     </div>
-                    <br/>
-                    <Typography><a href={this.state.currentMovie.homepage}>{this.state.currentMovie.homepage}</a></Typography>
-                    { this.state.currentMovie.tagline ? <Typography>&quot;{this.state.currentMovie.tagline}&quot;</Typography> : '' }
-                    <Typography>runtime {this.state.currentMovie.runtime}</Typography>
-                    <Typography>budget {this.state.currentMovie.budget}</Typography>
-                    <Typography>revenue {this.state.currentMovie.revenue}</Typography>
-                    <Typography variant="body2">
-                      {this.props.currentMovie.overview}
-                    </Typography>
-                  </CardContent>
-                  <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
-                    <Tooltip title="Back">
-                      <Fab onClick={this.backFunction} aria-label="Back">
-                        <ArrowBack />
-                      </Fab>
-                    </Tooltip>
-                    <Tooltip title="Favorite">
-                      <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
-                        <FavoriteIcon />
-                      </Fab>
-                    </Tooltip>
-                    <AddMovieDialog id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.props.currentMovie.tagline} runtime={this.props.currentMovie.runtime} />
-                  </CardActions>
+
+                    <CardContent>
+
+                      <div style={{ display: 'flex' }}>
+                        { this.state.genres.map((genre, i) => {
+                          return (
+                            <Typography key={i}>{genre.name}&nbsp;</Typography>
+                          )
+                        })}
+                      </div>
+                      <br/>
+                      <Typography><a href={this.state.currentMovie.homepage}>{this.state.currentMovie.homepage}</a></Typography>
+                      { this.state.currentMovie.tagline ? <Typography>&quot;{this.state.currentMovie.tagline}&quot;</Typography> : '' }
+                      <Typography>runtime {this.state.currentMovie.runtime}</Typography>
+                      <Typography>budget {this.state.currentMovie.budget}</Typography>
+                      <Typography>revenue {this.state.currentMovie.revenue}</Typography>
+                      <Typography variant="body1">
+                        {this.props.currentMovie.overview}
+                      </Typography>
+                    </CardContent>
+                    <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
+                      <Tooltip title="Favorite">
+                        <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                          <FavoriteIcon />
+                        </Fab>
+                      </Tooltip>
+                      <AddMovieDialog style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.props.currentMovie.tagline} runtime={this.props.currentMovie.runtime} />
+                    </CardActions>
+                  </div>
                 </div>
               </div>
-            </div>
+            </CardContent>
           </Card>
         </div>
       </div>

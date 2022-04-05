@@ -4,18 +4,16 @@ import { withRouter } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import apiUrl from '../../apiConfig'
 import Typography from '@material-ui/core/Typography'
-// import Row from 'react-bootstrap/Row'
-// import Movie2 from '../Movies/Movie2'
-// import Movie3 from '../Movies/Movie3'
 import MaterializeMovieClass from '../Movies/MaterializeMovieClass'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-// import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
+import ArrowBack from '@material-ui/icons/ArrowBack'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
 // import EditGenreDialog from './EditGenre/EditGenreDialog'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 // import EditIcon from '@material-ui/icons/Edit'
 import EditGenreMenu from './EditGenre/EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -193,7 +191,7 @@ class Genre extends React.Component {
                         <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete} />
                       }
                       title={genre.name}
-                      subheader={`last updated: ${genre.updatedAt.split('T').shift()}`}
+                      // subheader={`last updated: ${genre.updatedAt.split('T').shift()}`}
                     />
                     { /* {genre.updatedAt.split('T')[0]}
                     {genre.updatedAt.split('T', 1)[0]} */ }
@@ -220,14 +218,19 @@ class Genre extends React.Component {
                   {updateMovieButton}
                 </CardContent>
                 <CardActions>
-                  <IconButton href={'#genres/'} aria-label="Back">
-                    <ArrowBackIosIcon />
-                  </IconButton>
                 </CardActions>
               </Card>
             </div>
           )}
           <Typography><i>Displaying x out of {this.state.movies.length} movies</i></Typography>
+          <Tooltip title="back">
+            <IconButton onClick={this.props.history.goBack} aria-label="BACK">
+              <ArrowBack />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="back">
+            <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
+          </Tooltip>
         </div>
       )
     }

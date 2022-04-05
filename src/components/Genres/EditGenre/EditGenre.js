@@ -42,7 +42,6 @@ class EditGenre extends Component {
   //       }
   //     })
   //     this.setState({ recipes: response.data.recipes, isLoading: false })
-  //     this.setState({ userRecipes: response.data.recipes })
   //   } catch (error) {
   //   }
   // }

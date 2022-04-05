@@ -8,7 +8,11 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 // import AddMovieDialog from './AddMovieDialog'
-
+// import Skeleton from '@material-ui/lab/Skeleton'
+// const mediaStyle = {
+//   height: '360px',
+//   width: '290px'
+// }
 const fabStyle3 = {
   bottom: 60,
   left: 100
@@ -63,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 const MovieAlt = (props) => {
   const classes = useStyles()
+  // console.log(props)
   return (
     <div className="mx-auto py-3 px-1">
       <Card style={{ width: '18rem' }}
@@ -75,12 +80,12 @@ const MovieAlt = (props) => {
               props.image == null
                 ? <CardMedia
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt="no poster found"
                   image={'https://i.imgur.com/R7mqXKL.png'}
                 />
                 : <CardMedia
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt="movie-poster"
                   image={`https://image.tmdb.org/t/p/w185/${props.image}`}
                 />
             }
@@ -99,4 +104,15 @@ const MovieAlt = (props) => {
     </div>
   )
 }
+
+// {props.image ? (
+//   <CardMedia
+//     component="img"
+//     alt="movie-poster"
+//     image={`https://image.tmdb.org/t/p/w185/${props.image}`}
+//   />
+// ) : (
+//   <Skeleton animation="wave" variant="rect" style={mediaStyle} />
+// )}
+
 export default MovieAlt

@@ -5,10 +5,10 @@ import Button from 'react-bootstrap/Button'
 const GenreForm = ({ genre, handleChange, handleSubmit, handleSubmitClose }) => (
   <Form onSubmit={handleSubmit}>
     <Form.Group controlId="name">
-      <Form.Label>Genre title</Form.Label>
+      { /* <Form.Label>Genre title</Form.Label> */ }
       <Form.Control
         type="text"
-        placeholder="Enter a name pls"
+        placeholder="enter a name"
         // value={genre.name}
         onChange={handleChange}
         name="name"

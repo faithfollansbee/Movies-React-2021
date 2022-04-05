@@ -9,7 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
 
-export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, image, description, released }) {
+export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, image, description, released, currentGenre, currentGenreId }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -70,7 +70,7 @@ export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, 
         // anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <span>
-          <EditMovieDialog onMenuClose={handleClose} id={id} user={user} movie={movie} title={title} genre={genre} image={image} released={released} description={description}/>
+          <EditMovieDialog onMenuClose={handleClose} id={id} user={user} movie={movie} title={title} currentGenre={currentGenre} genre={genre} image={image} released={released} description={description}/>
         </span>
         <MenuItem onClick={deleteMovie} component="a">
           <ListItemIcon >

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
 import Spinner from 'react-bootstrap/Spinner'
 import Genre3 from './Genre3'
@@ -149,11 +149,7 @@ class GenresLoop extends Component {
         <Fragment>
           <h2 className="title-style">Your genres</h2>
           <div>
-            <Tooltip title="New Genre">
-              <span>
-                <AddGenreDialog user={this.props.user} />
-              </span>
-            </Tooltip>
+            <AddGenreDialog user={this.props.user} />
           </div>
           <div className="search">
             {

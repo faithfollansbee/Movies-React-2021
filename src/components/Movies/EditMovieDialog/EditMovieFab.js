@@ -2,20 +2,14 @@ import React from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import AddIcon from '@material-ui/icons/Add'
-// import IconButton from '@material-ui/core/IconButton'
+import EditIcon from '@material-ui/icons/Edit'
 
-import DialogForm from './DialogForm'
+// import DialogForm from './DialogForm'
+import EditMovieForm from './EditMovieForm'
 import Tooltip from '@material-ui/core/Tooltip'
 import Fab from '@material-ui/core/Fab'
-const dialogStyle = {
-  // position: 'absolute'
-}
-const fabStyle = {
-  bottom: 60,
-  left: 70
-}
-export default function AddMovieDialog (props) {
+
+export default function EditMovieFab (props) {
   const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {
@@ -57,29 +51,28 @@ export default function AddMovieDialog (props) {
   // </DialogContentText>
   // "MuiDialog-scrollPaper"
   // "MuiDialog-paperFullWidth"
-  // <Tooltip title="Save">
-  //   <IconButton onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-  //     <AddIcon />
-  //   </IconButton>
-  // </Tooltip>
-
   return (
-    <span style={dialogStyle}>
-      <Tooltip title="Add">
-        <Fab style={fabStyle} size="small" onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-          <AddIcon />
+    <div>
+      <Tooltip title="Edit">
+        <Fab onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit">
+          <EditIcon className="material-icons right"/>
         </Fab>
       </Tooltip>
       <Dialog
+        user={props.user}
+        movie={props.movie}
+        title={props.title}
+        genre={props.genre}
+        id={props.id}
         fullWidth={true}
         maxWidth="sm"
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
-        <DialogContent>
-          <DialogForm handleSubmitClose={handleClose} user={props.user} saved={props.saved} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image} categories={props.categories} runtime={props.runtime} tagline={props.tagline}/>
+        <DialogTitle id="form-dialog-title">Edit &quot;{props.title}&quot;</DialogTitle>
+        <DialogContent user={props.user}>
+          <EditMovieForm user={props.user} movie={props.movie} id={props.id} title={props.title} genre={props.genre} released={props.released} description={props.description} image={props.image} handleSubmitClose={handleClose} saved={props.saved} closeMovieInfo={props.closeMovieInfo} categories={props.categories} runtime={props.runtime} tagline={props.tagline}/>
         </DialogContent>
       </Dialog>
-    </span>
+    </div>
   )
 }
 // <AddIcon onClick={handleClickOpen}/>

@@ -2,26 +2,15 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import FormControl from 'react-bootstrap/FormControl'
-// import Row from 'react-bootstrap/Row'
-// import Skeleton from '@material-ui/core/Skeleton'
-// import Skeleton from '@mui/material/Skeleton'
-
-// import Placeholder from 'react-bootstrap/Placeholder'
-// import Button from '@material-ui/core/Button'
-// import CardHeader from '@material-ui/core/CardHeader'
-// import IconButton from '@material-ui/core/IconButton'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
-// import EditIcon from '@material-ui/icons/Edit'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
-// import Spinner from 'react-bootstrap/Spinner'
-// import Movie2 from './Movie2'
-// import Movie3 from './Movie3'
-// import Movie from '../App/Movie.js'
-// import MaterializeMovie from './MaterializeMovie'
-// import MaterializeMovieClass from './MaterializeMovieClass'
 import MovieAlt from './MovieAlt'
-// import MovieSearch from './MovieSearch'
+import PropTypes from 'prop-types'
 
+// import Card from '@material-ui/core/Card'
+// import CardActions from '@material-ui/core/CardActions'
+// import CardContent from '@material-ui/core/CardContent'
+// import Button from '@material-ui/core/Button'
+// import Typography from '@material-ui/core/Typography'
+// import Box from '@material-ui/core/Box'
 // const linkStyle = {
 //   color: 'black',
 //   paddingLeft: '15px',
@@ -122,7 +111,9 @@ class movies extends Component {
     //     { /* <Link to={`/movies/${movie._id}`} className="secondary-content"><i className="material-icons">search</i></Link> */ }
     //   </Card>
     // ))
-
+    MovieAlt.propTypes = {
+      loading: PropTypes.bool
+    }
     if (this.state.isLoading) {
       return (
         <div className="text-center">
@@ -160,6 +151,8 @@ class movies extends Component {
                 return (
                   <MovieAlt
                     key={movie.name + movie._id}
+                    {...movie}
+                    // movie={...movie}
                     // key={movie._id}
                     handleRefresh={this.handleRefresh}
                     user={this.props.user}

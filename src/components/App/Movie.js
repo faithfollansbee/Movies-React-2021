@@ -6,22 +6,29 @@ import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
+
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
 
-const fabStyle2 = {
-  bottom: 60,
-  left: 70
-}
+// const fabStyle2 = {
+//   bottom: 60,
+//   left: 70
+// }
 const fabStyle3 = {
   bottom: 60,
   left: 100
+  // position: 'absolute'
 }
 
 const fabRowStyle = {
   display: 'flex',
   justifyContent: 'space-evenly',
-  position: 'absolute'
+  position: 'absolute',
+  // position: 'relative',
+  marginTop: 'auto',
+  alignItems: 'space-around'
+  // display: 'flex',
+  // justifyContent: 'space-evenly'
 }
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,9 +98,11 @@ const Movie = (props) => {
           </div>
         </Tooltip>
         <div style={fabRowStyle}>
-          <Fab size="small" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+          <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
+
+          {/* }<Fab size="small" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
             <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
-          </Fab>
+          </Fab> */}
           <Link to="/more-info" href={'/more-info'} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
             <Tooltip title="More">
               <Fab size="small" style={fabStyle3} className="hidden-button floating" color="primary" aria-label="more" >
@@ -113,23 +122,23 @@ const Movie = (props) => {
         { /* href={`#/movies/${props.id}`}
         href={`#/movies/${props.movieId}`} */ }
         { /* <Fab style={fabStyle3} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="more" >
-            <Tooltip title="More">
-              <Link className="btn-floating fab waves-effect waves-light red" style={{ color: 'white', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
-                <KeyboardArrowRightIcon />
-              </Link>
-            </Tooltip>
-          </Fab>* / }
-          { /*
-            <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="save" >
-              <KeyboardArrowRightIcon to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}/>
-            </Fab>
-              <Button
-                startIcon={<AddIcon />}
-                className="btn-floating halfway-fab waves-effect waves-light red"
-              >
-                <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>Add</Link>
-              </Button>
-              */ }
+          <Tooltip title="More">
+            <Link className="btn-floating fab waves-effect waves-light red" style={{ color: 'white', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
+              <KeyboardArrowRightIcon />
+            </Link>
+          </Tooltip>
+        </Fab>* / }
+        { /*
+          <Fab style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="save" >
+            <KeyboardArrowRightIcon to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}/>
+          </Fab>
+            <Button
+              startIcon={<AddIcon />}
+              className="btn-floating halfway-fab waves-effect waves-light red"
+            >
+              <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/more-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>Add</Link>
+            </Button>
+            */ }
       </Card>
     </div>
   )

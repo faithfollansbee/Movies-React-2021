@@ -73,6 +73,7 @@ class MaterializeMovieClass extends Component {
         }
       }/>
     }
+    console.log('hi', this.state)
     return (
       <div className="mx-auto py-3 px-1">
         { movie && (

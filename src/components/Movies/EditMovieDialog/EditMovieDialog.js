@@ -21,12 +21,12 @@ export default function EditMovieDialog (props) {
     props.onMenuClose()
     console.log('EditGenreDialog handleClose()')
   }
-  // console.log(props.movie)
+  console.log('props.currentGenre', props.currentGenre)
   return (
     <div>
       <MenuItem onClick={handleClickOpen}>
         <ListItemIcon>
-          <EditIcon className="material-icons right" />
+          <EditIcon className="material-icons right"/>
         </ListItemIcon>
         Edit
       </MenuItem>

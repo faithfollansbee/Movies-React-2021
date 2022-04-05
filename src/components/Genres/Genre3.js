@@ -30,7 +30,6 @@ class Genre3 extends React.Component {
       // console.log('Got to one genre')
       this.setState({ genre: response.data.genre })
       this.setState({ movies: response.data.genre.movies })
-      // this.setState({ userRecipes: response.data.cookbook.recipes })
       // console.log(this.state.genre)
       // console.log(this.state.genre.movies)
       // console.log(this.state.movies)

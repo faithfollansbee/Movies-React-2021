@@ -10,18 +10,23 @@ import CardHeader from '@material-ui/core/CardHeader'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
-import EditIcon from '@material-ui/icons/Edit'
+// import EditIcon from '@material-ui/icons/Edit'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditMenu from './EditMenu'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
+import IconButton from '@material-ui/core/IconButton'
+// import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
+import EditMovieFab from './EditMovieDialog/EditMovieFab'
+// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 
 const fabStyle1 = {
 }
 class MovieClass extends Component {
   state = {
     movie: null,
-    deleted: false
+    deleted: false,
+    genre: null
   }
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -39,11 +44,12 @@ class MovieClass extends Component {
         }
       })
       this.setState({
-        movie: response.data.movie, isLoading: false
+        movie: response.data.movie,
+        isLoading: false,
+        genre: response.data.movie.genre
       })
     } catch (error) {
     }
-    console.log('rendered from Movie')
   }
 
   deletemovie = () => {
@@ -60,11 +66,12 @@ class MovieClass extends Component {
   editMovie = () => {
     console.log('edit eventually')
   }
-  backFunction = () => {
-    // this.history.goBack()
-    // this.setState({ deleted: true })
-    console.log(this.props)
-    this.props.history.goBack()
+  // backFunction = () => {
+  //   console.log(this.props)
+  //   this.props.history.goBack()
+  // }
+  onMenuClose = () => {
+    console.log('closed menu lol')
   }
 
   render () {
@@ -81,27 +88,23 @@ class MovieClass extends Component {
       // }/>
     }
     // <p> {movie.genre.name} </p>
-
+    console.log('this.state.genre', this.state.genre)
     return (
       <div className="layout-style">
-        <Button
-          onClick={this.backFunction}
-          style={{ color: 'inherit', textDecoration: 'none' }}
-          startIcon={<ArrowBack />}
-        >
-         Back
-        </Button>
+        <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
         { movie && (
-          <div className="movie-container mx-auto my-3 px-3 py-3 border">
+          <div className="movie-container mx-auto my-3 px-3 py-3 border" style={{ backgroundColor: 'LavenderBlush' }}>
             <Card>
               <CardContent>
                 <div className="row">
+
                   <div>
                     <div style={{ width: '100%' }}>
                       { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '100', height: 500 }}/> }
                     </div>
                   </div>
-                  <div className="col" style={{ display: 'flex' }}>
+
+                  <div className="col">
 
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                       <div>
@@ -111,7 +114,7 @@ class MovieClass extends Component {
                           // component="h3"
                           action={
                             // <EditMenu deleteMovie={this.deletemovie} editMovie={this.editMovie} />
-                            <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deletemovie} editMovie={this.editMovie}/>
+                            <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} currentGenre={this.state.movie.genre} currentGenreId={this.state.movie.genre._id} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deletemovie} editMovie={this.editMovie}/>
 
                           }
                           // title={movie.name}
@@ -127,36 +130,44 @@ class MovieClass extends Component {
                       </div>
 
                       <CardContent>
-                        <Typography variant="subtitle1">
-                          <p> {movie.description} </p>
+                        <Typography variant="body1">
+                          {movie.description}
                         </Typography>
-                        {/* <Typography color="textSecondary" variant="subtitle1">
-                          <p> Saved to: {movie.genre.name}</p>
-                        </Typography> */}
+                        { movie.genre
+                          ? <Typography color="textSecondary" variant="subtitle1"><p>Saved to: <a style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/genres/${this.state.movie.genre._id}`}>{this.state.movie.genre.name}</a></p></Typography>
+                          : <Typography color="textSecondary" variant="subtitle1"><p>Uncategorized</p></Typography>
+                        }
+                        { /* color: '#757575' */ }
                       </CardContent>
                       <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
-                        <Tooltip title="Back">
-                          <Fab onClick={this.backFunction} aria-label="Back">
-                            <ArrowBack />
-                          </Fab>
-                        </Tooltip>
                         <Tooltip title="Delete">
                           <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
                             <DeleteIcon />
                           </Fab>
                         </Tooltip>
-                        <Tooltip title="Edit">
-                          <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" >
+                        <EditMovieFab
+                          id={this.state.movie._id} user={this.props.user} movie={movie} title={movie.title} currentGenre={movie.currentGenre} genre={movie.genre} image={movie.image} released={movie.released} description={movie.description}/>
+                        { /*  <Tooltip title="Edit">
+                          <Fab onClick={this.editMovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit" currentGenre={this.state.movie.genre} currentGenreId={this.state.movie.genre._id}>
                             <EditIcon />
                           </Fab>
-                        </Tooltip>
+                        </Tooltip> */ }
+                        {/*
+                          <EditMovieDialog onMenuClose={this.onMenuClose} id={this.state.movie._id} user={this.props.user} movie={movie} title={movie.title} currentGenre={movie.currentGenre} genre={movie.genre} image={movie.image} released={movie.released} description={movie.description}/>
+                          */}
                       </CardActions>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            { /* this "back" button needs to use history to go back, bc this single movie component is used from Movies and Genre  */ }
+            <CardActions>
+              <Tooltip title="back">
+                <IconButton onClick={this.props.history.goBack} aria-label="back">
+                  <ArrowBack />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
           </div>
         )}
       </div>
