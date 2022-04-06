@@ -7,7 +7,6 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Fade from '@material-ui/core/Fade'
 import { withStyles } from '@material-ui/core/styles'
 import EditMenu from './EditMenu'
-// import PropTypes from 'prop-types'
 
 const StyledTooltip = withStyles({
   tooltip: {
@@ -42,7 +41,7 @@ class MaterializeMovieClass extends Component {
       })
     } catch (error) {
     }
-    console.log('rendered from MaterializeMovieClass')
+    // console.log('rendered from MaterializeMovieClass')
   }
 
   deleteMovie = () => {
@@ -54,7 +53,7 @@ class MaterializeMovieClass extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
-    console.log('deleted, with function from MaterializeMovieClass')
+    // console.log('deleted, with function from MaterializeMovieClass')
     // history.goBack()
     // .then(response => {
     //   this.props.history.goBack()
@@ -73,7 +72,7 @@ class MaterializeMovieClass extends Component {
         }
       }/>
     }
-    console.log('hi', this.state)
+    // console.log('hi', this.state)
     return (
       <div className="mx-auto py-3 px-1">
         { movie && (

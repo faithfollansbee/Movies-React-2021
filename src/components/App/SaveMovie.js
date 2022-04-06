@@ -9,20 +9,15 @@ import Button from 'react-bootstrap/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 class SaveMovie extends Component {
-  // const [isSaved, setSaved] = useState(false);
-  // isSaved = false;
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.closeMovieInfo = this.closeMovieInfo.bind(this)
     this.state = {
       user: this.props.user,
       genres: [],
       userGenres: [],
       saved: this.props.saved,
-      // saved: false,
-      // isLoading: true,
       filtered: false,
       movie: {
         title: props.title,
@@ -32,7 +27,6 @@ class SaveMovie extends Component {
         genre: ''
       }
     }
-    // console.log(this.props.user)
   }
   closeMovieInfo = event => {
     this.setState({ currentMovie: null })
@@ -44,13 +38,8 @@ class SaveMovie extends Component {
         [event.target.name]: event.target.value
       }
     })
-    // console.log(this.state)
   }
 
-  // closeMovie = () => {
-  //   event.preventDefault()
-  //   this.setState({ currentMovie: null })
-  // }
   handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -69,21 +58,10 @@ class SaveMovie extends Component {
         }
       }
     })
-      // .then(() => this.setState({ saved: true }))
       .then(response => {
         this.props.history.push(`/movies/${response.data.movie._id}`)
       })
-      // .then(response => {
-      //   this.props.history.goBack('/search')
-      //   console.log('from savemovie')
-      // })
       .then(() => this.props.history.push('/movies'))
-      // .then(() => this.setState({ saved: true }))
-
-    // .then(response => {
-    //   this.props.history.goBack(`/movies/${this.state.genre._id}`)
-    // })
-
       .catch(err => this.setState({ error: err.message }))
   }
   handleOptionChange = changeEvent => {
@@ -107,14 +85,10 @@ class SaveMovie extends Component {
   }
 
   render (props) {
-    // const { genresJsx } = this.state
-    // console.log(this.state)
     const { saved } = this.state
-    console.log(this.saved)
     if (saved) {
       return <Redirect to={
         {
-          // pathname: '/search'
           pathname: '/search'
         }
       }/>
@@ -136,16 +110,10 @@ class SaveMovie extends Component {
     // <RadioGroup aria-label="genre" name="genre" value={genre._id} >
     const genresJsx = this.state.genres.map(genre => (
       <div key={genre._id}>
-        <RadioGroup name="genre" value={genre.id} >
+        <RadioGroup name="genre" value={genre.id}>
           <FormControlLabel value={genre._id} control={<Radio />} checked={this.state.genre === genre._id} label={genre.name} onChange={this.handleOptionChange}/>
         </RadioGroup>
       </div>
-      // <Form.Select aria-label="Default select example">
-      //   <option>Open this select menu</option>
-      //   <option value="1">One</option>
-      //   <option value="2">Two</option>
-      //   <option value="3">Three</option>
-      // </Form.Select>
     ))
     // if (this.state.isLoading) {
     //   return (
@@ -158,7 +126,6 @@ class SaveMovie extends Component {
     //   ? genresJsx
     //   : <ul>No genres found</ul>
     // }
-    // console.log(this.state.place)
     // <FormLabel component="legend">Genre</FormLabel>
 
     return (

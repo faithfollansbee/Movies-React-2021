@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-// import IconButton from '@mui/material/IconButton'
-// import Avatar from '@material-ui/core/Avatar'
 import AccountMenu from './UserMenu'
 
 const authenticatedOptions = (
@@ -28,21 +26,12 @@ const alwaysOptions = (
   </Fragment>
 )
 
-// const logoStyle = {
-//   margin: '0px',
-//   padding: '0px'
-// }
-
 const NavBarStyle = {
-  // margin: '0px',
-  // padding: '0px',
-  // position: 'relative',
-  // backgroundColor: '#5F1717'
   backgroundColor: '#212529'
 }
 
 const Header = ({ user }) => (
-  <Navbar variant="dark" expand="lg" style={NavBarStyle}>
+  <Navbar variant="dark" expand="sm" style={NavBarStyle}>
     <Navbar.Brand href="#">Movie Collector</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

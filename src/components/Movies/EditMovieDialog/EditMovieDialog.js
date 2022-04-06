@@ -12,16 +12,12 @@ export default function EditMovieDialog (props) {
 
   const handleClickOpen = () => {
     setOpen(true)
-    console.log('EditGenreDialog handleClickOpen()')
-    // console.log(props.movie)
   }
 
   const handleClose = () => {
     setOpen(false)
     props.onMenuClose()
-    console.log('EditGenreDialog handleClose()')
   }
-  console.log('props.currentGenre', props.currentGenre)
   return (
     <div>
       <MenuItem onClick={handleClickOpen}>

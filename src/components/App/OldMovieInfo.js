@@ -22,15 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
 const MovieInfo = (props) => {
   const classes = useStyles()
-  console.log(props)
-  console.log(props.currentMovie)
-
   return (
     <div>
       <Button
         href="#/search"
         style={{ color: 'inherit', textDecoration: 'none' }}
-        // variant="contained"
         className={classes.button}
         startIcon={<ArrowBack />}
       >
@@ -49,8 +45,6 @@ const MovieInfo = (props) => {
               <div style={{ flexDirection: 'column' }}>
                 <div>
                   <CardHeader
-                    // variant="h5"
-                    // component="h3"
                     action={
                       <Tooltip title="more" tooltipStyle={{ rippleBackgroundColor: 'green' }}>
                         <IconButton tooltip="settings" tooltipStyle={{ rippleBackgroundColor: 'green' }}>
@@ -58,10 +52,7 @@ const MovieInfo = (props) => {
                         </IconButton>
                       </Tooltip>
                     }
-                    // title={movie.name}
                     title={props.currentMovie.title}
-                    // genre={props.currentMovie.genre.name}
-                    // subheader={movie.released}
                     subheader={props.currentMovie.release_date.substring(5).split('-').concat(props.currentMovie.release_date.substring(0, 4)).join('/')}
                   />
                   <div>
@@ -80,7 +71,6 @@ const MovieInfo = (props) => {
               </div>
             </div>
           </div>
-
           <CardActions>
             <div className="row" style={{ backgroundColor: 'MintCream', alignContent: 'center', alignSelf: 'flex-end' }}>
               <CardActions>

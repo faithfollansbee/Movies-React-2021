@@ -1,6 +1,5 @@
 import React from 'react'
 const paginationStyle = {
-  // overflow: 'hidden'
 }
 const pageResultsStyle = {
   overflow: 'hidden'

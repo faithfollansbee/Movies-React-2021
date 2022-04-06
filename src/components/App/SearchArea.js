@@ -12,7 +12,6 @@ const SearchArea = (props) => {
             <InputGroup.Prepend>
             </InputGroup.Prepend>
             <FormControl
-              // onSubmit={props.handleSubmit}
               placeholder="search"
               type="text"
               onChange={props.handleChange}

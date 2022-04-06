@@ -69,9 +69,6 @@ class App extends Component {
     // this.setState({ currentMovie: currentMovieObj })
     // this.setState({ trendingMovie: newTrendingMovie })
     this.setState({ currentMovie: newCurrentMovie })
-
-    console.log('view movie')
-    console.log(id)
   }
 
   closeMovieInfo = () => {
@@ -91,7 +88,6 @@ class App extends Component {
       .then(data => {
         // this.setState({ movies: [...data.results], totalResults: data.total_results })
         this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
-        // console.log(data)
       })
       .catch(error => {
         console.error(error)
@@ -104,7 +100,6 @@ class App extends Component {
       .then(data => {
         this.setState({ movies: [...data.results], currentPage: pageNumber })
         this.setState({ searchedMovies: [...data.results], currentPage: pageNumber })
-        // console.log(data)
       })
       .catch(error => {
         console.error(error)
@@ -112,7 +107,6 @@ class App extends Component {
   }
 
   getTrending = (event) => {
-    // console.log('got trending')
     // event.preventDefault()
     //  this.apiKey = process.env.API_KEY
     fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
@@ -120,21 +114,16 @@ class App extends Component {
       .then(data => {
         this.setState({ movies: [...data.results] })
         // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
-
-        // console.log(this.state.movies, 'got trending')
       })
       .catch(error => {
         console.error(error)
       })
   }
   getGenres = (event) => {
-    // console.log('got genres')
     fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=4a0223110b505876ba0985949c17e865&language=en-US')
-    // console.log()
       .then(data => data.json())
       .then(data => {
         this.setState({ genres: [...data.genres] })
-        // console.log(this.state.genres, 'got genres')
       })
       .catch(error => {
         console.error(error)
@@ -144,10 +133,8 @@ class App extends Component {
     // event.preventDefault()
     fetch(`https://api.themoviedb.org/3/movie/${this.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
       .then(data => data.json())
-    // console.log(this.data.movie)
       .then(data => {
         this.setState({ currentMovie: [...data] })
-        // console.log(this.state.currentMovie, 'got movie')
       })
       .catch(error => {
         console.error(error)
@@ -167,7 +154,6 @@ class App extends Component {
      return (
        <Fragment>
          <Header user={user} />
-         { /* <Landing /> */ }
          {alerts.map((alert, index) => (
            <AutoDismissAlert
              key={index}

@@ -11,20 +11,14 @@ import CardContent from '@material-ui/core/CardContent'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import ArrowBack from '@material-ui/icons/ArrowBack'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
-// import EditGenreDialog from './EditGenre/EditGenreDialog'
-// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-// import EditIcon from '@material-ui/icons/Edit'
 import EditGenreMenu from './EditGenre/EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
-// import PropTypes from 'prop-types'
 
 class Genre extends React.Component {
   state = {
     genre: '',
     deleted: false,
     movies: [],
-    // userRecipes: [],
     filtered: false,
     addingMovie: false
   }
@@ -42,7 +36,6 @@ class Genre extends React.Component {
   }
   // async componentDidMount () {
   //   const response = await axios(`${apiUrl}/cookbooks/${this.props.match.params.id}`)
-  //
   //   this.setState({
   //     cookbook: response.data.cookbook
   //   })
@@ -56,16 +49,10 @@ class Genre extends React.Component {
           'Authorization': `Token token=${this.props.user.token}`
         }
       })
-      // console.log('Got to one genre')
       this.setState({ genre: response.data.genre })
       this.setState({ movies: response.data.genre.movies })
-      // this.setState({ userRecipes: response.data.cookbook.recipes })
-      // console.log(this.state.genre)
-      // console.log(this.state.genre.movies)
-      // console.log(this.state.movies)
     } catch (error) {
     }
-    console.log('rendered from Genre')
   }
 
   handleFilter = event => {
@@ -78,9 +65,7 @@ class Genre extends React.Component {
     const queryLength = searchString.length
     const prevQueryLength = this.state.queryLength || 0
     const movies = queryLength > prevQueryLength ? this.state.userMovies : this.state.movies
-
     const searchResults = movies.filter(movie => movie.name.toLowerCase().includes(searchString))
-
     this.setState({ userMovies: searchResults, queryLength: queryLength })
   }
 
@@ -94,7 +79,6 @@ class Genre extends React.Component {
       },
       data: {
         movie: {
-          // name: this.state.movie.name,
           title: this.state.movie.name,
           description: this.state.movie.description,
           released: this.state.movie.released,
@@ -110,11 +94,7 @@ class Genre extends React.Component {
           heading: 'Success',
           message: 'You created a movie'
         })
-        // console.log(this.state.movie)
       })
-      // .then(response => {
-      //   this.props.history.push(`/recipes/${this.state.recipe._id}`)
-      // })
       .catch(() => {
         this.props.alert({
           heading: 'Failed',
@@ -136,7 +116,6 @@ class Genre extends React.Component {
         }
       })
       .then(() => this.setState({ deleted: true }))
-      // .then(() => this.props.history.push('/genres'))
       .then(response => {
         this.props.history.goBack()
       })
@@ -170,7 +149,6 @@ class Genre extends React.Component {
       let moviesStatus
 
       if (!this.state.genre.movies.length) {
-        // console.log('there are no movies here')
         moviesStatus = (
           <div className="nomovies">No movies added yet. get started! </div>
         )
@@ -284,16 +262,4 @@ class Genre extends React.Component {
 //   </Fragment>
 // )}
 
-// {this.state.cookbook.recipes.map(recipe => (
-//   <Recipe2
-//     key={recipe.name + recipe._id}
-//     handleRefresh={this.handleRefresh}
-//     cookbook={this.state.cookbook}
-//     cookbookid={this.state.cookbook._id}
-//     user={this.props.user}
-//     id={recipe._id}
-//     thisstate={this.state}
-//     alert={this.props.alert}
-//   />
-// ))}
 export default withRouter(Genre)

@@ -15,20 +15,16 @@ class Trending extends Component {
       .then(data => {
         this.setState({ movies: [...data.results] })
         // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
-
-        // console.log(this.state, 'got trending')
       })
       .catch(error => {
         console.error(error)
       })
-    console.log('Rendered from trending')
   }
 
   render (props) {
-    console.log(this.state.movies)
     return (
       <div className="results-container my-5">
-        <h1><strong>Trending now</strong></h1>
+        <h1 className="title-style">Trending Now</h1>
         <div className="row">
           {
             this.state.movies.map((movie, i) => {
@@ -54,6 +50,8 @@ class Trending extends Component {
     )
   }
 }
+export default Trending
+
 // <Movie key={i} user={this.props.user} currentMovie={this.props.currentMovie} viewMovie={this.props.viewMovie} released={movie.release_date} backdrop={movie.backdrop_path} genresIds={movie.genre_ids} image={movie.poster_path} movieId={movie.id} title={movie.title} description={movie.overview}/>
 // <Movie key={i} user={this.props.user}
 //   currentMovie={this.props.currentMovie}
@@ -90,7 +88,6 @@ class Trending extends Component {
 //   backdrop={movie.backdrop_path}
 //   genresIds={movie.genre_ids}
 // />
-export default Trending
 // const Trending = (props) => {
 //   return (
 //     <div className="results-container my-5">

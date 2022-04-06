@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 const MovieInfo = (props) => {
   const classes = useStyles()
-  console.log('Rendered from TestMovieInfo')
   return (
     <div className="container">
       <div className="row">
@@ -33,8 +32,6 @@ const MovieInfo = (props) => {
       </div>
       <div className="row" onClick={props.closeMovieInfo} style={{ cursor: 'pointer', paddingTop: 50 }}>
         <Button
-          // variant="contained"
-          // color="secondary"
           className={classes.button}
           startIcon={<ArrowBack />}
         >

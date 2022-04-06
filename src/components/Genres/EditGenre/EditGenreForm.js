@@ -8,9 +8,7 @@ const GenreForm = ({ genre, handleChange, handleSubmit, handleSubmitClose }) => 
       <Form.Label>Genre title</Form.Label>
       <Form.Control
         type="text"
-        // placeholder={genre.name}
         defaultValue={genre.name}
-        // value={genre.name}
         onChange={handleChange}
         name="name"
         required

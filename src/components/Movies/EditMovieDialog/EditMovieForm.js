@@ -49,7 +49,7 @@ class EditMovieForm extends Component {
         'Authorization': `Token token=${this.props.user.token}`
       },
       data: {
-        movie: { // movie: this.state.movie
+        movie: {
           title: this.props.title,
           description: this.props.description,
           released: this.props.released,
@@ -61,7 +61,6 @@ class EditMovieForm extends Component {
       .then(response => {
         this.props.history.push(`/movies${this.props.id}`)
       })
-      // .then(() => this.props.history.push(`/movies/${this.props.id}`))
       .catch(err => this.setState({ error: err.message }))
 
     // if editting from specific genre, should redirect to that same genre. if editting from

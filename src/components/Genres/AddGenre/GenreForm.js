@@ -9,7 +9,6 @@ const GenreForm = ({ genre, handleChange, handleSubmit, handleSubmitClose }) => 
       <Form.Control
         type="text"
         placeholder="enter a name"
-        // value={genre.name}
         onChange={handleChange}
         name="name"
         required

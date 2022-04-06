@@ -2,9 +2,6 @@ import React from 'react'
 import SaveMovie from './SaveMovie'
 
 const MoreDetails = (props) => {
-  console.log(props.currentMovie.title)
-  console.log(props.currentMovie)
-
   return (
     <div className="card">
       <div>

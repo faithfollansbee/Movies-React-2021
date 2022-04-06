@@ -10,20 +10,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 
 class SaveMovie extends Component {
-  // const [isSaved, setSaved] = useState(false);
-  // isSaved = false;
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.closeMovieInfo = this.closeMovieInfo.bind(this)
     this.state = {
       user: this.props.user,
       genres: [],
       userGenres: [],
       saved: this.props.saved,
-      // saved: false,
-      // isLoading: true,
       filtered: false,
       movie: {
         title: props.title,
@@ -33,10 +28,11 @@ class SaveMovie extends Component {
         genre: '',
         categories: props.categories,
         runtime: props.runtime,
-        tagline: props.tagline
+        tagline: props.tagline,
+        revenue: props.revenue,
+        budget: props.budget
       }
     }
-    // console.log(this.props.user)
   }
   closeMovieInfo = event => {
     this.setState({ currentMovie: null })
@@ -48,13 +44,8 @@ class SaveMovie extends Component {
         [event.target.name]: event.target.value
       }
     })
-    // console.log(this.state)
   }
 
-  // closeMovie = () => {
-  //   event.preventDefault()
-  //   this.setState({ currentMovie: null })
-  // }
   handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -72,30 +63,18 @@ class SaveMovie extends Component {
           genre: this.state.genre,
           categories: this.props.categories,
           runtime: this.props.runtime,
-          tagline: this.props.tagline
+          tagline: this.props.tagline,
+          revenue: this.props.revenue,
+          budget: this.props.budget
         }
       }
     })
-      // .then(() => this.setState({ saved: true }))
       .then(response => {
         this.props.history.push(`/movies/${response.data.movie._id}`)
       })
-      // .then(
-      //   this.props.onSubmit()
-      // )
-      // .then(response => {
-      //   this.props.history.goBack('/search')
-      //   console.log('from savemovie')
-      // })
-    // .then(response => {
-    //   this.props.history.goBack(`/movies/${this.state.genre._id}`)
-    // })
       .then(() => this.props.history.push('/movies'))
-      // .then(() => this.setState({ saved: true }))
-
       .catch(err => this.setState({ error: err.message }))
     this.props.handleSubmitClose()
-    console.log('saved movie from Dialog Form, from a trending movie')
   }
   handleOptionChange = changeEvent => {
     this.setState({
@@ -115,28 +94,17 @@ class SaveMovie extends Component {
       this.setState({ userGenres: response.data.genres })
     } catch (error) {
     }
-    console.log(this.state.genres)
-    console.log('from DialogForm')
   }
 
   render (props) {
-    // const { genresJsx } = this.state
-    // console.log(this.state)
     const { saved } = this.state
-    // console.log(this.saved)
     if (saved) {
       return <Redirect to={
         {
-          // pathname: '/search'
           pathname: '/search'
         }
       }/>
     }
-    // const genresJsx = userGenres.map(genre => (
-    //   <div key={genre._id}>
-    //     { genre.name }
-    //   </div>
-    // ))
     // <label>
     //   <input
     //     name="genre"
@@ -147,7 +115,6 @@ class SaveMovie extends Component {
     //     onChange={this.handleOptionChange}
     //   />{genre.name}</label>
     // <RadioGroup aria-label="genre" name="genre" value={genre._id} >
-
     const genresJsx = this.state.genres.map(genre => (
       <div key={genre._id}>
         <RadioGroup name="genre" value={genre.id} >
@@ -168,11 +135,6 @@ class SaveMovie extends Component {
     //     </div>
     //   )
     // }
-    // {this.state.genres.length
-    //   ? genresJsx
-    //   : <ul>No genres found</ul>
-    // }
-    // console.log(this.state.place)
     // <FormLabel component="legend">Genre</FormLabel>
     // onSubmit={this.handleSubmit}
     return (

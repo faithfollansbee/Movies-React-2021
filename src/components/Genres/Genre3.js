@@ -27,15 +27,10 @@ class Genre3 extends React.Component {
           'Authorization': `Token token=${this.props.user.token}`
         }
       })
-      // console.log('Got to one genre')
       this.setState({ genre: response.data.genre })
       this.setState({ movies: response.data.genre.movies })
-      // console.log(this.state.genre)
-      // console.log(this.state.genre.movies)
-      // console.log(this.state.movies)
     } catch (error) {
     }
-    console.log('rendered from Genre3')
   }
   handleDelete = () => {
     // event.preventDefault()
@@ -49,10 +44,10 @@ class Genre3 extends React.Component {
         }
       })
       .then(() => this.setState({ deleted: true }))
-    console.log('location', this.props.location)
-    console.log('history', this.props.history)
-    console.log(this.props)
-    console.log(this.props.match.url)
+    // console.log('location', this.props.location)
+    // console.log('history', this.props.history)
+    // console.log(this.props)
+    // console.log(this.props.match.url)
     // this.props.location.pathname
     // this.props.history.go(this.props.location.pathname)
     // this.props.history.go()
@@ -61,7 +56,6 @@ class Genre3 extends React.Component {
     // })
     // .then(() => this.props.history.replace('/genres'))
     // this.props.history.replace('/genres')
-    // console.log('deleted genre')
     // .then(() => this.forceUpdate())
     // .then(response => {
     //   this.props.history.goBack()
@@ -82,14 +76,10 @@ class Genre3 extends React.Component {
         }
       }/>
     }
-    // console.log(this.state.genre)
-    // console.log(this.state.genre._id)
-    // console.log(this.state.genre)
-    // console.log(this.state.movies)
     return (
       <div>
         <Card className="card-style my-3 mx-3">
-          <CardContent style={{ display: 'flex', backgroundColor: 'AliceBlue' }}>
+          <CardContent style={{ display: 'flex', backgroundColor: 'AliceBlue', padding: '3px' }}>
             <CardActionArea href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} >
               <CardHeader
                 // action={
@@ -97,8 +87,6 @@ class Genre3 extends React.Component {
                 // }
                 title={this.state.genre.name}
                 subheader={`${this.state.movies.length} movies`}
-                // subheader=`"movies in this genre:" +${this.state.movies.length}`
-                // subheader="movies"
               />
             </CardActionArea>
             <div style={{ float: 'right', marginTop: '20px' }}>

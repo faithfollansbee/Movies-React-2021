@@ -2,11 +2,14 @@ import React from 'react'
 import Card from '@material-ui/core/Card'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
+// import { withStyles } from '@material-ui/core/styles'
+import Fade from '@material-ui/core/Fade'
+
 // import AddMovieDialog from './AddMovieDialog'
 // import Skeleton from '@material-ui/lab/Skeleton'
 // const mediaStyle = {
@@ -17,6 +20,11 @@ const fabStyle3 = {
   bottom: 60,
   left: 100
 }
+const StyledTooltip = withStyles({
+  tooltip: {
+    fontSize: '1.5em'
+  }
+})(Tooltip)
 
 const fabRowStyle = {
   display: 'flex',
@@ -68,13 +76,16 @@ const useStyles = makeStyles((theme) => ({
 const MovieAlt = (props) => {
   const classes = useStyles()
   // console.log(props)
+  // <Tooltip className='styledTooltip' style={{ color: 'red' }} title={props.title} placement="top">
+
   return (
     <div className="mx-auto py-3 px-1">
       <Card style={{ width: '18rem' }}
         className={classes.root}
         aria-label="show more"
       >
-        <Tooltip className='styledTooltip' style={{ color: 'red' }} title={props.title} placement="top">
+        <StyledTooltip title={props.title} placement="top" TransitionComponent={Fade} TransitionProps={{ timeout: 500 }}>
+
           <div className="card-image">
             {
               props.image == null
@@ -90,7 +101,8 @@ const MovieAlt = (props) => {
                 />
             }
           </div>
-        </Tooltip>
+        </StyledTooltip>
+
         <div style={fabRowStyle}>
           <Link to={`/movies/${props.id}`} href={`/movies/${props.id}`}>
             <Tooltip title="More">

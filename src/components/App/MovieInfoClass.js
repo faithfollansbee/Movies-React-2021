@@ -8,14 +8,12 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import CardHeader from '@material-ui/core/CardHeader'
-// import CardFooter from '@material-ui/core/CardFooter'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddMovieDialog from './AddMovieDialog'
 const addDialogStyle = {
-  position: 'relative'
 }
 class MovieInfoClass extends Component {
   state = {
@@ -23,52 +21,34 @@ class MovieInfoClass extends Component {
     isLoading: true,
     currentMovie: this.props.currentMovie,
     genres: []
-    // movie: null,
-    // id: props.id,
   }
 
   componentDidMount (props) {
-    // console.log('getting movie')
-    // console.log(this.props)
     // fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
     fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${this.props.currentMovie.id}`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
-        // console.log(this.state.currentMovie, 'got movie')
-        // console.log(data)
         this.setState({ genres: data.genres })
       })
       .catch(error => {
         console.error(error)
       })
-    console.log('Rendered from MovieInfoClass')
   }
   // https://api.themoviedb.org/3/movie/385128?api_key=4a0223110b505876ba0985949c17e865&language=en-US&movie_id=385128
   // https://api.themoviedb.org/3/movie/${this.state.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US
   getMovie = (event) => {
-    // console.log('got movie')
-    // console.log(this.state.currentMovie.id)
-    // console.log(this.props.currentMovie.id)
-    // console.log(this.props.id)
     fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${this.props.currentMovie.id}`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
-        console.log(this.state.currentMovie, 'got movie')
-        console.log(data)
       })
       .catch(error => {
         console.error(error)
       })
   }
-  // backFunction = () => {
-  //   console.log(this.props)
-  //   this.props.history.goBack()
-  // }
+
   render () {
-    console.log(this.state)
-    // console.log(this.props)
     return (
       <div className="layout-style">
         <Tooltip title="back">
@@ -95,8 +75,6 @@ class MovieInfoClass extends Component {
                   <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                     <div>
                       <CardHeader
-                        // variant="h5"
-                        // component="h3"
                         action={
                           // <OptionMenu />
                           <Tooltip title="more">
@@ -105,16 +83,13 @@ class MovieInfoClass extends Component {
                             </IconButton>
                           </Tooltip>
                         }
-                        // title={this.state.currentMovie.title}
                         title={
                           <Typography component="h4" variant="h4">{this.state.currentMovie.title}</Typography>
                         }
                         subheader={this.state.currentMovie.release_date.substring(5).split('-').concat(this.state.currentMovie.release_date.substring(0, 4)).join('/')}
                       />
                     </div>
-
                     <CardContent>
-
                       <div style={{ display: 'flex' }}>
                         { this.state.genres.map((genre, i) => {
                           return (
@@ -132,13 +107,13 @@ class MovieInfoClass extends Component {
                         {this.props.currentMovie.overview}
                       </Typography>
                     </CardContent>
-                    <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
+                    <CardActions className="row" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                       <Tooltip title="Favorite">
-                        <Fab className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
+                        <Fab size="small" className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                           <FavoriteIcon />
                         </Fab>
                       </Tooltip>
-                      <AddMovieDialog style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.props.currentMovie.tagline} runtime={this.props.currentMovie.runtime} />
+                      <AddMovieDialog style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} revenue={this.state.currentMovie.revenue} homepage={this.state.currentMovie.homepage} budget={this.state.currentMovie.budget} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.state.currentMovie.tagline} runtime={this.state.currentMovie.runtime} categories={this.state.genres}/>
                     </CardActions>
                   </div>
                 </div>
@@ -150,10 +125,5 @@ class MovieInfoClass extends Component {
     )
   }
 }
-// <a style={{ textDecoration: 'none' }} className="right" href={`#/movies/${this.state.movie._id}`}><i className="material-icons right navigate_next">navigate_next</i></a>
-
-// <p>{this.state.movie.genre.name}</p>
-// <EditMenu className="material-icons right" id={this.props.id} movie={this.props.movie} title={this.props.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.props.description} image={this.props.image} style={{ textDecoration: 'none' }} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>
-// <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>
 
 export default withRouter(MovieInfoClass)

@@ -6,34 +6,26 @@ import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
-
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
-
-// const fabStyle2 = {
-//   bottom: 60,
-//   left: 70
-// }
+const fabStyle2 = {
+  bottom: 60,
+  left: 70
+}
 const fabStyle3 = {
   bottom: 60,
   left: 100
-  // position: 'absolute'
 }
 
 const fabRowStyle = {
   display: 'flex',
   justifyContent: 'space-evenly',
   position: 'absolute',
-  // position: 'relative',
-  marginTop: 'auto',
-  alignItems: 'space-around'
-  // display: 'flex',
-  // justifyContent: 'space-evenly'
+  alignItems: 'center'
 }
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    // display: 'inline-block',
     zIndex: -1,
     transition: 'transform 0.2s ease-in-out',
     '& .hidden-button': {
@@ -46,12 +38,11 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover .hidden-button': {
       display: 'flex'
-      // zIndex: '5'
     }
   },
   media: {
     height: 0,
-    paddingTop: '56.25%' // 16:9
+    paddingTop: '56.25%'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -98,9 +89,10 @@ const Movie = (props) => {
           </div>
         </Tooltip>
         <div style={fabRowStyle}>
-          <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
-
-          {/* }<Fab size="small" style={fabStyle2} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+          <div style={fabStyle2} className='hidden-button floating waves-effect waves-light'>
+            <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
+          </div>
+          { /* <Fab size="small" style={fabStyle4} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
             <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
           </Fab> */}
           <Link to="/more-info" href={'/more-info'} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>

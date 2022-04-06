@@ -2,25 +2,13 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../../apiConfig'
 import EditGenreForm from './EditGenreForm'
-// import GenreDialogForm from './GenreDialogForm'
 import { withRouter } from 'react-router-dom'
-// import { withRouter, Redirect } from 'react-router-dom'
-// import PropTypes from 'prop-types'
 
 class EditGenre extends Component {
   state = {
     genre: null,
-    // genre: {
-    //   name: null
-    // },
-    // user: this.props.user,
     submitted: false
   }
-  // static propTypes = {
-  //   match: PropTypes.object.isRequired,
-  //   location: PropTypes.object.isRequired,
-  //   history: PropTypes.object.isRequired
-  // };
 
   handleChange = event => {
     this.setState({
@@ -29,9 +17,7 @@ class EditGenre extends Component {
         [event.target.name]: event.target.value
       }
     })
-    // console.log(this.state.genre)
   }
-  //
   // async componentDidMount () {
   //   try {
   //     const response = await axios({
@@ -84,9 +70,6 @@ class EditGenre extends Component {
         genre: this.state.genre
       }
     })
-      // .then(response => {
-      //   this.props.history.push(`/genres/${this.state.genre._id}`)
-      // })
       .then(response => {
         this.props.history.push(`/genres${this.props.genre._id}`)
       })
@@ -108,14 +91,11 @@ class EditGenre extends Component {
     //   }/>
     // }
     // return ( <Redirect to={{pathname: redirectTo}} push={true}/> )
-    // console.log(this.props.id)
-    // console.log(this.props.genre._id)
     return (
       <EditGenreForm
         user={this.user}
         id={this.props.id}
         genre={this.props.genre}
-        // genre={this.state.genre}
         handleSubmitClose={this.props.handleSubmitClose}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}

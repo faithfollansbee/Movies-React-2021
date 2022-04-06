@@ -10,15 +10,12 @@ import CardHeader from '@material-ui/core/CardHeader'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
-// import EditIcon from '@material-ui/icons/Edit'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditMenu from './EditMenu'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
-// import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
 import EditMovieFab from './EditMovieDialog/EditMovieFab'
-// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 
 const fabStyle1 = {
 }
@@ -71,13 +68,11 @@ class MovieClass extends Component {
   //   this.props.history.goBack()
   // }
   onMenuClose = () => {
-    console.log('closed menu lol')
+    // console.log('closed menu lol')
   }
 
   render () {
     // const { history } = this.props
-    // console.log(this.state.movie)
-    // console.log(history)
     const { movie, deleted } = this.state
     if (deleted) {
       this.props.history.goBack()
@@ -88,7 +83,6 @@ class MovieClass extends Component {
       // }/>
     }
     // <p> {movie.genre.name} </p>
-    console.log('this.state.genre', this.state.genre)
     return (
       <div className="layout-style">
         <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
@@ -110,21 +104,17 @@ class MovieClass extends Component {
                       <div>
                         <CardHeader
                           padding="5px"
-                          // variant="h5"
-                          // component="h3"
                           action={
                             // <EditMenu deleteMovie={this.deletemovie} editMovie={this.editMovie} />
                             <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} currentGenre={this.state.movie.genre} currentGenreId={this.state.movie.genre._id} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deletemovie} editMovie={this.editMovie}/>
 
                           }
-                          // title={movie.name}
                           // title={
                           //   <h4 style={{ alignSelf: 'flex-start' }}>{movie.title}</h4>
                           // }
                           title={
                             <Typography component="h4" variant="h4">{movie.title}</Typography>
                           }
-                          // subheader={movie.released}
                           subheader={movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('/')}
                         />
                       </div>
@@ -138,6 +128,18 @@ class MovieClass extends Component {
                           : <Typography color="textSecondary" variant="subtitle1"><p>Uncategorized</p></Typography>
                         }
                         { /* color: '#757575' */ }
+                        { this.state.movie.tagline ? <Typography>&quot;{this.state.movie.tagline}&quot;</Typography> : '' }
+                        <Typography><a href={this.state.movie.homepage}>{this.state.movie.homepage}</a></Typography>
+                        <div style={{ display: 'flex' }}>
+                          { this.state.movie.categories.map((genre, i) => {
+                            return (
+                              <Typography key={i}>{genre.name}&nbsp;</Typography>
+                            )
+                          })}
+                        </div>
+                        <Typography>runtime {this.state.movie.runtime}</Typography>
+                        <Typography>budget {this.state.movie.budget}</Typography>
+                        <Typography>revenue {this.state.movie.revenue}</Typography>
                       </CardContent>
                       <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
                         <Tooltip title="Delete">
@@ -174,6 +176,8 @@ class MovieClass extends Component {
     )
   }
 }
+export default withRouter(MovieClass)
+
 // <div className="movie-container my-5 py-3 border bg-light">
 //   <Card>
 //     <CardContent>
@@ -207,4 +211,3 @@ class MovieClass extends Component {
 // <div style={{ width: 151 }}>
 //   { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '10', height: 450 }}/> }
 // </div>
-export default withRouter(MovieClass)

@@ -14,12 +14,10 @@ export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
-    console.log('EditGenreMenu handleClick()')
   }
 
   const handleClose = () => {
     setAnchorEl(null)
-    console.log('EditGenreMenu handleClose()')
   }
   return (
     <React.Fragment>
@@ -34,15 +32,12 @@ export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
       </Box>
       <Menu
         id="menu-appbar"
-        // anchorEl={anchorEl}
         getContentAnchorEl={null}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         transformOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={open}
-        // className={props.classes.menu}
         anchorEl={anchorEl}
         onClose={handleClose}
-        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {

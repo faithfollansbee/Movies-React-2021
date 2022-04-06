@@ -65,12 +65,6 @@ class MaterializeTrendingMovie extends Component {
   // }
 
   render () {
-    // const { movie } = this.state
-    console.log('Rendered from trendingMovie')
-    // console.log(this.state)
-    // console.log(this.props.movieId)
-    // console.log(this.props.currentMovie)
-    // console.log(this.state.currentMovie)
     return (
       <div className="mx-auto py-3 px-1">
         <Card className="card sticky-action"
@@ -92,11 +86,9 @@ class MaterializeTrendingMovie extends Component {
                     // title="card-image"
                   />
                   : <img
-                    // className="activator"
                     component="img"
                     alt="movie-poster"
                     src={`https://image.tmdb.org/t/p/w185/${this.props.image}`}
-                    // title={this.props.title}
                   />
               }
             </div>

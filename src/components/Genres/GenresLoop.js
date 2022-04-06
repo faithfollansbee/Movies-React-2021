@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import Tooltip from '@material-ui/core/Tooltip'
 import FormControl from 'react-bootstrap/FormControl'
 import Spinner from 'react-bootstrap/Spinner'
 import Genre3 from './Genre3'
@@ -33,7 +32,6 @@ class GenresLoop extends Component {
       this.setState({ userGenres: response.data.genres })
     } catch (error) {
     }
-    console.log('rendered from GenresLoop')
   }
 
   handleFilter = event => {
@@ -80,7 +78,6 @@ class GenresLoop extends Component {
       .then(() => this.props.history.push('/genres'))
 
       .catch(err => this.setState({ error: err.message }))
-    // this.props.handleSubmitClose()
   }
   // originally from Genre3 component, need GenresLoop to rerender after delete
   // handleDelete = () => {
@@ -99,7 +96,6 @@ class GenresLoop extends Component {
   //     // })
   //     // .then(() => this.props.history.replace('/genres'))
   //   // this.props.history.replace('/genres')
-  //   console.log('deleted genre')
   //   // .then(() => router.push('/some/route'))
   //   // router.push('/genres')
   //   // this.props.history.push('/genres')
@@ -107,11 +103,6 @@ class GenresLoop extends Component {
   // }
 
   render (props) {
-    console.log('genres', this.state.genres)
-    // const { userGenres } = this.state
-    // console.log('genres', this.state.genres)
-    // const { genres } = this.state
-    // console.log('this.props.user', this.props.user)
     if (this.state.isLoading) {
       return (
         <div className="text-center">
@@ -132,13 +123,6 @@ class GenresLoop extends Component {
       )
     }
     // { this.state.genres ? return() <div></div> : }
-    // console.log(this.state)
-    // console.log('genres detail', this.state.genres)
-    // console.log('number of genres', this.state.genres.length)
-    // console.log('my first genre', this.state.genres[1])
-    // console.log('each genre movies count', this.state.genres.movie)
-    // console.log('genre id', this.state.userGenres[1])
-    // console.log('genre id', this.state.genres[1])
     // <Tooltip title="New Genre">
     //   <Fab style={fabStyle} className='hidden-button floating waves-effect waves-light' color="grey" aria-label="more" >
     //     <AddGenreDialog user={this.props.user} style={{ color: 'white', textDecoration: 'none' }}/>

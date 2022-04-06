@@ -4,13 +4,8 @@ import apiUrl from '../../apiConfig'
 import FormControl from 'react-bootstrap/FormControl'
 import MovieAlt from './MovieAlt'
 import PropTypes from 'prop-types'
+import Skeleton from '@material-ui/lab/Skeleton'
 
-// import Card from '@material-ui/core/Card'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
-// import Button from '@material-ui/core/Button'
-// import Typography from '@material-ui/core/Typography'
-// import Box from '@material-ui/core/Box'
 // const linkStyle = {
 //   color: 'black',
 //   paddingLeft: '15px',
@@ -25,11 +20,22 @@ const rowStyle = {
   // marginLeft: 1,
   // marginRight: 1
 }
+const skeletonPlaceStyle = {
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  padding: '3px 1px',
+  // height: 'px',
+  // width: 'px'
+  height: '392px',
+  width: '18rem'
+  // width: '260px'
+  // marginTop: '2.5px',
+  // opacity: '.9'
+}
 
 class movies extends Component {
   constructor () {
     super()
-
     this.state = {
       movies: [],
       userMovies: [],
@@ -47,7 +53,7 @@ class movies extends Component {
           Authorization: `Token token=${this.props.user.token}`
         }
       })
-      this.setState({ movies: response.data.movies, isLoading: false })
+      this.setState({ movies: response.data.movies, isLoading: false, loading: false })
       this.setState({ userMovies: response.data.movies })
     } catch (error) {
     }
@@ -74,7 +80,17 @@ class movies extends Component {
   // functions to pass into edit movie dialog as props
 
   render () {
-    // const { userMovies } = this.state
+    // console.log('rendered')
+    // console.log('this.state', this.state)
+    // console.log(this.state.movies.length)
+    // console.log('this.props', this.props)
+    const { userMovies, isLoading } = this.state
+    const moviesJsx = userMovies.map(movie => (
+      <MovieAlt key={movie.name + movie._id}
+        {...movie} handleRefresh={this.handleRefresh} user={this.props.user}
+        id={movie._id} title={movie.title} description={movie.description} released={movie.released} image={movie.image}
+        thisstate={this.state} alert={this.props.alert} genre={movie.genre} genreName={movie.genre.name}/>
+    ))
     // const moviesJsx = userMovies.map(movie => (
     //   <Card className="card-style" key={movie._id}>
     //     { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '10', height: 100, padding: '1' }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '10', height: 100, padding: '1' }}/> }
@@ -114,13 +130,6 @@ class movies extends Component {
     MovieAlt.propTypes = {
       loading: PropTypes.bool
     }
-    if (this.state.isLoading) {
-      return (
-        <div className="text-center">
-          {/* <Spinner animation="border" variant="primary" /> */}
-        </div>
-      )
-    }
     let moviesStatus
 
     if (!this.state.movies.length) {
@@ -146,29 +155,20 @@ class movies extends Component {
             }
           </div>
           <div className="row" style={rowStyle}>
-            {
-              this.state.userMovies.map((movie) => {
-                return (
-                  <MovieAlt
-                    key={movie.name + movie._id}
-                    {...movie}
-                    // movie={...movie}
-                    // key={movie._id}
-                    handleRefresh={this.handleRefresh}
-                    user={this.props.user}
-                    id={movie._id}
-                    title={movie.title}
-                    description={movie.description}
-                    released={movie.released}
-                    image={movie.image}
-                    thisstate={this.state}
-                    alert={this.props.alert}
-                    genre={movie.genre}
-                    genreName={movie.genre.name}
-                  />
-                )
-              })
-            }
+            { isLoading ? (<div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+              <div className="mx-auto py-3 px-1"><Skeleton style={skeletonPlaceStyle} variant="rect" /></div>
+            </div>)
+              : (moviesJsx) }
+
             {moviesStatus}
           </div>
         </Fragment>
@@ -176,6 +176,31 @@ class movies extends Component {
     )
   }
 }
+export default movies
+
+// {
+//   this.state.userMovies.map((movie) => {
+//     return (
+//       <MovieAlt
+//         key={movie.name + movie._id}
+//         {...movie}
+//         // movie={...movie}
+//         // key={movie._id}
+//         handleRefresh={this.handleRefresh}
+//         user={this.props.user}
+//         id={movie._id}
+//         title={movie.title}
+//         description={movie.description}
+//         released={movie.released}
+//         image={movie.image}
+//         thisstate={this.state}
+//         alert={this.props.alert}
+//         genre={movie.genre}
+//         genreName={movie.genre.name}
+//       />
+//     )
+//   })
+// }
 // <MaterializeMovieClass
 //   key={movie.name + movie._id}
 //   // key={movie._id}
@@ -233,5 +258,11 @@ class movies extends Component {
 //     </div>
 //   </div>
 // </ListGroup.Item>
-
-export default movies
+// if (this.state.isLoading === true) {
+//   return (
+//     <div className="text-center">
+//       <Skeleton variant="rect" style={{ height: '400px', width: '50%' }}>Henlo</Skeleton>
+//       {/* <Spinner animation="border" variant="primary" /> */}
+//     </div>
+//   )
+// }
