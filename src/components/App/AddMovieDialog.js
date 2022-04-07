@@ -3,9 +3,11 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
-import DialogForm from './DialogForm'
+// import DialogForm from './DialogForm'
 import Tooltip from '@material-ui/core/Tooltip'
 import Fab from '@material-ui/core/Fab'
+import AddMovieClass from './AddMovieClass'
+
 const dialogStyle = {
 }
 const fabStyle = {
@@ -62,7 +64,7 @@ export default function AddMovieDialog (props) {
     <span style={dialogStyle}>
       <Tooltip title="Add">
         <Fab style={fabStyle} size="small" onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-          <AddIcon />
+          <AddIcon fontSize="small" />
         </Fab>
       </Tooltip>
       <Dialog
@@ -71,7 +73,7 @@ export default function AddMovieDialog (props) {
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
-          <DialogForm handleSubmitClose={handleClose} user={props.user} saved={props.saved} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image} categories={props.categories} revenue={props.revenue} budget={props.budget} runtime={props.runtime} tagline={props.tagline}/>
+          <AddMovieClass handleSubmitClose={handleClose} closeMovieInfo={props.closeMovieInfo} viewTrendingMovie={props.viewTrendingMovie} getMovieDetails={props.getMovieDetails} title={props.title} id={props.id} released={props.released} description={props.description} image={props.image} user={props.user} budget={props.budget}/>
         </DialogContent>
       </Dialog>
     </span>

@@ -36,7 +36,7 @@ class SignIn extends Component {
         message: messages.signInSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/movies'))
+      .then(() => history.push('/trending'))
       .catch(error => {
         this.setState({ email: '', password: '' })
         alert({

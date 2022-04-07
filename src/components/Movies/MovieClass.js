@@ -72,6 +72,8 @@ class MovieClass extends Component {
   }
 
   render () {
+    console.log('this.state', this.state)
+    console.log('this.props', this.props)
     // const { history } = this.props
     const { movie, deleted } = this.state
     if (deleted) {
@@ -137,14 +139,15 @@ class MovieClass extends Component {
                             )
                           })}
                         </div>
-                        <Typography>runtime {this.state.movie.runtime}</Typography>
-                        <Typography>budget {this.state.movie.budget}</Typography>
-                        <Typography>revenue {this.state.movie.revenue}</Typography>
+                        { movie.runtime ? <Typography>runtime {movie.runtime}</Typography> : '' }
+                        { movie.revenue && Number(movie.revenue) > 0 ? <Typography>revenue ${movie.revenue}</Typography> : '' }
+                        { movie.budget && Number(movie.budget) > 0 ? <Typography>budget ${movie.budget}</Typography> : '' }
+
                       </CardContent>
                       <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
                         <Tooltip title="Delete">
-                          <Fab onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
-                            <DeleteIcon />
+                          <Fab size="small" onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
+                            <DeleteIcon fontSize="small" />
                           </Fab>
                         </Tooltip>
                         <EditMovieFab

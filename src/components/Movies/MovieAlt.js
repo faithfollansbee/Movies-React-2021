@@ -7,7 +7,6 @@ import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
-// import { withStyles } from '@material-ui/core/styles'
 import Fade from '@material-ui/core/Fade'
 
 // import AddMovieDialog from './AddMovieDialog'
@@ -76,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 const MovieAlt = (props) => {
   const classes = useStyles()
   // console.log(props)
+  // console.log(props)
   // <Tooltip className='styledTooltip' style={{ color: 'red' }} title={props.title} placement="top">
 
   return (
@@ -107,7 +107,7 @@ const MovieAlt = (props) => {
           <Link to={`/movies/${props.id}`} href={`/movies/${props.id}`}>
             <Tooltip title="More">
               <Fab size="small" style={fabStyle3} className="hidden-button floating" color="primary" aria-label="more" >
-                <KeyboardArrowRightIcon />
+                <KeyboardArrowRightIcon fontSize="small" />
               </Fab>
             </Tooltip>
           </Link>

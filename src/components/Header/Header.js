@@ -6,10 +6,8 @@ import AccountMenu from './UserMenu'
 const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#movies">Movies</Nav.Link>
-    <Nav.Link href="#genres">Genres</Nav.Link>
     <Nav.Link href="#search">Search</Nav.Link>
-    <Nav.Link href="#lists">My Lists</Nav.Link>
-    <Nav.Link href="#favorites">Favorites</Nav.Link>
+    <Nav.Link href="#genres">My Lists</Nav.Link>
     <Nav.Link href="#trending">Trending</Nav.Link>
   </Fragment>
 )

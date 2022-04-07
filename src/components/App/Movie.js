@@ -8,6 +8,8 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
+// import AddMovieDialog from './AddMovieClass'
+
 const fabStyle2 = {
   bottom: 60,
   left: 70
@@ -90,7 +92,7 @@ const Movie = (props) => {
         </Tooltip>
         <div style={fabRowStyle}>
           <div style={fabStyle2} className='hidden-button floating waves-effect waves-light'>
-            <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
+            <AddMovieDialog onClick={() => props.viewMovie(props.movieId)} currentMovie={props.currentMovie} viewMovie={props.viewMovie} getMovieDetails={props.getMovieDetails} id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
           </div>
           { /* <Fab size="small" style={fabStyle4} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
             <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
@@ -103,7 +105,7 @@ const Movie = (props) => {
             </Tooltip>
           </Link>
         </div>
-        { /*   <Link to="/trending-info" onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId} title={props.title} currentMovie={props.currentMovie}>
+        { /*   <Link to="/trending-info" onClick={() => props.ie(props.movieId)} user={props.user} id={props.movieId} title={props.title} currentMovie={props.currentMovie}>
             <Tooltip title={props.movieId}>
               <Fab size="small" style={fabStyle3} className="hidden-button floating" color="secondary" aria-label="more" >
                 <KeyboardArrowRightIcon />

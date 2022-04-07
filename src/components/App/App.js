@@ -37,6 +37,7 @@ class App extends Component {
       movie: null
     }
     this.apiKey = process.env.apiKey
+    // this.apiKey = process.env.REACT_APP_MY_API_KEY
   }
 
   setUser = user => this.setState({ user })
@@ -49,45 +50,51 @@ class App extends Component {
       return { alerts: state.alerts.filter(msg => msg.id !== id) }
     })
   }
+
   viewMovie = (id) => {
     event.preventDefault()
-    // const selectedMovie = this.state.movies.filter(movie => movie.id === id)
-    // const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
     const selectedMovie = this.state.searchedMovies.filter(movie => movie.id === id)
+    // const selectedMovie = this.state.movies.filter(movie => movie.id === id)
     const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
-    // const currentMovieObj = selectedMovie[0]
-    // this.setState({ currentMovie: currentMovieObj })
     this.setState({ currentMovie: newCurrentMovie })
+    console.log('called viewMovie, set new currentMovie')
   }
+
   viewTrendingMovie = (id) => {
     event.preventDefault()
     const selectedMovie = this.state.movies.filter(movie => movie.id === id)
     const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
-
     // const newTrendingMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
     // const currentMovieObj = selectedMovie[0]
     // this.setState({ currentMovie: currentMovieObj })
     // this.setState({ trendingMovie: newTrendingMovie })
     this.setState({ currentMovie: newCurrentMovie })
+    console.log('viewTrendingMovie called, set currentMovie')
   }
 
   closeMovieInfo = () => {
     event.preventDefault()
     this.setState({ currentMovie: null })
+    console.log('closeMovieInfo, set currentMovie to null')
   }
 
   BackToResults = () => {
     this.setState({ currentMovie: null })
+    console.log('BackToResults, set currentMovie to null')
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     //  this.apiKey = process.env.API_KEY
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&query=${this.state.searchTerm}`)
+    // &region=US
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&language=en-US&include_adult=false&query=${this.state.searchTerm}`)
+    // fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&original_language=en&include_adult=false&query=${this.state.searchTerm}`)
+    // fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&include_adult=false&query=${this.state.searchTerm}`)
       .then(data => data.json())
       .then(data => {
         // this.setState({ movies: [...data.results], totalResults: data.total_results })
-        this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+        this.setState({ searchedMovies: [...data.results], totalResults: data.total_results, movies: [...data.results] })
+        console.log('handleSubmit, set searchedMovies + totalResults')
       })
       .catch(error => {
         console.error(error)
@@ -114,6 +121,7 @@ class App extends Component {
       .then(data => {
         this.setState({ movies: [...data.results] })
         // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+        console.log('getTrending, set movies')
       })
       .catch(error => {
         console.error(error)
@@ -135,6 +143,21 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: [...data] })
+        console.log(this.state.currentMovie, 'got movie')
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+  getMovieDetails = (id) => {
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${id}`)
+
+    // fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
+      .then(data => data.json())
+      .then(data => {
+        this.setState({ currentMovie: [...data] })
+        console.log(data)
+        console.log(this.state.currentMovie, 'got movie')
       })
       .catch(error => {
         console.error(error)
@@ -149,6 +172,7 @@ class App extends Component {
    // <AuthenticatedRoute user={user} exact path='/more-info' render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)} />
    // currentMovie={this.state.currentMovie}
    render () {
+     // console.log('this.state', this.state)
      const { user, alerts } = this.state
      const numberPages = Math.floor(this.state.totalResults / 20)
      return (
@@ -181,7 +205,7 @@ class App extends Component {
            { /*            <AuthenticatedRoute user={user} path="/trending-info" render={() => (<MovieInfoClass user={user} saved={this.saved} currentMovie={this.state.currentMovie} getMovie={this.getMovie} movie={this.state.movie} closeMovieInfo={this.closeMovieInfo}/>)}/> */ }
            <AuthenticatedRoute user={user} path="/search" component={App} render={() => (
              <div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
-               <SearchResults user={user} viewMovie={this.viewMovie} searchedMovies={this.state.searchedMovies} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
+               <SearchResults user={user} viewMovie={this.viewMovie} getMovieDetails={this.getMovieDetails} searchedMovies={this.state.searchedMovies} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
                { this.state.totalResults > 20 ? <Pagination user={user} pages={numberPages} nextPage={this.nextPage} currentPage={this.state.currentPage}/> : '' }
              </div>)}
            />
@@ -212,7 +236,7 @@ class App extends Component {
            <AuthenticatedRoute user={user} path='/trending'
              render={() => (
                <div>
-                 <Trending user={user} getTrending={this.getTrending} movies={this.state.movies} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie} viewTrendingMovie={this.viewTrendingMovie} viewMovie={this.viewMovie} setUser={this.setUser} getGenres={this.getGenres}/>
+                 <Trending user={user} getTrending={this.getTrending} getMovieDetails={this.getMovieDetails} movies={this.state.movies} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie} viewMovie={this.viewTrendingMovie} setUser={this.setUser} getGenres={this.getGenres} currentMovie={this.state.currentMovie} />
                </div>
              )}/>
 

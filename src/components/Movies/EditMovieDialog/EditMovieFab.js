@@ -52,8 +52,8 @@ export default function EditMovieFab (props) {
   return (
     <div>
       <Tooltip title="Edit">
-        <Fab onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit">
-          <EditIcon className="material-icons right"/>
+        <Fab size="small" onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="edit">
+          <EditIcon fontSize="small" className="material-icons right"/>
         </Fab>
       </Tooltip>
       <Dialog

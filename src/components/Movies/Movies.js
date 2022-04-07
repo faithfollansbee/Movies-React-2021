@@ -81,9 +81,9 @@ class movies extends Component {
 
   render () {
     // console.log('rendered')
-    // console.log('this.state', this.state)
+    console.log('this.state', this.state)
     // console.log(this.state.movies.length)
-    // console.log('this.props', this.props)
+    console.log('this.props', this.props)
     const { userMovies, isLoading } = this.state
     const moviesJsx = userMovies.map(movie => (
       <MovieAlt key={movie.name + movie._id}
@@ -142,7 +142,7 @@ class movies extends Component {
     return (
       <div className="results-container my-5">
         <Fragment>
-          <h1 className="title-style"><strong>Your movies</strong></h1>
+          <h1 className="title-style">Your Movies</h1>
           <div className="search">
             {
               <Fragment>

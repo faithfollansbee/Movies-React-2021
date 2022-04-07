@@ -12,7 +12,9 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import AddMovieDialog from './AddMovieDialog'
+// import AddMovieDialog from './AddMovieDialog'
+import SaveMovieFunction from './SaveMovieFunction'
+
 const addDialogStyle = {
 }
 class MovieInfoClass extends Component {
@@ -30,6 +32,7 @@ class MovieInfoClass extends Component {
       .then(data => {
         this.setState({ currentMovie: { ...data } })
         this.setState({ genres: data.genres })
+        console.log('MovieInfoClass mounted + fetched more info from api')
       })
       .catch(error => {
         console.error(error)
@@ -42,6 +45,7 @@ class MovieInfoClass extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
+        console.log('called get')
       })
       .catch(error => {
         console.error(error)
@@ -49,6 +53,9 @@ class MovieInfoClass extends Component {
   }
 
   render () {
+    const { currentMovie } = this.state
+    console.log(this.state)
+    console.log(this.props)
     return (
       <div className="layout-style">
         <Tooltip title="back">
@@ -99,10 +106,11 @@ class MovieInfoClass extends Component {
                       </div>
                       <br/>
                       <Typography><a href={this.state.currentMovie.homepage}>{this.state.currentMovie.homepage}</a></Typography>
-                      { this.state.currentMovie.tagline ? <Typography>&quot;{this.state.currentMovie.tagline}&quot;</Typography> : '' }
-                      <Typography>runtime {this.state.currentMovie.runtime}</Typography>
-                      <Typography>budget {this.state.currentMovie.budget}</Typography>
-                      <Typography>revenue {this.state.currentMovie.revenue}</Typography>
+                      { currentMovie.tagline ? <Typography>&quot;{this.state.currentMovie.tagline}&quot;</Typography> : '' }
+                      { currentMovie.runtime ? <Typography>runtime {this.state.currentMovie.runtime}</Typography> : '' }
+                      { currentMovie.revenue && Number(currentMovie.revenue) > 0 ? <Typography>revenue ${currentMovie.revenue}</Typography> : '' }
+                      { currentMovie.budget && Number(currentMovie.budget) > 0 ? <Typography>budget ${currentMovie.budget}</Typography> : '' }
+
                       <Typography variant="body1">
                         {this.props.currentMovie.overview}
                       </Typography>
@@ -110,10 +118,11 @@ class MovieInfoClass extends Component {
                     <CardActions className="row" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                       <Tooltip title="Favorite">
                         <Fab size="small" className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
-                          <FavoriteIcon />
+                          <FavoriteIcon fontSize="small" />
                         </Fab>
                       </Tooltip>
-                      <AddMovieDialog style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} revenue={this.state.currentMovie.revenue} homepage={this.state.currentMovie.homepage} budget={this.state.currentMovie.budget} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.state.currentMovie.tagline} runtime={this.state.currentMovie.runtime} categories={this.state.genres}/>
+                      <SaveMovieFunction style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} revenue={this.state.currentMovie.revenue} homepage={this.state.currentMovie.homepage} budget={this.state.currentMovie.budget} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.state.currentMovie.tagline} runtime={this.state.currentMovie.runtime} categories={this.state.genres}/>
+
                     </CardActions>
                   </div>
                 </div>
