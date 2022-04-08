@@ -84,6 +84,8 @@ class MovieClass extends Component {
       //   }
       // }/>
     }
+    const bull = <span style={{ display: 'inline-block', margin: '0 2px', transform: 'scale(0.8)' }}>•</span>
+
     // <p> {movie.genre.name} </p>
     return (
       <div className="layout-style">
@@ -101,7 +103,6 @@ class MovieClass extends Component {
                   </div>
 
                   <div className="col">
-
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                       <div>
                         <CardHeader
@@ -122,6 +123,8 @@ class MovieClass extends Component {
                       </div>
 
                       <CardContent>
+                        { this.state.movie.tagline ? <Typography gutterBottom>&quot;{this.state.movie.tagline}&quot;</Typography> : '' }
+
                         <Typography variant="body1">
                           {movie.description}
                         </Typography>
@@ -130,19 +133,24 @@ class MovieClass extends Component {
                           : <Typography color="textSecondary" variant="subtitle1"><p>Uncategorized</p></Typography>
                         }
                         { /* color: '#757575' */ }
-                        { this.state.movie.tagline ? <Typography>&quot;{this.state.movie.tagline}&quot;</Typography> : '' }
                         <Typography><a href={this.state.movie.homepage}>{this.state.movie.homepage}</a></Typography>
                         <div style={{ display: 'flex' }}>
-                          { this.state.movie.categories.map((genre, i) => {
-                            return (
-                              <Typography key={i}>{genre.name}&nbsp;</Typography>
-                            )
+                          { this.state.movie.categories.map((genre, i, arr) => {
+                            if (arr.length - 1 === i) {
+                              return (<Typography gutterBottom key={i}>{genre.name}</Typography>)
+                            } else {
+                              return (<Typography gutterBottom key={i}>{genre.name}{bull}</Typography>)
+                            }
                           })}
                         </div>
                         { movie.runtime ? <Typography>runtime {movie.runtime}</Typography> : '' }
                         { movie.revenue && Number(movie.revenue) > 0 ? <Typography>revenue ${movie.revenue}</Typography> : '' }
                         { movie.budget && Number(movie.budget) > 0 ? <Typography>budget ${movie.budget}</Typography> : '' }
-
+                        { movie.directors.length === 0 ? (
+                          <div></div>)
+                          : <div> { movie.directors.length > 1 ? (
+                            <Typography>Directors: {movie.directors.join(', ')}</Typography>)
+                            : (<Typography>Director: {movie.directors}</Typography>)}</div> }
                       </CardContent>
                       <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
                         <Tooltip title="Delete">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Movie from './Movie'
+
 import Skeleton from '@material-ui/lab/Skeleton'
 const skeletonPlaceStyle = {
   marginLeft: 'auto',

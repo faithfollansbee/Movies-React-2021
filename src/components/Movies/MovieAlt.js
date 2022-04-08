@@ -9,15 +9,9 @@ import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import Fade from '@material-ui/core/Fade'
 
-// import AddMovieDialog from './AddMovieDialog'
-// import Skeleton from '@material-ui/lab/Skeleton'
-// const mediaStyle = {
-//   height: '360px',
-//   width: '290px'
-// }
 const fabStyle3 = {
   bottom: 60,
-  left: 100
+  left: 105
 }
 const StyledTooltip = withStyles({
   tooltip: {
@@ -28,8 +22,10 @@ const StyledTooltip = withStyles({
 const fabRowStyle = {
   display: 'flex',
   justifyContent: 'space-evenly',
-  position: 'absolute'
+  position: 'absolute',
+  alignItems: 'center'
 }
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,

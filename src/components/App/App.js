@@ -140,6 +140,7 @@ class App extends Component {
   getMovie = (event) => {
     // event.preventDefault()
     fetch(`https://api.themoviedb.org/3/movie/${this.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
+      // &append_to_response=credits
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: [...data] })
@@ -204,7 +205,8 @@ class App extends Component {
 */}
            { /*            <AuthenticatedRoute user={user} path="/trending-info" render={() => (<MovieInfoClass user={user} saved={this.saved} currentMovie={this.state.currentMovie} getMovie={this.getMovie} movie={this.state.movie} closeMovieInfo={this.closeMovieInfo}/>)}/> */ }
            <AuthenticatedRoute user={user} path="/search" component={App} render={() => (
-             <div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
+             <div>
+               <SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
                <SearchResults user={user} viewMovie={this.viewMovie} getMovieDetails={this.getMovieDetails} searchedMovies={this.state.searchedMovies} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/>
                { this.state.totalResults > 20 ? <Pagination user={user} pages={numberPages} nextPage={this.nextPage} currentPage={this.state.currentPage}/> : '' }
              </div>)}

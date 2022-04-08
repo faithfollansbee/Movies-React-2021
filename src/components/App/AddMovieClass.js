@@ -21,7 +21,8 @@ class AddMovieClass extends Component {
       open: false,
       currentMovie: null,
       genres: [],
-      id: this.props.id
+      id: this.props.id,
+      directors: []
     }
   }
   // handleClickOpen = () => {
@@ -38,12 +39,18 @@ class AddMovieClass extends Component {
     console.log('this.state.id', this.state.id)
     console.log(this.props)
     this.props.getMovieDetails(this.props.id)
-    fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${this.props.id}`)
+    fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&append_to_response=credits`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
         this.setState({ genres: data.genres })
-        console.log('MovieInfoClass mounted + fetched more info from api')
+        const directors = []
+        data.credits.crew.forEach(function (entry) {
+          if (entry.job === 'Director') {
+            directors.push(entry.name)
+          }
+        })
+        this.setState({ directors: directors })
       })
       .catch(error => {
         console.error(error)
@@ -78,7 +85,7 @@ class AddMovieClass extends Component {
   // }
   render () {
     const { handleSubmitClose, user, saved, closeMovieInfo, title, released, description, image, categories } = this.props
-    const { currentMovie } = this.state
+    const { currentMovie, directors } = this.state
     if (!this.state.currentMovie) {
       return <div />
     }
@@ -91,7 +98,7 @@ class AddMovieClass extends Component {
           hi {title}
           {currentMovie.tagline}
         </div>
-        <DialogForm handleSubmitClose={handleSubmitClose} user={user} saved={saved} closeMovieInfo={closeMovieInfo} title={title} released={released} description={description} image={image} categories={categories} revenue={currentMovie.revenue} budget={currentMovie.budget} runtime={currentMovie.runtime} tagline={currentMovie.tagline}/>
+        <DialogForm handleSubmitClose={handleSubmitClose} user={user} directors={directors} saved={saved} closeMovieInfo={closeMovieInfo} title={title} released={released} description={description} image={image} categories={categories} revenue={currentMovie.revenue} budget={currentMovie.budget} runtime={currentMovie.runtime} tagline={currentMovie.tagline}/>
 
       </span>
     )
