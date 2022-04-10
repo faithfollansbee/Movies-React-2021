@@ -8,6 +8,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
+import DeleteMovieDialog from './DeleteMovieDialog'
 
 export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, image, description, released, currentGenre, currentGenreId }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -71,6 +72,9 @@ export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, 
       >
         <span>
           <EditMovieDialog onMenuClose={handleClose} id={id} user={user} movie={movie} title={title} currentGenre={currentGenre} genre={genre} image={image} released={released} description={description}/>
+        </span>
+        <span>
+          <DeleteMovieDialog deleteMovie={deleteMovie} onMenuClose={handleClose} id={id} user={user} movie={movie} title={title} currentGenre={currentGenre} genre={genre} image={image} released={released} description={description}/>
         </span>
         <MenuItem onClick={deleteMovie} component="a">
           <ListItemIcon >

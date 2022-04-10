@@ -99,7 +99,7 @@ class MaterializeMovieClass extends Component {
                       className="activator" // materialboxed ?
                       component="img"
                       alt="movie-poster"
-                      src={`https://image.tmdb.org/t/p/w185/${this.props.image}`}
+                      src={`https://image.tmdb.org/t/p/w500/${this.props.image}`}
                       // title={this.props.title}
                     />
                 }

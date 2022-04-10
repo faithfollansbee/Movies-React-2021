@@ -67,6 +67,7 @@ export default function AddMovieDialog (props) {
           <AddIcon fontSize="small" />
         </Fab>
       </Tooltip>
+
       <Dialog
         fullWidth={true}
         maxWidth="sm"

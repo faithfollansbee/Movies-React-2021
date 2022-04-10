@@ -57,7 +57,7 @@ class App extends Component {
     // const selectedMovie = this.state.movies.filter(movie => movie.id === id)
     const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
     this.setState({ currentMovie: newCurrentMovie })
-    console.log('called viewMovie, set new currentMovie')
+    console.log('called viewMovie, set currentMovie')
   }
 
   viewTrendingMovie = (id) => {
@@ -69,7 +69,7 @@ class App extends Component {
     // this.setState({ currentMovie: currentMovieObj })
     // this.setState({ trendingMovie: newTrendingMovie })
     this.setState({ currentMovie: newCurrentMovie })
-    console.log('viewTrendingMovie called, set currentMovie')
+    console.log('called viewTrendingMovie, set currentMovie')
   }
 
   closeMovieInfo = () => {
@@ -87,14 +87,24 @@ class App extends Component {
     event.preventDefault()
     //  this.apiKey = process.env.API_KEY
     // &region=US
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&language=en-US&include_adult=false&query=${this.state.searchTerm}`)
+    // fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&original_language=en-US&include_adult=false&query=${this.state.searchTerm}`)
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&with_origin_country=US&include_adult=false&query=${this.state.searchTerm}`)
+
     // fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&original_language=en&include_adult=false&query=${this.state.searchTerm}`)
     // fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&include_adult=false&query=${this.state.searchTerm}`)
       .then(data => data.json())
       .then(data => {
+        // console.log(data)
         // this.setState({ movies: [...data.results], totalResults: data.total_results })
-        this.setState({ searchedMovies: [...data.results], totalResults: data.total_results, movies: [...data.results] })
-        console.log('handleSubmit, set searchedMovies + totalResults')
+        const englishMovies = []
+        data.results.forEach(function (entry) {
+          if (entry.original_language === 'en') {
+            englishMovies.push(entry)
+          }
+        })
+        // console.log(englishMovies)
+        this.setState({ searchedMovies: [...englishMovies], totalResults: data.total_results, movies: [...englishMovies] })
+        console.log('called handleSubmit, set searchedMovies + totalResults')
       })
       .catch(error => {
         console.error(error)
@@ -122,6 +132,7 @@ class App extends Component {
         this.setState({ movies: [...data.results] })
         // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
         console.log('getTrending, set movies')
+        console.log(data)
       })
       .catch(error => {
         console.error(error)
@@ -157,8 +168,8 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: [...data] })
-        console.log(data)
-        console.log(this.state.currentMovie, 'got movie')
+        // console.log(data)
+        console.log('called getMovieDetails, set currentMovie')
       })
       .catch(error => {
         console.error(error)
@@ -174,6 +185,7 @@ class App extends Component {
    // currentMovie={this.state.currentMovie}
    render () {
      // console.log('this.state', this.state)
+     console.log('currentMovie', this.state.currentMovie)
      const { user, alerts } = this.state
      const numberPages = Math.floor(this.state.totalResults / 20)
      return (

@@ -33,15 +33,16 @@ class MovieInfoClass extends Component {
       .then(data => {
         this.setState({ currentMovie: { ...data } })
         this.setState({ genres: data.genres })
-        console.log('MOVIEINFOCLASS', data)
-        console.log('MovieInfoClass mounted + fetched more info from api')
+        console.log(data)
+        // console.log('MOVIEINFOCLASS', data)
+        // console.log('MovieInfoClass mounted + fetched more info from api')
         const directors = []
         data.credits.crew.forEach(function (entry) {
           if (entry.job === 'Director') {
             directors.push(entry.name)
           }
         })
-        console.log('Director: ' + directors.join(', '))
+        // console.log('Director: ' + directors.join(', '))
         this.setState({ directors: directors })
       })
       .catch(error => {
@@ -55,7 +56,7 @@ class MovieInfoClass extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
-        console.log('called get')
+        // console.log('called get')
       })
       .catch(error => {
         console.error(error)
@@ -64,8 +65,8 @@ class MovieInfoClass extends Component {
 
   render () {
     const { currentMovie, directors } = this.state
-    console.log(this.state)
-    console.log(this.props)
+    // console.log(this.state)
+    // console.log(this.props)
     const bull = <span style={{ display: 'inline-block', margin: '0 2px', transform: 'scale(0.8)' }}>•</span>
 
     return (
@@ -79,19 +80,24 @@ class MovieInfoClass extends Component {
            Back
           </Button>
         </Tooltip>
-        <div style={{ backgroundColor: 'LavenderBlush' }} className="movie-container mx-auto my-3 px-3 py-3 border">
+        <div style={{ backgroundColor: '#f1f1f1' }} className="movie-container mx-auto my-3 px-3 py-3 border">
           <Card>
             <CardContent>
               <div className="row">
                 <div>
-                  { currentMovie.poster_path == null
-                    ? <CardMedia component="img" alt="card image" height="500" style={{ width: '100', height: 500 }} src={'https://i.imgur.com/R7mqXKL.png'} image={'https://i.imgur.com/R7mqXKL.png'} title={currentMovie.title} />
-                    : <CardMedia component="img" alt="card image" height="500" style={{ width: '100', height: 500 }} src={`https://image.tmdb.org/t/p/w185/${currentMovie.poster_path}`}
-                      image={`https://image.tmdb.org/t/p/w185/${currentMovie.poster_path}`} title={currentMovie.title} />
-                  }
+                  <div style={{ width: '100%' }}>
+
+                    { currentMovie.poster_path == null
+                      ? <CardMedia component="img" alt="card image" height="500" style={{ width: '100', height: 500 }} src={'https://i.imgur.com/R7mqXKL.png'} image={'https://i.imgur.com/R7mqXKL.png'} title={currentMovie.title} />
+                      : <CardMedia component="img" alt="card image" height="500" style={{ width: '100', height: 500 }} src={`https://image.tmdb.org/t/p/w185/${currentMovie.poster_path}`}
+                        image={`https://image.tmdb.org/t/p/w500/${currentMovie.poster_path}`} title={currentMovie.title} />
+                    }
+                  </div>
                 </div>
+
+                {/* image={`https://image.tmdb.org/t/p/w185/${currentMovie.poster_path}`} */}
                 {/* <img src={`https://image.tmdb.org/t/p/w185/${this.state.currentMovie.poster_path}`} alt="card image" style={{ width: '100', height: 500 }}/> */}
-                <div className="col" style={{}}>
+                <div className="col">
                   <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                     <div>
                       <CardHeader
@@ -114,32 +120,35 @@ class MovieInfoClass extends Component {
                     </div>
 
                     <CardContent>
-                      { currentMovie.tagline ? <Typography gutterBottom>&quot;{this.state.currentMovie.tagline}&quot;<br/></Typography> : '' }
-                      <Typography gutterBottom>
+                      { currentMovie.tagline ? <Typography variant="subtitle1" gutterBottom>&quot;{this.state.currentMovie.tagline}&quot;<br/></Typography> : '' }
+                      <Typography variant="subtitle1" gutterBottom>
                         {this.props.currentMovie.overview}
-                        <br/>
                       </Typography>
+                      <br/>
                       <div style={{ display: 'flex' }}>
                         { this.state.genres.map((genre, i, arr) => {
                           if (arr.length - 1 === i) {
-                            return (<Typography gutterBottom key={i}>{genre.name}</Typography>)
+                            return (<Typography variant="subtitle1" style={{ fontWeight: '450' }} gutterBottom key={i}>{genre.name}</Typography>)
                           } else {
-                            return (<Typography gutterBottom key={i}>{genre.name}{bull}</Typography>)
+                            return (<Typography variant="subtitle1" style={{ fontWeight: '450' }} gutterBottom key={i}>{genre.name}{bull}</Typography>)
                           }
                         })}
+                        <br/>
                       </div>
                       { !directors ? (
                         <div></div>)
                         : <div> { directors.length > 1 ? (
-                          <Typography gutterBottom>Directors: {this.state.directors.join(', ')}</Typography>)
-                          : (<Typography gutterBottom>Director: {this.state.directors}<br/></Typography>)}</div> }
-                      { currentMovie.release_date ? <Typography color="textSecondary" gutterBottom>released {currentMovie.release_date.substring(5).split('-').concat(currentMovie.release_date.substring(0, 4)).join('/')}</Typography> : '' }
-                      { currentMovie.runtime ? <Typography color="textSecondary" gutterBottom>runtime {this.state.currentMovie.runtime}</Typography> : '' }
-                      { currentMovie.revenue && Number(currentMovie.revenue) > 0 ? <Typography color="textSecondary" gutterBottom>revenue ${currentMovie.revenue}</Typography> : '' }
-                      { currentMovie.budget && Number(currentMovie.budget) > 0 ? <Typography color="textSecondary" gutterBottom>budget ${currentMovie.budget}</Typography> : '' }
+                          <Typography color="textSecondary">Directors: {this.state.directors.join(', ')}</Typography>)
+                          : (<Typography color="textSecondary" >Director: {this.state.directors}<br/></Typography>)}</div> }
+                      {/*  { currentMovie.release_date ? <Typography color="textSecondary">released: {currentMovie.release_date.substring(5).split('-').concat(currentMovie.release_date.substring(0, 4)).join('/')}</Typography> : '' } */}
+                      { currentMovie.runtime ? <Typography color="textSecondary">runtime: {this.state.currentMovie.runtime} min</Typography> : '' }
+                      { currentMovie.revenue && Number(currentMovie.revenue) > 0 ? <Typography color="textSecondary">revenue: ${currentMovie.revenue}</Typography> : '' }
+                      { currentMovie.budget && Number(currentMovie.budget) > 0 ? <Typography color="textSecondary">budget: ${currentMovie.budget}</Typography> : '' }
+                      <br/>
                       <Typography><a href={this.state.currentMovie.homepage}>{this.state.currentMovie.homepage}</a></Typography>
+                      <br/>
                     </CardContent>
-                    <CardActions style={{ backgroundColor: 'Cornsilk', marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+                    <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                       <Tooltip title="Favorite">
                         <Fab size="small" className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
                           <FavoriteIcon fontSize="small" />
@@ -152,15 +161,6 @@ class MovieInfoClass extends Component {
               </div>
             </CardContent>
           </Card>
-          <Typography variant="button" display="block" gutterBottom>
-            button text
-          </Typography>
-          <Typography variant="caption" display="block" gutterBottom>
-            caption text
-          </Typography>
-          <Typography variant="overline" display="block" gutterBottom>
-            overline text
-          </Typography>
         </div>
       </div>
     )

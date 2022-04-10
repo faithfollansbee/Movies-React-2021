@@ -34,10 +34,10 @@ class AddMovieClass extends Component {
 
   componentDidMount (props) {
     this.loadData(this.props.id)
-    console.log('hi')
-    console.log(this.props.id)
-    console.log('this.state.id', this.state.id)
-    console.log(this.props)
+    // console.log('hi')
+    // console.log(this.props.id)
+    // console.log('this.state.id', this.state.id)
+    // console.log(this.props)
     this.props.getMovieDetails(this.props.id)
     fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&append_to_response=credits`)
       .then(data => data.json())
@@ -63,8 +63,8 @@ class AddMovieClass extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: [...data] })
-        console.log(data)
-        console.log(this.state.currentMovie, 'got movie')
+        // console.log(data)
+        // console.log(this.state.currentMovie, 'got movie')
       })
       .catch(error => {
         console.error(error)
@@ -84,21 +84,24 @@ class AddMovieClass extends Component {
   //     })
   // }
   render () {
-    const { handleSubmitClose, user, saved, closeMovieInfo, title, released, description, image, categories } = this.props
-    const { currentMovie, directors } = this.state
+    const { handleSubmitClose, user, saved, closeMovieInfo, title, released, description, image } = this.props
+    const { currentMovie, directors, genres } = this.state
     if (!this.state.currentMovie) {
       return <div />
     }
-    console.log(this.state)
-    console.log(this.props)
-    console.log(currentMovie.tagline)
+    // console.log(this.state)
+    // console.log(this.props)
+    // console.log(currentMovie.tagline)
+    // directors={props.directors} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image} categories={props.categories} revenue={props.revenue} budget={props.budget} runtime={props.runtime} tagline={props.tagline}
     return (
       <span>
         <div>
           hi {title}
           {currentMovie.tagline}
+          <div> currentMovie: {this.props.title} </div>
+          <div>currentMovie: {currentMovie.title}</div>
         </div>
-        <DialogForm handleSubmitClose={handleSubmitClose} user={user} directors={directors} saved={saved} closeMovieInfo={closeMovieInfo} title={title} released={released} description={description} image={image} categories={categories} revenue={currentMovie.revenue} budget={currentMovie.budget} runtime={currentMovie.runtime} tagline={currentMovie.tagline}/>
+        <DialogForm handleSubmitClose={handleSubmitClose} revenue={currentMovie.revenue} user={user} genres={genres} directors={directors} saved={saved} closeMovieInfo={closeMovieInfo} title={title} released={released} description={description} image={image} categories={genres} budget={currentMovie.budget} runtime={currentMovie.runtime} tagline={currentMovie.tagline}/>
 
       </span>
     )

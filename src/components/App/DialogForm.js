@@ -99,6 +99,7 @@ class SaveMovie extends Component {
   }
 
   render (props) {
+    // console.log(props)
     const { saved } = this.state
     if (saved) {
       return <Redirect to={
@@ -142,6 +143,8 @@ class SaveMovie extends Component {
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
+          <div>budget: {this.props.budget}</div>
+          <div>revenue: {this.props.revenue}</div>
           <Form.Group controlId="genre">
             { genresJsx }
             <DialogActions>

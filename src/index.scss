@@ -1,13 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
-// .hoverCardStyle: {
-//   transition: 'transform 0.2s ease-in-out',
-//   '& .hidden-button': {
-//     display: 'none'
-//   },
-//   '&:hover .hidden-button': {
-//     display: 'flex'
-//   }
-// },
+* {
+  // margin: 0;
+  // padding: 0;
+  font-family: "Open Sans", sans-serif;
+  // box-sizing: border-box;
+  // text-decoration: none;
+}
 .container {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -35,18 +33,7 @@ body {
 .genrePosterPreview.MuiCardMedia-media {
   width: auto !important;
 }
-.MuiCardMedia-media {
-  // width: auto !important;
-}
-// .MuiPaper-root {
-//   width: auto !important;
-// }
-// .MuiCard-root {
-//   width: auto !important;
-// }
-// .MuiCardMedia-root
-// .MuiCardMedia-media
-// .MuiCardMedia-img
+
 .MuiCard-root {
   overflow: visible !important;
 }
@@ -106,40 +93,7 @@ body {
   //   display: flex;
   // }
 }
-.hidden-button:hover {
-  // display: flex;
-  // .hidden-content {
-  //   display: flex;
-  // }
-}
-// .hidden-button {
-//   display: none;
-// }
-// .hidden-content {
-//   display: none;
-// }
-// .detailsButton:hover {
-//   .hidden-content {
-//     display: flex;
-//   }
-// }
 
-// .hidden-button:hover {
-//   display: flex;
-// }
-
-.card-style {
-  // margin: 20px; // commented out 11/19
-  // z-index: 3px;
-  // padding: 5px;
-}
-
-// .container {
-//   padding-right: 5px;
-//   padding-left: 5px;
-//   margin-right: 5px;
-//   margin-left: auto;
-// }
 .row-style {
   justify-content: space-around;
   display: flex;
@@ -165,6 +119,61 @@ body {
   padding-top: 5px;
   padding-bottom: 1px;
 }
+.MuiCardMedia-media {
+  // width: auto !important;
+}
+// .hoverCardStyle: {
+//   transition: 'transform 0.2s ease-in-out',
+//   '& .hidden-button': {
+//     display: 'none'
+//   },
+//   '&:hover .hidden-button': {
+//     display: 'flex'
+//   }
+// },
+// .MuiPaper-root {
+//   width: auto !important;
+// }
+// .MuiCard-root {
+//   width: auto !important;
+// }
+// .MuiCardMedia-root
+// .MuiCardMedia-media
+// .MuiCardMedia-img
+.card-style {
+  // margin: 20px; // commented out 11/19
+  // z-index: 3px;
+  // padding: 5px;
+}
+.hidden-button:hover {
+  // display: flex;
+  // .hidden-content {
+  //   display: flex;
+  // }
+}
+// .hidden-button {
+//   display: none;
+// }
+// .hidden-content {
+//   display: none;
+// }
+// .detailsButton:hover {
+//   .hidden-content {
+//     display: flex;
+//   }
+// }
+
+// .hidden-button:hover {
+//   display: flex;
+// }
+
+
+// .container {
+//   padding-right: 5px;
+//   padding-left: 5px;
+//   margin-right: 5px;
+//   margin-left: auto;
+// }
 // .container {
 //   margin: 20px;
 //   align-items: center;

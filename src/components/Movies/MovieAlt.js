@@ -93,7 +93,7 @@ const MovieAlt = (props) => {
                 : <CardMedia
                   component="img"
                   alt="movie-poster"
-                  image={`https://image.tmdb.org/t/p/w185/${props.image}`}
+                  image={`https://image.tmdb.org/t/p/w500/${props.image}`}
                 />
             }
           </div>

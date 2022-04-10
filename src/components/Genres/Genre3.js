@@ -67,7 +67,7 @@ class Genre3 extends React.Component {
   }
 
   render () {
-    const { deleted } = this.state
+    const { deleted, movies, genre } = this.state
     if (deleted) {
       return <Redirect to={
         {
@@ -78,31 +78,30 @@ class Genre3 extends React.Component {
     }
     return (
       <div>
-        <Card className="card-style my-3 mx-3">
-          <CardContent style={{ display: 'flex', backgroundColor: 'AliceBlue', padding: '3px' }}>
+        <Card className="card-style my-3">
+          <CardContent style={{ display: 'flex', backgroundColor: 'AliceBlue', padding: '6px 4px 0px 0px' }}>
             <CardActionArea href={`#/genres/${this.state.genre._id}`} style={{ color: 'inherit', textDecoration: 'none' }} >
               <CardHeader
                 // action={
                 //   <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
                 // }
-                title={this.state.genre.name}
-                subheader={`${this.state.movies.length} movies`}
+                title={genre.name}
+                // subheader={`${this.state.movies.length} movies`}
+                subheader={ movies.length === 1 ? (<div>{movies.length} movie</div>) : (<div>{movies.length} movies</div>) }
               />
             </CardActionArea>
-            <div style={{ float: 'right', marginTop: '20px' }}>
-              <EditGenreMenu id={this.state.genre._id} genre={this.state.genre} user={this.props.user} deleteGenre={this.handleDelete}/>
+            <div style={{ float: 'right', marginTop: '15px' }}>
+              <EditGenreMenu id={genre._id} genre={genre} user={this.props.user} deleteGenre={this.handleDelete}/>
             </div>
           </CardContent>
-          <div style={{ display: 'flex', overflow: 'scroll', margin: '0px 10px 15px', padding: '5px' }}>
-            {this.state.movies.map(movie => (
+          <div style={{ display: 'flex', overflow: 'scroll', paddingBottom: '5px', margin: '0px 5px' }}>
+            {movies.map(movie => (
               movie.image == null
                 ? <CardMedia
                   key={movie._id}
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt={movie.title}
                   className="genrePosterPreview"
-                  // height="300"
-                  // width="100%"
                   image={'https://i.imgur.com/R7mqXKL.png'}
                   // style={PosterPreviewStyle}
                   // width="278px !important"
@@ -113,15 +112,15 @@ class Genre3 extends React.Component {
                 : <CardMedia
                   key={movie._id}
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt={movie.title}
                   className="genrePosterPreview"
-                  // height="300"
-                  // width="100%"
-                  image={`https://image.tmdb.org/t/p/w185/${movie.image}`}
+                  height="250"
+                  // image={'https://i.imgur.com/R7mqXKL.png'}
+                  image={`https://image.tmdb.org/t/p/w500/${movie.image}`}
                   // width="auto !important"
-                  // style={PosterPreviewStyle}
-                  // style={{ MuiCardMediaMedia: { width: 'auto !important' } }}
-                  // title="Contemplative Reptile"
+                // style={PosterPreviewStyle}
+                // style={{ MuiCardMediaMedia: { width: 'auto !important' } }}
+                // title="Contemplative Reptile"
                 />
             ))}
           </div>

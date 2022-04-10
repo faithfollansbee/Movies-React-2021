@@ -16,6 +16,7 @@ import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
 import EditMovieFab from './EditMovieDialog/EditMovieFab'
+import CardMedia from '@material-ui/core/CardMedia'
 
 const fabStyle1 = {
 }
@@ -72,8 +73,11 @@ class MovieClass extends Component {
   }
 
   render () {
-    console.log('this.state', this.state)
-    console.log('this.props', this.props)
+    console.log('rendered MovieClass')
+    // console.log(this.state.currentMovie)
+    // console.log(this.props.currentMovie)
+    // console.log('this.state', this.state)
+    // console.log('this.props', this.props)
     // const { history } = this.props
     const { movie, deleted } = this.state
     if (deleted) {
@@ -91,14 +95,23 @@ class MovieClass extends Component {
       <div className="layout-style">
         <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
         { movie && (
-          <div className="movie-container mx-auto my-3 px-3 py-3 border" style={{ backgroundColor: 'LavenderBlush' }}>
+          <div className="movie-container mx-auto my-3 px-3 py-3 border" style={{ backgroundColor: '#f1f1f1' }}>
             <Card>
               <CardContent>
                 <div className="row">
 
                   <div>
                     <div style={{ width: '100%' }}>
-                      { movie.image == null ? <img src={'https://i.imgur.com/R7mqXKL.png'} alt="card image" style={{ width: '100', height: 450 }}/> : <img src={`https://image.tmdb.org/t/p/w185/${movie.image}`} alt="card image" style={{ width: '100', height: 500 }}/> }
+                      { movie.image == null
+                        ? <CardMedia component="img" alt="card image" height="500"
+                          src={'https://i.imgur.com/R7mqXKL.png'} style={{ width: '100', height: 450 }}
+                          image={'https://i.imgur.com/R7mqXKL.png'} title={movie.title}
+                        />
+                        : <CardMedia component="img" alt="card image" height="500"
+                          src={`https://image.tmdb.org/t/p/w500/${movie.image}`}
+                          image={`https://image.tmdb.org/t/p/w500/${movie.image}`} title={movie.title}
+                          style={{ width: '100', height: 500 }}/>
+                      }
                     </div>
                   </div>
 
@@ -121,37 +134,44 @@ class MovieClass extends Component {
                           subheader={movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('/')}
                         />
                       </div>
-
                       <CardContent>
-                        { this.state.movie.tagline ? <Typography gutterBottom>&quot;{this.state.movie.tagline}&quot;</Typography> : '' }
 
-                        <Typography variant="body1">
+                        { this.state.movie.tagline ? <Typography variant="subtitle1" gutterBottom>&quot;{this.state.movie.tagline}&quot;</Typography> : '' }
+
+                        <Typography variant="subtitle1" gutterBottom>
                           {movie.description}
                         </Typography>
-                        { movie.genre
-                          ? <Typography color="textSecondary" variant="subtitle1"><p>Saved to: <a style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/genres/${this.state.movie.genre._id}`}>{this.state.movie.genre.name}</a></p></Typography>
-                          : <Typography color="textSecondary" variant="subtitle1"><p>Uncategorized</p></Typography>
-                        }
-                        { /* color: '#757575' */ }
-                        <Typography><a href={this.state.movie.homepage}>{this.state.movie.homepage}</a></Typography>
+                        <br/>
                         <div style={{ display: 'flex' }}>
-                          { this.state.movie.categories.map((genre, i, arr) => {
+                          { movie.categories.map((genre, i, arr) => {
                             if (arr.length - 1 === i) {
-                              return (<Typography gutterBottom key={i}>{genre.name}</Typography>)
+                              return (<Typography variant="subtitle1" style={{ fontWeight: '450' }} gutterBottom key={i}>{genre.name}</Typography>)
                             } else {
-                              return (<Typography gutterBottom key={i}>{genre.name}{bull}</Typography>)
+                              return (<Typography variant="subtitle1" style={{ fontWeight: '450' }} gutterBottom key={i}>{genre.name}{bull}</Typography>)
                             }
                           })}
                         </div>
-                        { movie.runtime ? <Typography>runtime {movie.runtime}</Typography> : '' }
-                        { movie.revenue && Number(movie.revenue) > 0 ? <Typography>revenue ${movie.revenue}</Typography> : '' }
-                        { movie.budget && Number(movie.budget) > 0 ? <Typography>budget ${movie.budget}</Typography> : '' }
                         { movie.directors.length === 0 ? (
                           <div></div>)
                           : <div> { movie.directors.length > 1 ? (
-                            <Typography>Directors: {movie.directors.join(', ')}</Typography>)
-                            : (<Typography>Director: {movie.directors}</Typography>)}</div> }
+                            <Typography color="textSecondary">Directors: {movie.directors.join(', ')}</Typography>)
+                            : (<Typography color="textSecondary">Director: {movie.directors}</Typography>)}</div> }
+                        { /* color: '#757575' */ }
+
+                        <Typography color="textSecondary"><a href={this.state.movie.homepage}>{this.state.movie.homepage}</a></Typography>
+
+                        { movie.runtime ? <Typography color="textSecondary">runtime: {movie.runtime} min</Typography> : '' }
+                        { movie.revenue && Number(movie.revenue) > 0 ? <Typography color="textSecondary">revenue: ${movie.revenue}</Typography> : '' }
+                        { movie.budget && Number(movie.budget) > 0 ? <Typography color="textSecondary">budget: ${movie.budget}</Typography> : '' }
+
+                        <br/>
+
+                        { movie.genre
+                          ? <Typography color="textSecondary">Saved to: <a style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/genres/${this.state.movie.genre._id}`}>{this.state.movie.genre.name}</a></Typography>
+                          : <Typography color="textSecondary"><p>Uncategorized</p></Typography>
+                        }
                       </CardContent>
+
                       <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
                         <Tooltip title="Delete">
                           <Fab size="small" onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
