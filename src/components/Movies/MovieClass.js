@@ -7,19 +7,14 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import CardHeader from '@material-ui/core/CardHeader'
-import DeleteIcon from '@material-ui/icons/Delete'
-import Fab from '@material-ui/core/Fab'
-import Tooltip from '@material-ui/core/Tooltip'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditMenu from './EditMenu'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
-import IconButton from '@material-ui/core/IconButton'
 import EditMovieFab from './EditMovieDialog/EditMovieFab'
 import CardMedia from '@material-ui/core/CardMedia'
+import DeleteMovieFab from './EditMovieDialog/DeleteMovieFab'
 
-const fabStyle1 = {
-}
 class MovieClass extends Component {
   state = {
     movie: null,
@@ -46,6 +41,7 @@ class MovieClass extends Component {
         isLoading: false,
         genre: response.data.movie.genre
       })
+      console.log(response.data)
     } catch (error) {
     }
   }
@@ -73,7 +69,7 @@ class MovieClass extends Component {
   }
 
   render () {
-    console.log('rendered MovieClass')
+    console.log('rendered MovieClass', this.state)
     // console.log(this.state.currentMovie)
     // console.log(this.props.currentMovie)
     // console.log('this.state', this.state)
@@ -95,7 +91,7 @@ class MovieClass extends Component {
       <div className="layout-style">
         <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
         { movie && (
-          <div className="movie-container mx-auto my-3 px-3 py-3 border" style={{ backgroundColor: '#f1f1f1' }}>
+          <div className="movie-container mx-auto my-3 px-3 py-3 border">
             <Card>
               <CardContent>
                 <div className="row">
@@ -122,7 +118,8 @@ class MovieClass extends Component {
                           padding="5px"
                           action={
                             // <EditMenu deleteMovie={this.deletemovie} editMovie={this.editMovie} />
-                            <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} currentGenre={this.state.movie.genre} currentGenreId={this.state.movie.genre._id} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deletemovie} editMovie={this.editMovie}/>
+                            // currentGenreId={this.state.movie.genre._id}
+                            <EditMenu className="material-icons right" id={this.state.movie._id} movie={this.state.movie} title={this.state.movie.title} user={this.props.user} currentGenre={this.state.movie.genre} released={this.props.released} genre={this.props.genre} description={this.state.movie.description} image={this.state.movie.image} style={{ textDecoration: 'none' }} deleteMovie={this.deletemovie} editMovie={this.editMovie}/>
 
                           }
                           // title={
@@ -168,16 +165,12 @@ class MovieClass extends Component {
 
                         { movie.genre
                           ? <Typography color="textSecondary">Saved to: <a style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/genres/${this.state.movie.genre._id}`}>{this.state.movie.genre.name}</a></Typography>
-                          : <Typography color="textSecondary"><p>Uncategorized</p></Typography>
+                          : <Typography color="textSecondary">Uncategorized</Typography>
                         }
                       </CardContent>
 
                       <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>
-                        <Tooltip title="Delete">
-                          <Fab size="small" onClick={this.deletemovie} style={fabStyle1} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete" >
-                            <DeleteIcon fontSize="small" />
-                          </Fab>
-                        </Tooltip>
+                        <DeleteMovieFab deleteMovie={this.deletemovie} onMenuClose={this.onMenuClose} id={movie._id} user={this.props.user} movie={movie}/>
                         <EditMovieFab
                           id={this.state.movie._id} user={this.props.user} movie={movie} title={movie.title} currentGenre={movie.currentGenre} genre={movie.genre} image={movie.image} released={movie.released} description={movie.description}/>
                         { /*  <Tooltip title="Edit">
@@ -195,11 +188,6 @@ class MovieClass extends Component {
               </CardContent>
             </Card>
             <CardActions>
-              <Tooltip title="back">
-                <IconButton onClick={this.props.history.goBack} aria-label="back">
-                  <ArrowBack />
-                </IconButton>
-              </Tooltip>
             </CardActions>
           </div>
         )}

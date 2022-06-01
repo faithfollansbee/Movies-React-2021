@@ -39,7 +39,7 @@ class AutoDismissAlert extends React.Component {
         variant={variant}
         onClose={this.handleClose}
       >
-        <div className="container">
+        <div>
           <Alert.Heading>
             {heading}
           </Alert.Heading>

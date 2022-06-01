@@ -2,12 +2,12 @@ import React from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
 import MenuItem from '@material-ui/core/MenuItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import EditMovieForm from './EditMovieForm'
+import Button from '@material-ui/core/Button'
 
-export default function EditMovieDialog (props) {
+export default function DeleteGenreDialog (props) {
   const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {
@@ -22,9 +22,9 @@ export default function EditMovieDialog (props) {
     <div>
       <MenuItem onClick={handleClickOpen}>
         <ListItemIcon>
-          <EditIcon className="material-icons right"/>
+          <DeleteIcon className="material-icons right"/>
         </ListItemIcon>
-        Edit
+        Delete
       </MenuItem>
       <Dialog
         user={props.user}
@@ -35,9 +35,12 @@ export default function EditMovieDialog (props) {
         fullWidth={true}
         maxWidth="sm"
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Edit &quot;{props.title}&quot;</DialogTitle>
-        <DialogContent user={props.user}>
-          <EditMovieForm user={props.user} movie={props.movie} id={props.id} title={props.title} genre={props.genre} released={props.released} description={props.description} image={props.image} handleSubmitClose={handleClose}/>
+        <DialogTitle id="form-dialog-title">Sure you want to delete?</DialogTitle>
+        <DialogContent>
+          <Button color="primary" onClick={handleClose}>Cancel</Button>
+          <Button onClick={props.deleteGenre} color="primary" type="delete">
+              Delete
+          </Button>
         </DialogContent>
       </Dialog>
     </div>

@@ -143,8 +143,6 @@ class SaveMovie extends Component {
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <div>budget: {this.props.budget}</div>
-          <div>revenue: {this.props.revenue}</div>
           <Form.Group controlId="genre">
             { genresJsx }
             <DialogActions>

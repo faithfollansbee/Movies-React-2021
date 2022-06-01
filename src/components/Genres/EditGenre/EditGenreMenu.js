@@ -1,13 +1,11 @@
 import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
 import IconButton from '@material-ui/core/IconButton'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Tooltip from '@material-ui/core/Tooltip'
-import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditGenreDialog from './EditGenreDialog'
+import DeleteGenreDialog from './DeleteGenreDialog'
 
 export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -72,12 +70,9 @@ export default function EditGenreMenu ({ genre, id, user, deleteGenre }) {
         <span>
           <EditGenreDialog onMenuClose={handleClose} id={id} genre={genre} user={user} />
         </span>
-        <MenuItem onClick={deleteGenre} component="a">
-          <ListItemIcon >
-            <DeleteIcon />
-          </ListItemIcon>
-          Delete
-        </MenuItem>
+        <span>
+          <DeleteGenreDialog deleteGenre={deleteGenre} onMenuClose={handleClose} id={id} genre={genre} user={user} />
+        </span>
       </Menu>
     </React.Fragment>
   )

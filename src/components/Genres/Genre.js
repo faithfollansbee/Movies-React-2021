@@ -8,8 +8,8 @@ import MaterializeMovieClass from '../Movies/MaterializeMovieClass'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-import IconButton from '@material-ui/core/IconButton'
-import Tooltip from '@material-ui/core/Tooltip'
+// import IconButton from '@material-ui/core/IconButton'
+// import Tooltip from '@material-ui/core/Tooltip'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditGenreMenu from './EditGenre/EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -201,14 +201,7 @@ class Genre extends React.Component {
             </div>
           )}
           <Typography><i>Displaying x out of {this.state.movies.length} movies</i></Typography>
-          <Tooltip title="back">
-            <IconButton onClick={this.props.history.goBack} aria-label="BACK">
-              <ArrowBack />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="back">
-            <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
-          </Tooltip>
+          <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
         </div>
       )
     }

@@ -1,16 +1,13 @@
 import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
 import IconButton from '@material-ui/core/IconButton'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Tooltip from '@material-ui/core/Tooltip'
-import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditMovieDialog from './EditMovieDialog/EditMovieDialog'
 import DeleteMovieDialog from './DeleteMovieDialog'
 
-export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, image, description, released, currentGenre, currentGenreId }) {
+export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, image, description, released, currentGenre }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -76,12 +73,6 @@ export default function EditMenu ({ deleteMovie, id, user, movie, title, genre, 
         <span>
           <DeleteMovieDialog deleteMovie={deleteMovie} onMenuClose={handleClose} id={id} user={user} movie={movie} title={title} currentGenre={currentGenre} genre={genre} image={image} released={released} description={description}/>
         </span>
-        <MenuItem onClick={deleteMovie} component="a">
-          <ListItemIcon >
-            <DeleteIcon />
-          </ListItemIcon>
-          Delete
-        </MenuItem>
       </Menu>
     </React.Fragment>
   )

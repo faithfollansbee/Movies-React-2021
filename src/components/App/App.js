@@ -36,9 +36,9 @@ class App extends Component {
       genres: null,
       movie: null
     }
-    this.apiKey = process.env.apiKey
     // this.apiKey = process.env.REACT_APP_MY_API_KEY
   }
+  apiKey = `${process.env.REACT_APP_MY_API_KEY}`
 
   setUser = user => this.setState({ user })
   clearUser = () => this.setState({ user: null })
@@ -85,11 +85,9 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    //  this.apiKey = process.env.API_KEY
-    // &region=US
-    // fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&original_language=en-US&include_adult=false&query=${this.state.searchTerm}`)
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=4a0223110b505876ba0985949c17e865&with_origin_country=US&include_adult=false&query=${this.state.searchTerm}`)
-
+    // fetch(`https://api.themoviedb.org/3/search/movie?api_key= &original_language=en-US&include_adult=false&query=${this.state.searchTerm}`)
+    // fetch(`https://api.themoviedb.org/3/search/movie?api_key= &with_origin_country=US&include_adult=false&query=${this.state.searchTerm}`)
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&include_adult=false&with_credits&query=${this.state.searchTerm}`)
     // fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&original_language=en&include_adult=false&query=${this.state.searchTerm}`)
     // fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&include_adult=false&query=${this.state.searchTerm}`)
       .then(data => data.json())
@@ -102,9 +100,17 @@ class App extends Component {
             englishMovies.push(entry)
           }
         })
-        // console.log(englishMovies)
+        // for each result, check production country, if US add to array
+        // .then(data => {
+        //   const engProduction = []
+        //   data.results.forEach(function (entry) {
+        //     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key= &language=en-US`)
+        //   })
+        // })
         this.setState({ searchedMovies: [...englishMovies], totalResults: data.total_results, movies: [...englishMovies] })
-        console.log('called handleSubmit, set searchedMovies + totalResults')
+        // console.log('called handleSubmit, set searchedMovies + totalResults')
+        // console.log('english movies(searched movies, 1st page results)', englishMovies)
+        // console.log('data.total_results', data)
       })
       .catch(error => {
         console.error(error)
@@ -125,8 +131,7 @@ class App extends Component {
 
   getTrending = (event) => {
     // event.preventDefault()
-    //  this.apiKey = process.env.API_KEY
-    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${this.apiKey}&language=en-US`)
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results] })
@@ -139,7 +144,7 @@ class App extends Component {
       })
   }
   getGenres = (event) => {
-    fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=4a0223110b505876ba0985949c17e865&language=en-US')
+    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}&language=en-US`)
       .then(data => data.json())
       .then(data => {
         this.setState({ genres: [...data.genres] })
@@ -150,7 +155,7 @@ class App extends Component {
   }
   getMovie = (event) => {
     // event.preventDefault()
-    fetch(`https://api.themoviedb.org/3/movie/${this.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/movie/${this.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
       // &append_to_response=credits
       .then(data => data.json())
       .then(data => {
@@ -162,9 +167,7 @@ class App extends Component {
       })
   }
   getMovieDetails = (id) => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${id}`)
-
-    // fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&${id}`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: [...data] })
@@ -184,8 +187,9 @@ class App extends Component {
    // <AuthenticatedRoute user={user} exact path='/more-info' render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)} />
    // currentMovie={this.state.currentMovie}
    render () {
+     // console.log('process.env.REACT_APP_MY_API_KEY', process.env.REACT_APP_MY_API_KEY)
      // console.log('this.state', this.state)
-     console.log('currentMovie', this.state.currentMovie)
+     // console.log('currentMovie', this.state.currentMovie)
      const { user, alerts } = this.state
      const numberPages = Math.floor(this.state.totalResults / 20)
      return (

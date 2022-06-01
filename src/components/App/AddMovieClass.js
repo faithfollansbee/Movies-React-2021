@@ -89,20 +89,10 @@ class AddMovieClass extends Component {
     if (!this.state.currentMovie) {
       return <div />
     }
-    // console.log(this.state)
-    // console.log(this.props)
-    // console.log(currentMovie.tagline)
     // directors={props.directors} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image} categories={props.categories} revenue={props.revenue} budget={props.budget} runtime={props.runtime} tagline={props.tagline}
     return (
       <span>
-        <div>
-          hi {title}
-          {currentMovie.tagline}
-          <div> currentMovie: {this.props.title} </div>
-          <div>currentMovie: {currentMovie.title}</div>
-        </div>
         <DialogForm handleSubmitClose={handleSubmitClose} revenue={currentMovie.revenue} user={user} genres={genres} directors={directors} saved={saved} closeMovieInfo={closeMovieInfo} title={title} released={released} description={description} image={image} categories={genres} budget={currentMovie.budget} runtime={currentMovie.runtime} tagline={currentMovie.tagline}/>
-
       </span>
     )
   }

@@ -3,11 +3,11 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DeleteIcon from '@material-ui/icons/Delete'
-import MenuItem from '@material-ui/core/MenuItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+import Tooltip from '@material-ui/core/Tooltip'
+import Fab from '@material-ui/core/Fab'
 import Button from '@material-ui/core/Button'
 
-export default function DeleteMovieDialog (props) {
+export default function DeleteMovieFab (props) {
   const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {
@@ -16,16 +16,15 @@ export default function DeleteMovieDialog (props) {
 
   const handleClose = () => {
     setOpen(false)
-    props.onMenuClose()
   }
+
   return (
     <div>
-      <MenuItem onClick={handleClickOpen}>
-        <ListItemIcon>
-          <DeleteIcon className="material-icons right"/>
-        </ListItemIcon>
-        Delete
-      </MenuItem>
+      <Tooltip title="Delete">
+        <Fab size="small" onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="delete">
+          <DeleteIcon fontSize="small" className="material-icons right"/>
+        </Fab>
+      </Tooltip>
       <Dialog
         user={props.user}
         movie={props.movie}

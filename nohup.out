@@ -1,0 +1,21 @@
+
+> react-auth-template@0.1.0 start /Users/faithfollansbee/sei/Movies/React-Movies-Attempt
+> node scripts/start.js
+
+Something is already running on port 7165.
+
+> react-auth-template@0.1.0 start /Users/faithfollansbee/sei/Movies/React-Movies-Attempt
+> node scripts/start.js
+
+Starting the development server...
+
+Compiled successfully!
+
+You can now view react-auth-template in the browser.
+
+  Local:            http://localhost:7165/
+  On Your Network:  http://172.16.19.67:7165/
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
