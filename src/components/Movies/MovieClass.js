@@ -69,12 +69,6 @@ class MovieClass extends Component {
   }
 
   render () {
-    console.log('rendered MovieClass', this.state)
-    // console.log(this.state.currentMovie)
-    // console.log(this.props.currentMovie)
-    // console.log('this.state', this.state)
-    // console.log('this.props', this.props)
-    // const { history } = this.props
     const { movie, deleted } = this.state
     if (deleted) {
       this.props.history.goBack()
@@ -86,7 +80,6 @@ class MovieClass extends Component {
     }
     const bull = <span style={{ display: 'inline-block', margin: '0 2px', transform: 'scale(0.8)' }}>•</span>
 
-    // <p> {movie.genre.name} </p>
     return (
       <div className="layout-style">
         <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>

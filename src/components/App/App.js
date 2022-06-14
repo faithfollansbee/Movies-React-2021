@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
-import Header from '../Header/Header'
+// import Header from '../Header/Header'
+import Header from '../Header/HeaderClass'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
@@ -41,7 +42,9 @@ class App extends Component {
   apiKey = `${process.env.REACT_APP_MY_API_KEY}`
 
   setUser = user => this.setState({ user })
+
   clearUser = () => this.setState({ user: null })
+
   alert = ({ heading, message, variant }) => {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
@@ -182,7 +185,6 @@ class App extends Component {
    handleChange = (event) => {
      this.setState({ searchTerm: event.target.value })
    }
-   // <SaveMovie user={user}/>
    // <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)} />
    // <AuthenticatedRoute user={user} exact path='/more-info' render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)} />
    // currentMovie={this.state.currentMovie}
@@ -194,7 +196,7 @@ class App extends Component {
      const numberPages = Math.floor(this.state.totalResults / 20)
      return (
        <Fragment>
-         <Header user={user} />
+         <Header user={user} setUser={this.setUser} history={history} location={location} alert={this.alert} />
          {alerts.map((alert, index) => (
            <AutoDismissAlert
              key={index}
