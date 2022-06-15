@@ -1,19 +1,6 @@
 import React, { Component } from 'react'
 import DialogForm from './DialogForm'
 
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
-// import Dialog from '@material-ui/core/Dialog'
-// import DialogContent from '@material-ui/core/DialogContent'
-// import DialogTitle from '@material-ui/core/DialogTitle'
-// import AddIcon from '@material-ui/icons/Add'
-// import DialogForm from './DialogForm'
-// import Tooltip from '@material-ui/core/Tooltip'
-// import Fab from '@material-ui/core/Fab'
-// const dialogStyle = {
-// }
-// const fabStyle = {
-// }
 class AddMovieClass extends Component {
   constructor (props) {
     super(props)
@@ -25,21 +12,14 @@ class AddMovieClass extends Component {
       directors: []
     }
   }
-  // handleClickOpen = () => {
-  //   this.setState({ open: true })
-  // }
-  // handleClose = () => {
-  //   this.setState({ open: false })
-  // }
 
   componentDidMount (props) {
     this.loadData(this.props.id)
     // console.log('hi')
     // console.log(this.props.id)
     // console.log('this.state.id', this.state.id)
-    // console.log(this.props)
     this.props.getMovieDetails(this.props.id)
-    fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&append_to_response=credits`)
+    fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&append_to_response=credits`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
@@ -57,7 +37,7 @@ class AddMovieClass extends Component {
       })
   }
   loadData = (id) => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${id}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&${id}`)
 
     // fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
       .then(data => data.json())
