@@ -64,18 +64,16 @@ class SignUp extends Component {
                 <h3>Sign Up</h3>
                 <Form onSubmit={this.onSignUp}>
                   <Form.Group controlId="email">
-                    <Form.Label>Email address</Form.Label>
                     <Form.Control
                       required
                       type="email"
                       name="email"
                       value={email}
-                      placeholder="Enter email"
+                      placeholder="Email"
                       onChange={this.handleChange}
                     />
                   </Form.Group>
                   <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
                     <Form.Control
                       required
                       name="password"
@@ -86,7 +84,6 @@ class SignUp extends Component {
                     />
                   </Form.Group>
                   <Form.Group controlId="passwordConfirmation">
-                    <Form.Label>Password Confirmation</Form.Label>
                     <Form.Control
                       required
                       name="passwordConfirmation"
@@ -97,6 +94,7 @@ class SignUp extends Component {
                     />
                   </Form.Group>
                   <Button
+                    style={{ padding: '0px 28px' }}
                     variant="primary"
                     type="submit"
                   >

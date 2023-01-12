@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
 import Fab from '@material-ui/core/Fab'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
@@ -25,12 +25,44 @@ const fabRowStyle = {
   position: 'absolute',
   alignItems: 'center'
 }
+// const titleOverlay = {
+//   justifyContent: 'space-evenly',
+//   position: 'absolute',
+//   opacity: 1,
+//   top: 0,
+//   backgroundColor: 'rgba(0, 0, 0, 0.7)',
+//   width: '100%',
+//   transition: '.5s ease',
+//   color: 'white',
+//   fontSize: '20px',
+//   padding: '20px',
+//   alignItems: 'center',
+//   textAlign: 'center'
+// }
+// const buttonsOverlay = {
+//   position: 'absolute',
+//   justifyContent: 'space-evenly',
+//   opacity: 1,
+//   bottom: 0,
+//   backgroundColor: 'rgba(0, 0, 0, 0.7)',
+//   width: '100%',
+//   transition: '.5s ease',
+//   color: 'white',
+//   fontSize: '15px',
+//   padding: '20px',
+//   textAlign: 'center'
+// }
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     zIndex: -1,
     transition: 'transform 0.2s ease-in-out',
     '& .hidden-button': {
+      display: 'none'
+    },
+    '& .hidden-overlay': {
+      // opacity: 0
       display: 'none'
     },
     '&:hover': {
@@ -40,6 +72,11 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover .hidden-button': {
       display: 'flex'
+    },
+    '&:hover .hidden-overlay': {
+      // opacity: 1
+      display: 'flex'
+      // position: 'absolute'
     }
   },
   media: {
@@ -73,36 +110,33 @@ const Movie = (props) => {
         className={classes.root}
         aria-label="show more"
       >
-        <Tooltip className='styledTooltip' style={{ color: 'red' }} title={props.title} placement="top">
-          <div className="card-image">
-            {
-              props.image == null
-                ? <CardMedia
-                  component="img"
-                  alt="no poster found"
-                  image={'https://i.imgur.com/R7mqXKL.png'}
-                />
-                : <CardMedia
-                  component="img"
-                  alt="movie-poster"
-                  image={`https://image.tmdb.org/t/p/w500/${props.image}`}
-                />
-            }
-          </div>
-        </Tooltip>
+        <div className="card-image">
+          {
+            props.image == null
+              ? <CardMedia
+                component="img"
+                alt="no poster found"
+                image={'https://i.imgur.com/R7mqXKL.png'}
+              />
+              : <CardMedia
+                component="img"
+                alt="movie-poster"
+                image={`https://image.tmdb.org/t/p/w500/${props.image}`}
+              />
+          }
+        </div>
         <div style={fabRowStyle}>
           <div style={fabStyle2} className='hidden-button floating waves-effect waves-light'>
             <AddMovieDialog onClick={() => props.viewMovie(props.movieId)} currentMovie={props.currentMovie} viewMovie={props.viewMovie} getMovieDetails={props.getMovieDetails} id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
           </div>
-          { /* <Fab size="small" style={fabStyle4} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+          {
+          /* <Fab size="small" style={fabStyle4} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
             <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
           </Fab> */}
           <Link to="/more-info" href={'/more-info'} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
-            <Tooltip title="More">
-              <Fab size="small" style={fabStyle3} className="hidden-button floating" color="primary" aria-label="more" >
-                <KeyboardArrowRightIcon />
-              </Fab>
-            </Tooltip>
+            <Fab size="small" style={fabStyle3} className="hidden-button floating" color="primary" aria-label="more" >
+              <KeyboardArrowRightIcon />
+            </Fab>
           </Link>
         </div>
         { /*   <Link to="/trending-info" onClick={() => props.ie(props.movieId)} user={props.user} id={props.movieId} title={props.title} currentMovie={props.currentMovie}>

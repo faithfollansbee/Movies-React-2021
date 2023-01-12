@@ -1,23 +1,35 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
 import Fab from '@material-ui/core/Fab'
-import Tooltip from '@material-ui/core/Tooltip'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
-import Fade from '@material-ui/core/Fade'
 
 const fabStyle3 = {
   bottom: 60,
   left: 105
 }
-const StyledTooltip = withStyles({
-  tooltip: {
-    fontSize: '1.5em'
-  }
-})(Tooltip)
+// const titleOverlay = {
+//   justifyContent: 'space-evenly',
+//   position: 'absolute',
+//   opacity: 1,
+//   top: 0,
+//   backgroundColor: 'rgba(0, 0, 0, 0.7)',
+//   width: '100%',
+//   transition: '.5s ease',
+//   color: 'white',
+//   fontSize: '20px',
+//   padding: '20px',
+//   alignItems: 'center',
+//   textAlign: 'center'
+// }
+// const StyledTooltip = withStyles({
+//   tooltip: {
+//     fontSize: '1.5em'
+//   }
+// })(Tooltip)
 
 const fabRowStyle = {
   display: 'flex',
@@ -35,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
     '& .hidden-button': {
       display: 'none'
     },
+    '& .hidden-overlay': {
+      display: 'none'
+    },
     '&:hover': {
       position: 'relative',
       transform: 'scale(1.2)',
@@ -43,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover .hidden-button': {
       display: 'flex'
       // zIndex: '5'
+    },
+    '&:hover .hidden-overlay': {
+      display: 'flex'
     }
   },
   media: {
@@ -70,9 +88,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 const MovieAlt = (props) => {
   const classes = useStyles()
-  // console.log(props)
-  // console.log(props)
-  // <Tooltip className='styledTooltip' style={{ color: 'red' }} title={props.title} placement="top">
+
+  // <StyledTooltip title={props.title} placement="top" TransitionComponent={Fade} TransitionProps={{ timeout: 500 }}>
 
   return (
     <div className="mx-auto py-3 px-1">
@@ -80,32 +97,26 @@ const MovieAlt = (props) => {
         className={classes.root}
         aria-label="show more"
       >
-        <StyledTooltip title={props.title} placement="top" TransitionComponent={Fade} TransitionProps={{ timeout: 500 }}>
-
-          <div className="card-image">
-            {
-              props.image == null
-                ? <CardMedia
-                  component="img"
-                  alt="no poster found"
-                  image={'https://i.imgur.com/R7mqXKL.png'}
-                />
-                : <CardMedia
-                  component="img"
-                  alt="movie-poster"
-                  image={`https://image.tmdb.org/t/p/w500/${props.image}`}
-                />
-            }
-          </div>
-        </StyledTooltip>
-
+        <div className="card-image">
+          {
+            props.image == null
+              ? <CardMedia
+                component="img"
+                alt="no poster found"
+                image={'https://i.imgur.com/R7mqXKL.png'}
+              />
+              : <CardMedia
+                component="img"
+                alt="movie-poster"
+                image={`https://image.tmdb.org/t/p/w500/${props.image}`}
+              />
+          }
+        </div>
         <div style={fabRowStyle}>
           <Link to={`/movies/${props.id}`} href={`/movies/${props.id}`}>
-            <Tooltip title="More">
-              <Fab size="small" style={fabStyle3} className="hidden-button floating" color="primary" aria-label="more" >
-                <KeyboardArrowRightIcon fontSize="small" />
-              </Fab>
-            </Tooltip>
+            <Fab size="small" style={fabStyle3} className="hidden-button floating" color="primary" aria-label="more" >
+              <KeyboardArrowRightIcon fontSize="small" />
+            </Fab>
           </Link>
         </div>
       </Card>

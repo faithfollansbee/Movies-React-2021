@@ -3,7 +3,6 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
-// import DialogForm from './DialogForm'
 import Tooltip from '@material-ui/core/Tooltip'
 import Fab from '@material-ui/core/Fab'
 import AddMovieClass from './AddMovieClass'
@@ -62,7 +61,7 @@ export default function AddMovieDialog (props) {
 
   return (
     <span style={dialogStyle}>
-      <Tooltip title="Add">
+      <Tooltip title="save">
         <Fab style={fabStyle} size="small" onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
           <AddIcon fontSize="small" />
         </Fab>

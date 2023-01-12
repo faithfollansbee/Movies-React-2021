@@ -111,6 +111,7 @@ class App extends Component {
         //   })
         // })
         this.setState({ searchedMovies: [...englishMovies], totalResults: data.total_results, movies: [...englishMovies] })
+        this.setState({ currentPage: 1 })
         // console.log('called handleSubmit, set searchedMovies + totalResults')
         // console.log('english movies(searched movies, 1st page results)', englishMovies)
         // console.log('data.total_results', data)
@@ -121,12 +122,22 @@ class App extends Component {
   }
   nextPage = (pageNumber) => {
     event.preventDefault()
+
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&query=${this.state.searchTerm}&page=${pageNumber}`)
       .then(data => data.json())
       .then(data => {
-        this.setState({ movies: [...data.results], currentPage: pageNumber })
-        this.setState({ searchedMovies: [...data.results], currentPage: pageNumber })
+        const englishMovies = []
+        data.results.forEach(function (entry) {
+          if (entry.original_language === 'en') {
+            englishMovies.push(entry)
+          }
+        })
+        this.setState({ searchedMovies: [...englishMovies], totalResults: data.total_results, movies: [...englishMovies], currentPage: pageNumber })
       })
+      // .then(data => {
+      //   this.setState({ movies: [...data.results], currentPage: pageNumber })
+      //   this.setState({ searchedMovies: [...data.results], currentPage: pageNumber })
+      // })
       .catch(error => {
         console.error(error)
       })

@@ -4,12 +4,10 @@ import { withRouter } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import apiUrl from '../../apiConfig'
 import Typography from '@material-ui/core/Typography'
-import MaterializeMovieClass from '../Movies/MaterializeMovieClass'
+import MovieAlt from '../Movies/MovieAlt'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-// import IconButton from '@material-ui/core/IconButton'
-// import Tooltip from '@material-ui/core/Tooltip'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import EditGenreMenu from './EditGenre/EditGenreMenu'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -53,6 +51,8 @@ class Genre extends React.Component {
       this.setState({ movies: response.data.genre.movies })
     } catch (error) {
     }
+    console.log(this.state)
+    console.log(this.props)
   }
 
   handleFilter = event => {
@@ -157,6 +157,8 @@ class Genre extends React.Component {
         <div className="layout-style my-5">
           { genre && (
             <div>
+              <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
+
               <Card className="card-style" variant="outlined">
                 <CardContent>
                   <div>
@@ -175,9 +177,8 @@ class Genre extends React.Component {
                     {genre.updatedAt.split('T', 1)[0]} */ }
                   </div>
                   <div className="row">
-                    { /* className="row mx-lg-n5" */}
                     {this.state.genre.movies.map(movie => (
-                      <MaterializeMovieClass
+                      <MovieAlt
                         key={movie.name + movie._id}
                         handleRefresh={this.handleRefresh}
                         user={this.props.user}
@@ -189,6 +190,9 @@ class Genre extends React.Component {
                         thisstate={this.state}
                         alert={this.props.alert}
                         genre={this.genre}
+                        genreName={movie.genre.name}
+                        // genre={movie.genre}
+                        {...movie}
                       />
                     ))}
                   </div>
@@ -200,8 +204,7 @@ class Genre extends React.Component {
               </Card>
             </div>
           )}
-          <Typography><i>Displaying x out of {this.state.movies.length} movies</i></Typography>
-          <Button onClick={this.props.history.goBack} startIcon={<ArrowBack />}>BACK</Button>
+          <Typography>Displaying x out of {this.state.movies.length} movies</Typography>
         </div>
       )
     }

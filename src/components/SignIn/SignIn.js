@@ -3,14 +3,12 @@ import { withRouter } from 'react-router-dom'
 import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
+// import Button from '@material-ui/core/Button'
 import Button from 'react-bootstrap/Button'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Fade from '@material-ui/core/Fade'
 
-// const buttonStyle = {
-// backgroundColor: '#DC312F'
-// }
 class SignIn extends Component {
   constructor (props) {
     super(props)
@@ -57,7 +55,7 @@ class SignIn extends Component {
     const { email, password, isSigningIn } = this.state
 
     return (
-      <Fade in={isSigningIn} {...(isSigningIn ? { timeout: 700 } : {})}>
+      <Fade in={isSigningIn} {...(isSigningIn ? { timeout: 900 } : {})}>
         <div className="row">
           <div className="col-sm-10 col-md-8 mx-auto mt-5">
             <Card>
@@ -65,18 +63,16 @@ class SignIn extends Component {
                 <h3>Sign In</h3>
                 <Form onSubmit={this.onSignIn}>
                   <Form.Group controlId="email">
-                    <Form.Label>Email address</Form.Label>
                     <Form.Control
                       required
                       type="email"
                       name="email"
                       value={email}
-                      placeholder="Enter email"
+                      placeholder="Email"
                       onChange={this.handleChange}
                     />
                   </Form.Group>
                   <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
                     <Form.Control
                       required
                       name="password"
@@ -87,6 +83,7 @@ class SignIn extends Component {
                     />
                   </Form.Group>
                   <Button
+                    style={{ padding: '0px 28px' }}
                     // style={buttonStyle}
                     variant="primary"
                     // background-color="#881B1B"

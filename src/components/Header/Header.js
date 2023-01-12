@@ -27,11 +27,11 @@ const alwaysOptions = (
 )
 
 const NavBarStyle = {
-  backgroundColor: '#212529'
+  // backgroundColor: '#212529'
 }
 
 const Header = ({ user, guestSignIn, setUser }) => (
-  <Navbar variant="dark" expand="sm" style={NavBarStyle}>
+  <Navbar bg="light" variant="light" expand="sm" style={NavBarStyle}>
     <Navbar.Brand href="#">Movie Collector</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

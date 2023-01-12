@@ -6,7 +6,8 @@ import { signIn } from '../../api/auth'
 import { withRouter } from 'react-router-dom'
 
 const NavBarStyle = {
-  backgroundColor: '#212529'
+  boxShadow: 'none',
+  backgroundColor: '#ffffff'
 }
 
 const authenticatedOptions = (
@@ -38,27 +39,18 @@ class Header extends Component {
         .then(() => history.push('/trending'))
     }
 
-    // const unauthenticatedOptions = (
-    //   <Fragment>
-    //     <NavLink onClick={() => guestSignIn(user, setUser)} to="/trending" href="#trending">Guest!</NavLink>
-    //
-    //     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="#sign-up" href="#sign-up"> Sign Up </NavLink>
-    //     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="#sign-in" href="#sign-in"> Sign In </NavLink>
-    //     <NavLink onClick={() => guestSignIn(user, setUser)} to="/trending" href="#trending">Guest</NavLink>
-    //   </Fragment>
-    // )
     return (
       <Fragment>
-        <Navbar variant="dark" expand="sm" style={NavBarStyle}>
+        <Navbar variant="light" style={NavBarStyle}>
           <Navbar.Brand href="#">Movie Collector</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav variant="light" className="me-auto">
               { alwaysOptions }
               { user ? authenticatedOptions : (
                 <Fragment>
-                  <Nav.Link className="nav-link" activeStyle={{ color: 'white' }} to="#sign-up" href="#sign-up"> Sign Up </Nav.Link>
-                  <Nav.Link className="nav-link" activeStyle={{ color: 'white' }} to="#sign-in" href="#sign-in"> Sign In </Nav.Link>
+                  <Nav.Link className="nav-link" to="#sign-up" href="#sign-up"> Sign Up </Nav.Link>
+                  <Nav.Link className="nav-link" to="#sign-in" href="#sign-in"> Sign In </Nav.Link>
                   <Nav.Link onClick={() => guestSignIn(user, setUser)} to="/trending" href="#trending">Guest</Nav.Link>
                 </Fragment>
               )}
