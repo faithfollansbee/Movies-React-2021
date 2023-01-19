@@ -15,9 +15,6 @@ class AddMovieClass extends Component {
 
   componentDidMount (props) {
     this.loadData(this.props.id)
-    // console.log('hi')
-    // console.log(this.props.id)
-    // console.log('this.state.id', this.state.id)
     this.props.getMovieDetails(this.props.id)
     fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&append_to_response=credits`)
       .then(data => data.json())

@@ -6,7 +6,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import Genre3 from './Genre3'
 import AddGenreDialog from './AddGenre/AddGenreDialog'
 
-class GenresLoop extends Component {
+class Lists extends Component {
   constructor (props) {
     super(props)
 
@@ -131,7 +131,7 @@ class GenresLoop extends Component {
     return (
       <div className="layout-style">
         <Fragment>
-          <h2 className="title-style">Your genres</h2>
+          <h2 className="title-style">Your Lists</h2>
           <div>
             <AddGenreDialog user={this.props.user} />
           </div>
@@ -171,7 +171,7 @@ class GenresLoop extends Component {
     )
   }
 }
-export default GenresLoop
+export default Lists
 // <Fab href="#creategenre" to="/creategenre" style={fabStyle2} size="small" className='hidden-button floating waves-effect waves-light' color="grey" aria-label="add" >
 //   <Tooltip title="New Genre">
 //     <AddIcon />

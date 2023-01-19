@@ -41,7 +41,7 @@ class Header extends Component {
 
     return (
       <Fragment>
-        <Navbar variant="light" style={NavBarStyle}>
+        <Navbar sticky="top" variant="light" style={NavBarStyle}>
           <Navbar.Brand href="#">Movie Collector</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

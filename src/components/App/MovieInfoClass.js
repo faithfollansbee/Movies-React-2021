@@ -4,14 +4,14 @@ import Card from '@material-ui/core/Card'
 import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 import ArrowBack from '@material-ui/icons/ArrowBack'
-import CardActions from '@material-ui/core/CardActions'
+// import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import CardHeader from '@material-ui/core/CardHeader'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import Fab from '@material-ui/core/Fab'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+// import Fab from '@material-ui/core/Fab'
+// import FavoriteIcon from '@material-ui/icons/Favorite'
 import CardMedia from '@material-ui/core/CardMedia'
 // import AddMovieDialog from './AddMovieDialog'
 import SaveMovieFunction from './SaveMovieFunction'
@@ -104,12 +104,7 @@ class MovieInfoClass extends Component {
                       <CardHeader
                         padding="5px"
                         action={
-                          // <OptionMenu />
-                          <Tooltip title="more">
-                            <IconButton className="material-icons right" tooltip="settings">
-                              <MoreVertIcon />
-                            </IconButton>
-                          </Tooltip>
+                          <SaveMovieFunction style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} revenue={this.state.currentMovie.revenue} homepage={this.state.currentMovie.homepage} budget={this.state.currentMovie.budget} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.state.currentMovie.tagline} runtime={this.state.currentMovie.runtime} directors={this.state.directors} categories={this.state.genres}/>
                         }
                         title={
                           <Typography component="h4" variant="h4">{this.state.currentMovie.title}</Typography>
@@ -149,14 +144,6 @@ class MovieInfoClass extends Component {
                       <Typography><a href={this.state.currentMovie.homepage}>{this.state.currentMovie.homepage}</a></Typography>
                       <br/>
                     </CardContent>
-                    <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                      <Tooltip title="Favorite">
-                        <Fab size="small" className='hidden-button floating waves-effect waves-light' color="primary" aria-label="favorite" >
-                          <FavoriteIcon fontSize="small" />
-                        </Fab>
-                      </Tooltip>
-                      <SaveMovieFunction style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} revenue={this.state.currentMovie.revenue} homepage={this.state.currentMovie.homepage} budget={this.state.currentMovie.budget} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.state.currentMovie.tagline} runtime={this.state.currentMovie.runtime} directors={this.state.directors} categories={this.state.genres}/>
-                    </CardActions>
                   </div>
                 </div>
               </div>

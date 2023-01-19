@@ -56,9 +56,10 @@ class MovieClass extends Component {
     })
       .then(() => this.setState({ deleted: true }))
       // .then(() => history.goBack())
+    console.log('deletemovie function from MovieClass!')
   }
   editMovie = () => {
-    console.log('edit eventually')
+    console.log('edit eventually, called from MovieClass')
   }
   // backFunction = () => {
   //   console.log(this.props)

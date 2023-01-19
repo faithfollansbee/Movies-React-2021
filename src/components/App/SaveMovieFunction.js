@@ -5,11 +5,24 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
 import DialogForm from './DialogForm'
 import Tooltip from '@material-ui/core/Tooltip'
-import Fab from '@material-ui/core/Fab'
+import IconButton from '@material-ui/core/IconButton'
 
 const dialogStyle = {
 }
-const fabStyle = {
+// button border:
+// #919091
+// #9d9a9b
+
+// button icon: #ffffffffffff,
+
+// text on black: #e5e5e5,
+
+const buttonStyle = {
+  border: '2px solid #9d9a9b',
+  // backgroundColor: 'grey',
+  borderRadius: '50%',
+  padding: '10px',
+  color: '#9d9a9b'
 }
 export default function SaveMovieFunction (props) {
   const [open, setOpen] = React.useState(false)
@@ -25,9 +38,9 @@ export default function SaveMovieFunction (props) {
   return (
     <span style={dialogStyle}>
       <Tooltip title="Add">
-        <Fab style={fabStyle} size="small" onClick={handleClickOpen} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
+        <IconButton style={buttonStyle} onClick={handleClickOpen} aria-label="save movie">
           <AddIcon fontSize="small" />
-        </Fab>
+        </IconButton>
       </Tooltip>
       <Dialog
         fullWidth={true}

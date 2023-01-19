@@ -11,7 +11,7 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import MovieClass from '../Movies/MovieClass'
 import Movies from '../Movies/Movies'
 import Genre from '../Genres/Genre'
-import GenresLoop from '../Genres/GenresLoop'
+import Lists from '../Genres/Lists'
 import AddGenre from '../Genres/AddGenre/AddGenre'
 import SearchArea from './SearchArea'
 import SearchResults from './SearchResults'
@@ -19,6 +19,7 @@ import Trending from './trending'
 import MovieInfoClass from './MovieInfoClass'
 import Container from '@material-ui/core/container'
 import Pagination from './Pagination'
+import ScrollToTop from './ScrollToTop'
 
 class App extends Component {
   constructor () {
@@ -218,6 +219,8 @@ class App extends Component {
            />
          ))}
          <Container>
+           <ScrollToTop />
+
            { /* { this.state.currentMovie == null
              ? <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)} />
              : <AuthenticatedRoute user={user} path="/more-info" render={() => <MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>} />
@@ -241,28 +244,16 @@ class App extends Component {
              </div>)}
            />
 
-           <AuthenticatedRoute user={user} path="/more-info" render={() => (
-             <MovieInfoClass user={user} saved={this.saved} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>
-           )}/>
-           <AuthenticatedRoute user={user} exact path='/movies'
-             render={() => (<Movies user={user} viewMovie={this.viewMovie} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie}/>)}/>
-
-           <AuthenticatedRoute user={user} exact path='/movies/:id'
-             render={() => (<MovieClass user={user}/>)}/>
-
            <AuthenticatedRoute user={user} exact path='/genres/'
              render={() => (
                <div>
-                 <GenresLoop user={user}/>
+                 <Lists user={user}/>
                </div>
              )}
            />
 
-           <AuthenticatedRoute user={user} exact path='/genres/:id'
-             render={() => (<Genre user={user}/>)}/>
-
-           <AuthenticatedRoute user={user} path="/creategenre"
-             render={() => (<AddGenre user={user}/>)}/>
+           <AuthenticatedRoute user={user} exact path='/movies'
+             render={() => (<Movies user={user} viewMovie={this.viewMovie} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie}/>)}/>
 
            <AuthenticatedRoute user={user} path='/trending'
              render={() => (
@@ -270,6 +261,19 @@ class App extends Component {
                  <Trending user={user} getTrending={this.getTrending} getMovieDetails={this.getMovieDetails} movies={this.state.movies} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie} viewMovie={this.viewTrendingMovie} setUser={this.setUser} getGenres={this.getGenres} currentMovie={this.state.currentMovie} />
                </div>
              )}/>
+
+           <AuthenticatedRoute user={user} path="/more-info" render={() => (
+             <MovieInfoClass user={user} saved={this.saved} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>
+           )}/>
+
+           <AuthenticatedRoute user={user} exact path='/movies/:id'
+             render={() => (<MovieClass user={user}/>)}/>
+
+           <AuthenticatedRoute user={user} exact path='/genres/:id'
+             render={() => (<Genre user={user}/>)}/>
+
+           <AuthenticatedRoute user={user} path="/creategenre"
+             render={() => (<AddGenre user={user}/>)}/>
 
            <Route path='/sign-up' render={() => (
              <SignUp alert={this.alert} setUser={this.setUser}/>)}/>
