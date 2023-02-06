@@ -49,6 +49,7 @@ class SaveMovie extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+
     axios({
       method: 'POST',
       url: `${apiUrl}/movies`,
@@ -74,9 +75,11 @@ class SaveMovie extends Component {
       .then(response => {
         this.props.history.push(`/movies/${response.data.movie._id}`)
       })
+
       .then(() => this.props.history.push('/movies'))
       .catch(err => this.setState({ error: err.message }))
     this.props.handleSubmitClose()
+    this.props.doMessage()
   }
   handleOptionChange = changeEvent => {
     this.setState({

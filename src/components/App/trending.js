@@ -28,7 +28,15 @@ class Trending extends Component {
         console.error(error)
       })
   }
+  doMessage = (event) => {
+    const { alert } = this.props
 
+    alert({
+      heading: 'Movie Saved Successfully',
+      // message: messages.changePasswordSuccess,
+      variant: 'success'
+    })
+  }
   render (props) {
     // console.log('this.props', this.props)
     // console.log('this.state', this.state)
@@ -37,7 +45,7 @@ class Trending extends Component {
       <Movie key={i} user={this.props.user} currentMovie={this.props.currentMovie} getMovie={this.props.getMovie} getMovieDetails={this.props.getMovieDetails}
         viewMovie={this.props.viewMovie} released={movie.release_date} backdrop={movie.backdrop_path}
         genresIds={movie.genre_ids} image={movie.poster_path} movieId={movie.id} id={movie.id} title={movie.title}
-        description={movie.overview} />
+        description={movie.overview} doMessage={this.doMessage} alert={this.props} />
     ))
     return (
       <div className="results-container my-5">

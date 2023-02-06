@@ -127,7 +127,7 @@ const Movie = (props) => {
         </div>
         <div style={fabRowStyle}>
           <div style={fabStyle2} className='hidden-button floating waves-effect waves-light'>
-            <AddMovieDialog onClick={() => props.viewMovie(props.movieId)} currentMovie={props.currentMovie} viewMovie={props.viewMovie} getMovieDetails={props.getMovieDetails} id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
+            <AddMovieDialog onClick={() => props.viewMovie(props.movieId)} doMessage={props.doMessage} alert={props.alert}currentMovie={props.currentMovie} viewMovie={props.viewMovie} getMovieDetails={props.getMovieDetails} id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
           </div>
           {
           /* <Fab size="small" style={fabStyle4} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >

@@ -73,7 +73,7 @@ export default function AddMovieDialog (props) {
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
-          <AddMovieClass handleSubmitClose={handleClose} closeMovieInfo={props.closeMovieInfo} viewTrendingMovie={props.viewTrendingMovie} getMovieDetails={props.getMovieDetails} title={props.title} id={props.id} released={props.released} description={props.description} image={props.image} user={props.user} budget={props.budget}/>
+          <AddMovieClass doMessage={props.doMessage} alert={props.alert} handleSubmitClose={handleClose} closeMovieInfo={props.closeMovieInfo} viewTrendingMovie={props.viewTrendingMovie} getMovieDetails={props.getMovieDetails} title={props.title} id={props.id} released={props.released} description={props.description} image={props.image} user={props.user} budget={props.budget}/>
         </DialogContent>
       </Dialog>
     </span>

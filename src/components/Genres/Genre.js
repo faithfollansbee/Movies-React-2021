@@ -32,12 +32,7 @@ class Genre extends React.Component {
       genre: response.data.genre
     })
   }
-  // async componentDidMount () {
-  //   const response = await axios(`${apiUrl}/cookbooks/${this.props.match.params.id}`)
-  //   this.setState({
-  //     cookbook: response.data.cookbook
-  //   })
-  // }
+
   async componentDidMount () {
     try {
       const response = await axios({

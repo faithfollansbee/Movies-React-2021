@@ -6,6 +6,7 @@ import AddIcon from '@material-ui/icons/Add'
 import DialogForm from './DialogForm'
 import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
+// import messages from '../AutoDismissAlert/messages'
 
 const dialogStyle = {
 }
@@ -48,7 +49,7 @@ export default function SaveMovieFunction (props) {
         open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
-          <DialogForm handleSubmitClose={handleClose} user={props.user} saved={props.saved} directors={props.directors} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image} categories={props.categories} revenue={props.revenue} budget={props.budget} runtime={props.runtime} tagline={props.tagline}/>
+          <DialogForm doMessage={props.doMessage} alert={props.alert} handleSubmitClose={handleClose} user={props.user} saved={props.saved} directors={props.directors} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image} categories={props.categories} revenue={props.revenue} budget={props.budget} runtime={props.runtime} tagline={props.tagline}/>
         </DialogContent>
       </Dialog>
     </span>

@@ -24,7 +24,7 @@ class AutoDismissAlert extends React.Component {
 
   render () {
     const { variant, heading, message, deleteAlert, id } = this.props
-
+    console.log(this.props)
     // Delete this alert after the fade animation time (300 ms by default)
     if (!this.state.show) {
       setTimeout(() => {

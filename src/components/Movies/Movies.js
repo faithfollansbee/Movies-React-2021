@@ -57,9 +57,9 @@ class movies extends Component {
       this.setState({ userMovies: response.data.movies })
     } catch (error) {
     }
-    console.log(this.state.movies.map(movie => ({
-      value: movie.title
-    })))
+    // console.log(this.state.movies.map(movie => ({
+    //   value: movie.title
+    // })))
   }
 
   handleFilter = event => {
@@ -82,10 +82,6 @@ class movies extends Component {
   // functions to pass into edit movie dialog as props
 
   render () {
-    // console.log('rendered')
-    // console.log('this.state', this.state)
-    // console.log(this.state.movies.length)
-    // console.log('this.props', this.props)
     const { userMovies, isLoading } = this.state
     const moviesJsx = userMovies.map(movie => (
       <MovieAlt key={movie.name + movie._id}

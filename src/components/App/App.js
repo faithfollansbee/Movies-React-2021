@@ -48,6 +48,8 @@ class App extends Component {
 
   alert = ({ heading, message, variant }) => {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
+    console.log(alert)
+    console.log(this.alerts)
   }
   deleteAlert = (id) => {
     this.setState((state) => {
@@ -197,6 +199,7 @@ class App extends Component {
    handleChange = (event) => {
      this.setState({ searchTerm: event.target.value })
    }
+
    // <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)} />
    // <AuthenticatedRoute user={user} exact path='/more-info' render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)} />
    // currentMovie={this.state.currentMovie}
@@ -258,12 +261,12 @@ class App extends Component {
            <AuthenticatedRoute user={user} path='/trending'
              render={() => (
                <div>
-                 <Trending user={user} getTrending={this.getTrending} getMovieDetails={this.getMovieDetails} movies={this.state.movies} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie} viewMovie={this.viewTrendingMovie} setUser={this.setUser} getGenres={this.getGenres} currentMovie={this.state.currentMovie} />
+                 <Trending alert={this.alert} user={user} getTrending={this.getTrending} getMovieDetails={this.getMovieDetails} movies={this.state.movies} handleClick={this.handleClick} movie={this.state.movie} getMovie={this.getMovie} viewMovie={this.viewTrendingMovie} setUser={this.setUser} getGenres={this.getGenres} currentMovie={this.state.currentMovie} />
                </div>
              )}/>
 
            <AuthenticatedRoute user={user} path="/more-info" render={() => (
-             <MovieInfoClass user={user} saved={this.saved} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>
+             <MovieInfoClass alert={this.alert} user={user} saved={this.saved} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>
            )}/>
 
            <AuthenticatedRoute user={user} exact path='/movies/:id'

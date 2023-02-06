@@ -14,6 +14,7 @@ import PropTypes from 'prop-types'
 import EditMovieFab from './EditMovieDialog/EditMovieFab'
 import CardMedia from '@material-ui/core/CardMedia'
 import DeleteMovieFab from './EditMovieDialog/DeleteMovieFab'
+// import SavedTo from './SavedTo'
 
 class MovieClass extends Component {
   state = {
@@ -41,7 +42,7 @@ class MovieClass extends Component {
         isLoading: false,
         genre: response.data.movie.genre
       })
-      console.log(response.data)
+      // console.log(response.data)
     } catch (error) {
     }
   }
@@ -56,7 +57,6 @@ class MovieClass extends Component {
     })
       .then(() => this.setState({ deleted: true }))
       // .then(() => history.goBack())
-    console.log('deletemovie function from MovieClass!')
   }
   editMovie = () => {
     console.log('edit eventually, called from MovieClass')
@@ -161,6 +161,7 @@ class MovieClass extends Component {
                           ? <Typography color="textSecondary">Saved to: <a style={{ color: 'rgba(0, 0, 0, 0.87)' }} href={`#/genres/${this.state.movie.genre._id}`}>{this.state.movie.genre.name}</a></Typography>
                           : <Typography color="textSecondary">Uncategorized</Typography>
                         }
+
                       </CardContent>
 
                       <CardActions style={{ marginTop: 'auto', display: 'flex', alignItems: 'space-around', justifyContent: 'space-evenly' }}>

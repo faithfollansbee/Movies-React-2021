@@ -16,6 +16,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 // import AddMovieDialog from './AddMovieDialog'
 import SaveMovieFunction from './SaveMovieFunction'
 // import EditMovieListing from './EditMovieListing'
+// import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
+// import messages from '../AutoDismissAlert/messages'
 
 const addDialogStyle = {
 }
@@ -28,8 +30,10 @@ class MovieInfoClass extends Component {
   }
 
   componentDidMount (props) {
-    // fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US`)
-    fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&append_to_response=credits`)
+    console.log(`${process.env.REACT_APP_MY_API_KEY}`)
+
+    // fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&append_to_response=credits`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
@@ -43,6 +47,7 @@ class MovieInfoClass extends Component {
             directors.push(entry.name)
           }
         })
+        console.log('called componentDidMount in MovieInfoClass')
         // console.log('Director: ' + directors.join(', '))
         this.setState({ directors: directors })
       })
@@ -50,10 +55,10 @@ class MovieInfoClass extends Component {
         console.error(error)
       })
   }
-  // https://api.themoviedb.org/3/movie/385128?api_key=4a0223110b505876ba0985949c17e865&language=en-US&movie_id=385128
-  // https://api.themoviedb.org/3/movie/${this.state.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US
+  // https://api.themoviedb.org/3/movie/385128?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&movie_id=385128
+  // https://api.themoviedb.org/3/movie/${this.state.currentMovie.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US
   getMovie = (event) => {
-    fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=4a0223110b505876ba0985949c17e865&language=en-US&${this.props.currentMovie.id}`)
+    fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&${this.props.currentMovie.id}`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
@@ -63,9 +68,19 @@ class MovieInfoClass extends Component {
         console.error(error)
       })
   }
+  doMessage = (event) => {
+    const { alert } = this.props
+
+    alert({
+      heading: 'Movie Saved Successfully',
+      // message: messages.changePasswordSuccess,
+      variant: 'success'
+    })
+  }
 
   render () {
     const { currentMovie, directors } = this.state
+    // console.log(alert)
     // console.log(this.state)
     // console.log(this.props)
     const bull = <span style={{ display: 'inline-block', margin: '0 2px', transform: 'scale(0.8)' }}>•</span>
@@ -104,7 +119,7 @@ class MovieInfoClass extends Component {
                       <CardHeader
                         padding="5px"
                         action={
-                          <SaveMovieFunction style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} revenue={this.state.currentMovie.revenue} homepage={this.state.currentMovie.homepage} budget={this.state.currentMovie.budget} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.state.currentMovie.tagline} runtime={this.state.currentMovie.runtime} directors={this.state.directors} categories={this.state.genres}/>
+                          <SaveMovieFunction doMessage={this.doMessage} alert={this.props} style={addDialogStyle} id={this.props.currentMovie.id} title={this.props.currentMovie.title} released={this.props.currentMovie.release_date} revenue={this.state.currentMovie.revenue} homepage={this.state.currentMovie.homepage} budget={this.state.currentMovie.budget} description={this.props.currentMovie.overview} image={this.props.currentMovie.poster_path} user={this.props.user} tagline={this.state.currentMovie.tagline} runtime={this.state.currentMovie.runtime} directors={this.state.directors} categories={this.state.genres}/>
                         }
                         title={
                           <Typography component="h4" variant="h4">{this.state.currentMovie.title}</Typography>
