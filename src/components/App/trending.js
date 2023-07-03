@@ -18,7 +18,7 @@ class Trending extends Component {
 
   componentDidMount (event) {
     this.props.getTrending()
-    fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=4a0223110b505876ba0985949c17e865&language=en-US')
+    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results], isLoading: false })
@@ -33,16 +33,13 @@ class Trending extends Component {
 
     alert({
       heading: 'Movie Saved Successfully',
-      // message: messages.changePasswordSuccess,
       variant: 'success'
     })
   }
   render (props) {
-    // console.log('this.props', this.props)
-    // console.log('this.state', this.state)
     const { movies } = this.state
     const moviesJsx = movies.map((movie, i) => (
-      <Movie key={i} user={this.props.user} currentMovie={this.props.currentMovie} getMovie={this.props.getMovie} getMovieDetails={this.props.getMovieDetails}
+      <Movie key={i} movie={movie} user={this.props.user} currentMovie={this.props.currentMovie} getMovie={this.props.getMovie} getMovieDetails={this.props.getMovieDetails}
         viewMovie={this.props.viewMovie} released={movie.release_date} backdrop={movie.backdrop_path}
         genresIds={movie.genre_ids} image={movie.poster_path} movieId={movie.id} id={movie.id} title={movie.title}
         description={movie.overview} doMessage={this.doMessage} alert={this.props} />

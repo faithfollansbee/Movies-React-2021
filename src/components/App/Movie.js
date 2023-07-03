@@ -1,14 +1,12 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
 import Fab from '@material-ui/core/Fab'
-// import Tooltip from '@material-ui/core/Tooltip'
 import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
-// import AddMovieDialog from './AddMovieClass'
 
 const fabStyle2 = {
   bottom: 60,
@@ -127,7 +125,7 @@ const Movie = (props) => {
         </div>
         <div style={fabRowStyle}>
           <div style={fabStyle2} className='hidden-button floating waves-effect waves-light'>
-            <AddMovieDialog onClick={() => props.viewMovie(props.movieId)} doMessage={props.doMessage} alert={props.alert}currentMovie={props.currentMovie} viewMovie={props.viewMovie} getMovieDetails={props.getMovieDetails} id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
+            <AddMovieDialog onClick={() => props.viewMovie(props.movieId)} movie={props.movie} doMessage={props.doMessage} alert={props.alert} currentMovie={props.currentMovie} viewMovie={props.viewMovie} getMovieDetails={props.getMovieDetails} id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
           </div>
           {
           /* <Fab size="small" style={fabStyle4} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >

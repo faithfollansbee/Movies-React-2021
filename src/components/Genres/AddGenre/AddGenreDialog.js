@@ -28,7 +28,7 @@ export default function AddGenreDialog (props) {
         open={open} onClose={handleClose}>
         <DialogTitle id="form-dialog-title">New Genre</DialogTitle>
         <DialogContent user={props.user}>
-          <AddGenre handleSubmitClose={handleClose} user={props.user}/>
+          <AddGenre handleSubmitClose={handleClose} doMessage={props.doMessage} user={props.user}/>
         </DialogContent>
       </Dialog>
     </div>

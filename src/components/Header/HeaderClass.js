@@ -16,6 +16,8 @@ const authenticatedOptions = (
     <Nav.Link href="#search">Search</Nav.Link>
     <Nav.Link href="#genres">My Lists</Nav.Link>
     <Nav.Link href="#trending">Trending</Nav.Link>
+    <Nav.Link href="#trending">New & Popular</Nav.Link>
+    <Nav.Link href="#search">Browse By Genre</Nav.Link>
   </Fragment>
 )
 

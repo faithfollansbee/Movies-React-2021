@@ -62,7 +62,7 @@ class AddMovieClass extends Component {
   //     })
   // }
   render () {
-    const { handleSubmitClose, user, saved, closeMovieInfo, title, released, description, image } = this.props
+    const { handleSubmitClose, user, saved, closeMovieInfo, title, released, description, image, movie } = this.props
     const { currentMovie, directors, genres } = this.state
     if (!this.state.currentMovie) {
       return <div />
@@ -70,7 +70,7 @@ class AddMovieClass extends Component {
     // directors={props.directors} closeMovieInfo={props.closeMovieInfo} title={props.title} released={props.released} description={props.description} image={props.image} categories={props.categories} revenue={props.revenue} budget={props.budget} runtime={props.runtime} tagline={props.tagline}
     return (
       <span>
-        <DialogForm doMessage={this.props.doMessage} alert={this.props.alert} handleSubmitClose={handleSubmitClose} revenue={currentMovie.revenue} user={user} genres={genres} directors={directors} saved={saved} closeMovieInfo={closeMovieInfo} title={title} released={released} description={description} image={image} categories={genres} budget={currentMovie.budget} runtime={currentMovie.runtime} tagline={currentMovie.tagline}/>
+        <DialogForm movie={movie} doMessage={this.props.doMessage} alert={this.props.alert} handleSubmitClose={handleSubmitClose} revenue={currentMovie.revenue} user={user} genres={genres} directors={directors} saved={saved} closeMovieInfo={closeMovieInfo} title={title} released={released} description={description} image={image} categories={genres} budget={currentMovie.budget} runtime={currentMovie.runtime} tagline={currentMovie.tagline}/>
       </span>
     )
   }

@@ -40,7 +40,7 @@ class SignUp extends Component {
         message: messages.signUpSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/trending'))
       .catch(error => {
         this.setState({ email: '', password: '', passwordConfirmation: '' })
         console.error(error)

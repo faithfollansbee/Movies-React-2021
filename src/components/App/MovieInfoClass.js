@@ -6,18 +6,10 @@ import Button from '@material-ui/core/Button'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 // import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import CardHeader from '@material-ui/core/CardHeader'
-// import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-// import Fab from '@material-ui/core/Fab'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
 import CardMedia from '@material-ui/core/CardMedia'
-// import AddMovieDialog from './AddMovieDialog'
 import SaveMovieFunction from './SaveMovieFunction'
-// import EditMovieListing from './EditMovieListing'
-// import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
-// import messages from '../AutoDismissAlert/messages'
 
 const addDialogStyle = {
 }
@@ -30,16 +22,12 @@ class MovieInfoClass extends Component {
   }
 
   componentDidMount (props) {
-    console.log(`${process.env.REACT_APP_MY_API_KEY}`)
-
     // fetch(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
     fetch(`https://api.themoviedb.org/3/movie/${this.props.currentMovie.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&append_to_response=credits`)
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
         this.setState({ genres: data.genres })
-        console.log(data)
-        // console.log('MOVIEINFOCLASS', data)
         // console.log('MovieInfoClass mounted + fetched more info from api')
         const directors = []
         data.credits.crew.forEach(function (entry) {
@@ -47,7 +35,6 @@ class MovieInfoClass extends Component {
             directors.push(entry.name)
           }
         })
-        console.log('called componentDidMount in MovieInfoClass')
         // console.log('Director: ' + directors.join(', '))
         this.setState({ directors: directors })
       })
@@ -62,7 +49,6 @@ class MovieInfoClass extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: { ...data } })
-        // console.log('called get')
       })
       .catch(error => {
         console.error(error)
@@ -73,16 +59,14 @@ class MovieInfoClass extends Component {
 
     alert({
       heading: 'Movie Saved Successfully',
-      // message: messages.changePasswordSuccess,
       variant: 'success'
     })
   }
 
   render () {
     const { currentMovie, directors } = this.state
-    // console.log(alert)
-    // console.log(this.state)
-    // console.log(this.props)
+    // console.log('substring 5:', this.state.currentMovie.release_date.substring(1, 4))
+
     const bull = <span style={{ display: 'inline-block', margin: '0 2px', transform: 'scale(0.8)' }}>•</span>
 
     return (
@@ -97,7 +81,7 @@ class MovieInfoClass extends Component {
           </Button>
         </Tooltip>
         <div style={{ backgroundColor: '#f1f1f1' }} className="movie-container mx-auto my-3 px-3 py-3 border">
-          <Card>
+          <Card style={{ backgroundColor: '#f1f1f1' }}>
             <CardContent>
               <div className="row">
                 <div>
@@ -126,6 +110,7 @@ class MovieInfoClass extends Component {
                         }
                         // <Typography><a href={this.state.currentMovie.homepage}>{this.state.currentMovie.homepage}</a></Typography>
                         // subheader={<a href={this.state.currentMovie.homepage}>{this.state.currentMovie.homepage}</a>}
+                        // subheader={this.state.currentMovie.release_date.substring(0, 4)}
                         subheader={this.state.currentMovie.release_date.substring(5).split('-').concat(this.state.currentMovie.release_date.substring(0, 4)).join('/')}
                       />
                     </div>

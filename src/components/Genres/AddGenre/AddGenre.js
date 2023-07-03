@@ -23,14 +23,14 @@ class AddGenre extends Component {
   // async componentDidMount () {
   //   try {
   //     const response = await axios({
-  //       url: `${apiUrl}/recipes`,
+  //       url: `${apiUrl}/genres`,
   //       method: 'GET',
   //       headers: {
   //         Authorization: `Token token=${this.props.user.token}`
   //       }
   //     })
-  //     this.setState({ recipes: response.data.recipes, isLoading: false })
-  //     this.setState({ userRecipes: response.data.recipes })
+  //     this.setState({ genres: response.data.genres, isLoading: false })
+  //     this.setState({ userGenres: response.data.genres })
   //   } catch (error) {
   //   }
   // }
@@ -56,6 +56,7 @@ class AddGenre extends Component {
         this.props.history.push('/genres')
       })
     this.props.handleSubmitClose()
+    this.props.doMessage()
   }
   render () {
     return (

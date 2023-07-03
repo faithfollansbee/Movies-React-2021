@@ -79,6 +79,14 @@ class Lists extends Component {
 
       .catch(err => this.setState({ error: err.message }))
   }
+  doMessage = (event) => {
+    const { alert } = this.props
+
+    alert({
+      heading: 'List Created Successfully',
+      variant: 'success'
+    })
+  }
   // originally from Genre3 component, need GenresLoop to rerender after delete
   // handleDelete = () => {
   //   axios.delete(`${apiUrl}/genres/${this.props.id}`,
@@ -133,7 +141,7 @@ class Lists extends Component {
         <Fragment>
           <h2 className="title-style">Your Lists</h2>
           <div>
-            <AddGenreDialog user={this.props.user} />
+            <AddGenreDialog user={this.props.user} doMessage={this.doMessage}/>
           </div>
           <div className="search">
             {

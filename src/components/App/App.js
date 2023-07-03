@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
-// import Header from '../Header/Header'
 import Header from '../Header/HeaderClass'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
@@ -17,7 +16,7 @@ import SearchArea from './SearchArea'
 import SearchResults from './SearchResults'
 import Trending from './trending'
 import MovieInfoClass from './MovieInfoClass'
-import Container from '@material-ui/core/container'
+import Container from '@material-ui/core/Container'
 import Pagination from './Pagination'
 import ScrollToTop from './ScrollToTop'
 
@@ -48,8 +47,6 @@ class App extends Component {
 
   alert = ({ heading, message, variant }) => {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
-    console.log(alert)
-    console.log(this.alerts)
   }
   deleteAlert = (id) => {
     this.setState((state) => {
@@ -63,7 +60,6 @@ class App extends Component {
     // const selectedMovie = this.state.movies.filter(movie => movie.id === id)
     const newCurrentMovie = selectedMovie.length > 0 ? selectedMovie[0] : null
     this.setState({ currentMovie: newCurrentMovie })
-    console.log('called viewMovie, set currentMovie')
   }
 
   viewTrendingMovie = (id) => {
@@ -75,18 +71,15 @@ class App extends Component {
     // this.setState({ currentMovie: currentMovieObj })
     // this.setState({ trendingMovie: newTrendingMovie })
     this.setState({ currentMovie: newCurrentMovie })
-    console.log('called viewTrendingMovie, set currentMovie')
   }
 
   closeMovieInfo = () => {
     event.preventDefault()
     this.setState({ currentMovie: null })
-    console.log('closeMovieInfo, set currentMovie to null')
   }
 
   BackToResults = () => {
     this.setState({ currentMovie: null })
-    console.log('BackToResults, set currentMovie to null')
   }
 
   handleSubmit = (event) => {
@@ -98,7 +91,6 @@ class App extends Component {
     // fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US&include_adult=false&query=${this.state.searchTerm}`)
       .then(data => data.json())
       .then(data => {
-        // console.log(data)
         // this.setState({ movies: [...data.results], totalResults: data.total_results })
         const englishMovies = []
         data.results.forEach(function (entry) {
@@ -115,9 +107,6 @@ class App extends Component {
         // })
         this.setState({ searchedMovies: [...englishMovies], totalResults: data.total_results, movies: [...englishMovies] })
         this.setState({ currentPage: 1 })
-        // console.log('called handleSubmit, set searchedMovies + totalResults')
-        // console.log('english movies(searched movies, 1st page results)', englishMovies)
-        // console.log('data.total_results', data)
       })
       .catch(error => {
         console.error(error)
@@ -147,14 +136,11 @@ class App extends Component {
   }
 
   getTrending = (event) => {
-    // event.preventDefault()
     fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${this.apiKey}&language=en-US`)
       .then(data => data.json())
       .then(data => {
         this.setState({ movies: [...data.results] })
         // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
-        console.log('getTrending, set movies')
-        console.log(data)
       })
       .catch(error => {
         console.error(error)
@@ -171,13 +157,11 @@ class App extends Component {
       })
   }
   getMovie = (event) => {
-    // event.preventDefault()
     fetch(`https://api.themoviedb.org/3/movie/${this.id}?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
       // &append_to_response=credits
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: [...data] })
-        console.log(this.state.currentMovie, 'got movie')
       })
       .catch(error => {
         console.error(error)
@@ -188,25 +172,18 @@ class App extends Component {
       .then(data => data.json())
       .then(data => {
         this.setState({ currentMovie: [...data] })
-        // console.log(data)
-        console.log('called getMovieDetails, set currentMovie')
       })
       .catch(error => {
         console.error(error)
       })
   }
-
    handleChange = (event) => {
      this.setState({ searchTerm: event.target.value })
    }
-
    // <AuthenticatedRoute user={user} exact path='/search' component={App} render={() => (<div><SearchArea user={user} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/> <SearchResults user={user} viewMovie={this.viewMovie} movies={this.state.movies} handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleClick={this.handleClick}/></div>)} />
    // <AuthenticatedRoute user={user} exact path='/more-info' render={() => (<MovieInfo user={user} currentMovie={this.state.currentMovie} closeMovieInfo={this.closeMovieInfo}/>)} />
    // currentMovie={this.state.currentMovie}
    render () {
-     // console.log('process.env.REACT_APP_MY_API_KEY', process.env.REACT_APP_MY_API_KEY)
-     // console.log('this.state', this.state)
-     // console.log('currentMovie', this.state.currentMovie)
      const { user, alerts } = this.state
      const numberPages = Math.floor(this.state.totalResults / 20)
      return (
@@ -250,7 +227,7 @@ class App extends Component {
            <AuthenticatedRoute user={user} exact path='/genres/'
              render={() => (
                <div>
-                 <Lists user={user}/>
+                 <Lists alert={this.alert} user={user}/>
                </div>
              )}
            />

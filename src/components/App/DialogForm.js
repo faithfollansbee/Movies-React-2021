@@ -102,7 +102,6 @@ class SaveMovie extends Component {
   }
 
   render (props) {
-    // console.log(props)
     const { saved } = this.state
     if (saved) {
       return <Redirect to={
