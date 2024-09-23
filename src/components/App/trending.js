@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Movie from './Movie'
-
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 import Skeleton from '@material-ui/lab/Skeleton'
 const skeletonPlaceStyle = {
   marginLeft: 'auto',
@@ -11,23 +12,54 @@ const skeletonPlaceStyle = {
 }
 class Trending extends Component {
   state = {
-    movies: [],
+    movies: this.props.movies,
     genres: [],
     isLoading: true
   }
 
-  componentDidMount (event) {
+  async componentDidMount (event) {
     this.props.getTrending()
-    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
-      .then(data => data.json())
-      .then(data => {
-        this.setState({ movies: [...data.results], isLoading: false })
-        // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+    try {
+      const response = await axios({
+        url: `${apiUrl}/trending`,
+        method: 'GET',
+        headers: {
+          Authorization: `Token token=${this.props.user.token}`
+        }
       })
-      .catch(error => {
-        console.error(error)
-      })
+      this.setState({ movies: response.data.results, isLoading: false })
+      console.log('response', response.data)
+      console.log('response.data.results', response.data.results)
+        .then(response => response.json())
+        .then(response => {
+          this.setState({ movies: [...response.data.results], isLoading: false })
+        })
+    } catch (error) {
+    }
   }
+  // fetch('/trending')
+  // .then(response => response.json())
+  // .then(data => data.json())
+  // .then(data => {
+  //   this.setState({ movies: [...data.results], isLoading: false })
+  // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+  // })
+  // .then(data => console.log(data))
+  // .then(data => data.json())
+  // .then(data => {
+  //   this.setState({ movies: [...data.results] })
+  // })
+  // .catch(error => console.error(error))
+  // this.props.getTrending()
+  // fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MY_API_KEY}&language=en-US`)
+  //   .then(data => data.json())
+  //   .then(data => {
+  //     this.setState({ movies: [...data.results], isLoading: false })
+  //     // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+  //   })
+  //   .catch(error => {
+  //     console.error(error)
+  //   })
   doMessage = (event) => {
     const { alert } = this.props
 

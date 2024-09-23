@@ -19,6 +19,8 @@ import MovieInfoClass from './MovieInfoClass'
 import Container from '@material-ui/core/Container'
 import Pagination from './Pagination'
 import ScrollToTop from './ScrollToTop'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 
 class App extends Component {
   constructor () {
@@ -135,17 +137,91 @@ class App extends Component {
       })
   }
 
-  getTrending = (event) => {
-    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${this.apiKey}&language=en-US`)
-      .then(data => data.json())
-      .then(data => {
-        this.setState({ movies: [...data.results] })
-        // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+  // getTrending = async (token) => {
+  //   try {
+  //     const response = await fetch('/trending', {
+  //       method: 'GET',
+  //       headers: {
+  //         Authorization: `Token token=${token}`
+  //       }
+  //     })
+  //     if (response.ok) {
+  //       const data = await response.json()
+  //       console.log(data)
+  //     } else {
+  //       throw new Error('Error fetching data')
+  //     }
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // };
+
+  // this one works
+  getTrending = async (token) => {
+    try {
+      const response = await axios({
+        url: `${apiUrl}/trending`,
+        method: 'GET',
+        headers: {
+          Authorization: `Token token=${token}`
+        }
       })
-      .catch(error => {
-        console.error(error)
-      })
+      const results = response.data.results
+      this.setState({ movies: [...results] })
+      console.log(response.data, this.state.movies)
+    } catch (error) {
+      console.error(error)
+    }
   }
+  // getTrending = async (user) => {
+  //   try {
+  //     const response = await axios({
+  //       url: `${apiUrl}/trending`,
+  //       method: 'GET',
+  //       headers: {
+  //         Authorization: `Token token=${this.props.user.token}`
+  //       }
+  //     })
+  //     console.log(response.data)
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
+  // getTrending = (event) => {
+  //   try {
+  //     const response = axios({
+  //       url: `${apiUrl}/trending`,
+  //       method: 'GET',
+  //       headers: {
+  //         Authorization: `Token token=${this.props.user.token}`
+  //       }
+  //     })
+  //       .then(response => response.json())
+  //       .then(data => data.json())
+  //       .then(data => {
+  //         this.setState({ movies: [...data.results] })
+  //       })
+  //     this.setState({ movies: response.data.results })
+  //     console.log('response', response.data)
+  //     console.log('response.data.results', response.data.results)
+  //       .then(response => response.json())
+  //       .then(response => {
+  //         this.setState({ movies: [...response.data.results], isLoading: false })
+  //       })
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${this.apiKey}&language=en-US`)
+  //   .then(data => data.json())
+  //   .then(data => {
+  //     this.setState({ movies: [...data.results] })
+  //     // this.setState({ searchedMovies: [...data.results], totalResults: data.total_results })
+  //   })
+  //   .catch(error => {
+  //     console.error(error)
+  //   })
+  //   console.log('hi')
+  // }
   getGenres = (event) => {
     fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}&language=en-US`)
       .then(data => data.json())

@@ -1,9 +1,7 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
-import Fab from '@material-ui/core/Fab'
 import { makeStyles } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Link } from 'react-router-dom'
 import AddMovieDialog from './AddMovieDialog'
@@ -12,10 +10,10 @@ const fabStyle2 = {
   bottom: 60,
   left: 70
 }
-const fabStyle3 = {
-  bottom: 60,
-  left: 100
-}
+// const fabStyle3 = {
+//   bottom: 60,
+//   left: 100
+// }
 
 const fabRowStyle = {
   display: 'flex',
@@ -103,39 +101,32 @@ const useStyles = makeStyles((theme) => ({
 const Movie = (props) => {
   const classes = useStyles()
   return (
-    <div className="mx-auto py-3 px-1">
+    <div className="mx-auto py-3 px-1" >
       <Card style={{ width: '18rem' }}
         className={classes.root}
         aria-label="show more"
       >
-        <div className="card-image">
-          {
-            props.image == null
-              ? <CardMedia
-                component="img"
-                alt="no poster found"
-                image={'https://i.imgur.com/R7mqXKL.png'}
-              />
-              : <CardMedia
-                component="img"
-                alt="movie-poster"
-                image={`https://image.tmdb.org/t/p/w500/${props.image}`}
-              />
-          }
-        </div>
+        <Link to="/more-info" href={'/more-info'} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
+          <div className="card-image">
+            {
+              props.image == null
+                ? <CardMedia
+                  component="img"
+                  alt="no poster found"
+                  image={'https://i.imgur.com/R7mqXKL.png'}
+                />
+                : <CardMedia
+                  component="img"
+                  alt="movie-poster"
+                  image={`https://image.tmdb.org/t/p/w500/${props.image}`}
+                />
+            }
+          </div>
+        </Link>
         <div style={fabRowStyle}>
           <div style={fabStyle2} className='hidden-button floating waves-effect waves-light'>
             <AddMovieDialog onClick={() => props.viewMovie(props.movieId)} movie={props.movie} doMessage={props.doMessage} alert={props.alert} currentMovie={props.currentMovie} viewMovie={props.viewMovie} getMovieDetails={props.getMovieDetails} id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} revenue={props.revenue} budget={props.budget}/>
           </div>
-          {
-          /* <Fab size="small" style={fabStyle4} className='hidden-button floating waves-effect waves-light' color="primary" aria-label="add" >
-            <AddMovieDialog id={props.movieId} title={props.title} categories={props.genreIds} tagline={props.tagline} runtime={props.runtime} released={props.released} description={props.description} image={props.image} user={props.user} />
-          </Fab> */}
-          <Link to="/more-info" href={'/more-info'} onClick={() => props.viewMovie(props.movieId)} user={props.user} id={props.movieId}>
-            <Fab size="small" style={fabStyle3} className="hidden-button floating" color="primary" aria-label="more" >
-              <KeyboardArrowRightIcon />
-            </Fab>
-          </Link>
         </div>
         { /*   <Link to="/trending-info" onClick={() => props.ie(props.movieId)} user={props.user} id={props.movieId} title={props.title} currentMovie={props.currentMovie}>
             <Tooltip title={props.movieId}>

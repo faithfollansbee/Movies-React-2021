@@ -5,7 +5,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import MovieAlt from './MovieAlt'
 import PropTypes from 'prop-types'
 import Skeleton from '@material-ui/lab/Skeleton'
-
+import ImgList from './ImgList'
 // const linkStyle = {
 //   color: 'black',
 //   paddingLeft: '15px',
@@ -170,6 +170,7 @@ class movies extends Component {
             {moviesStatus}
           </div>
         </Fragment>
+        <ImgList />
       </div>
     )
   }
